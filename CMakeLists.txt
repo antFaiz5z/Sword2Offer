@@ -8,4 +8,9 @@ add_executable(
         main.cpp
         Array.cpp
         Array.h
-        Utility.cpp Utility.h String.cpp String.h)
+        Utility.cpp
+        Utility.h
+        String.cpp
+        String.h
+        List.cpp
+        List.h)

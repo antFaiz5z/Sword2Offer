@@ -72,13 +72,13 @@ bool Array::find_standard(int target, vector<vector<int> > array) {
 
     auto i = static_cast<int>(rows - 1);
     int j = 0;
-    while(0 <= i && j < cols){
-        if(target == array[i][j]){
+    while (0 <= i && j < cols) {
+        if (target == array[i][j]) {
             cout << i << "," << j << endl;
             return true;
-        }else if(target > array[i][j]){
+        } else if (target > array[i][j]) {
             j++;
-        } else{
+        } else {
             i--;
         }
     }

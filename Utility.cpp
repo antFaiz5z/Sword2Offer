@@ -10,10 +10,10 @@
 double Utility::get_time() {
 
     struct timeval time{};
-    if (gettimeofday(&time, nullptr)){
+    if (gettimeofday(&time, nullptr)) {
         return 0;
     }
-    return (double)time.tv_sec + (double)time.tv_usec * .000001;
+    return (double) time.tv_sec + (double) time.tv_usec * .000001;
 }
 
 void Utility::print_during(double start, double end) {
