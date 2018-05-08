@@ -23,9 +23,7 @@ public:
     vector<vector<int>> get_array(int m, int n);
 
     bool find_mine(int target, vector<vector<int> > array);
-
     bool find_standard(int target, vector<vector<int> > array);
-
     static void local_main();
 };
 

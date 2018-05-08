@@ -9,7 +9,7 @@ struct ListNode {
     int val;
     struct ListNode *next;
 
-    ListNode(int x) : val(x), next(nullptr) {};
+    explicit ListNode(int x) : val(x), next(nullptr) {};
 };
 
 

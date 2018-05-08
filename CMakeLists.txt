@@ -12,5 +12,7 @@ add_executable(
         Utility.h
         String.cpp
         String.h
-        List.cpp
-        List.h)
+        Data_Structure.cpp
+        Data_Structure.h
+        Search_and_Sort.cpp
+        Search_and_Sort.h)

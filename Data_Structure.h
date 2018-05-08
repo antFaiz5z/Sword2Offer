@@ -9,8 +9,9 @@
 #include "Utility.h"
 
 #include <vector>
+#include <stack>
 
-class List {
+class Data_Structure {
 
 public:
 
@@ -20,8 +21,16 @@ public:
      * 输入一个链表，从尾到头打印链表每个节点的值。
      */
     std::vector<int> printListFromTailToHead(ListNode* head);
-
     static void local_main_printListFromTailToHead();
+
+    void push(int node);
+    int pop();
+    static void local_main_2stacks_1queue();
+
+private:
+
+    std::stack<int> s1;
+    std::stack<int> s2;
 };
 
 
