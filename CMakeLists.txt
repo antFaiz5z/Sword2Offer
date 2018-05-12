@@ -6,13 +6,9 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(
         JianzhiOffer
         main.cpp
-        Array.cpp
-        Array.h
         Utility.cpp
         Utility.h
-        String.cpp
-        String.h
         Data_Structure.cpp
         Data_Structure.h
         Search_and_Sort.cpp
-        Search_and_Sort.h Loop_and_Recursion.cpp Loop_and_Recursion.h)
+        Search_and_Sort.h Loop_and_Recursion.cpp Loop_and_Recursion.h Code_Thinking.cpp Code_Thinking.h)
