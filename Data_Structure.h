@@ -23,6 +23,9 @@ public:
     std::vector<int> printListFromTailToHead(ListNode* head);
     static void local_main_printListFromTailToHead();
 
+    /*
+     * 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+     */
     void push(int node);
     int pop();
     static void local_main_2stacks_1queue();

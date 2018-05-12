@@ -15,4 +15,4 @@ add_executable(
         Data_Structure.cpp
         Data_Structure.h
         Search_and_Sort.cpp
-        Search_and_Sort.h)
+        Search_and_Sort.h Loop_and_Recursion.cpp Loop_and_Recursion.h)

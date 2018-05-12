@@ -7,15 +7,15 @@
 
 void Data_Structure::local_main_printListFromTailToHead() {
 
-    auto * head = new ListNode(-1);
+    auto *head = new ListNode(-1);
     auto tmp = head;
     for (int i = 0; i < 10; ++i) {
-        auto * node = new ListNode(i);
+        auto *node = new ListNode(i);
         head->next = node;
         head = head->next;
     }
     head = tmp;
-    while(tmp){
+    while (tmp) {
         std::cout << tmp->val << ", ";
         tmp = tmp->next;
     }
@@ -33,7 +33,7 @@ void Data_Structure::local_main_printListFromTailToHead() {
 std::vector<int> Data_Structure::printListFromTailToHead(ListNode *head) {
 
     std::vector<int> ret;
-    while(head){
+    while (head) {
         ret.insert(ret.begin(), head->val);
         head = head->next;
     }
@@ -46,8 +46,8 @@ void Data_Structure::push(int node) {
 
 int Data_Structure::pop() {
     int tmp;
-    if(s2.empty()){
-        while(!s1.empty()){
+    if (s2.empty()) {
+        while (!s1.empty()) {
             tmp = s1.top();
             s2.push(tmp);
             s1.pop();
@@ -60,7 +60,7 @@ int Data_Structure::pop() {
 
 void Data_Structure::local_main_2stacks_1queue() {
 
-    auto * main = new Data_Structure();
+    auto *main = new Data_Structure();
     main->push(10);
     main->push(9);
     std::cout << main->pop() << std::endl;
