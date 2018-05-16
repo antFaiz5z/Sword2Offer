@@ -79,7 +79,7 @@ void Data_Structure::replace_space_standard(char *str, int length) {
     std::cout << str << std::endl;
 }
 
-void Data_Structure::local_main() {
+void Data_Structure::local_main_find() {
 
     auto *array = new Data_Structure();
     vector<vector<int>> a = array->get_array(10, 10);
