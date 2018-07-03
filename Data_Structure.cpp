@@ -194,11 +194,11 @@ std::vector<int> Data_Structure::printListFromTailToHead(ListNode *head) {
     return ret;
 }
 
-void Data_Structure::push(int node) {
+void Data_Structure::push_2(int node) {
     s1.push(node);
 }
 
-int Data_Structure::pop() {
+int Data_Structure::pop_2() {
     int tmp;
     if (s2.empty()) {
         while (!s1.empty()) {
@@ -215,10 +215,118 @@ int Data_Structure::pop() {
 void Data_Structure::local_main_2stacks_1queue() {
 
     auto *main = new Data_Structure();
-    main->push(10);
-    main->push(9);
-    std::cout << main->pop() << std::endl;
-    main->push(8);
-    std::cout << main->pop() << std::endl;
+    main->push_2(10);
+    main->push_2(9);
+    std::cout << main->pop_2() << std::endl;
+    main->push_2(8);
+    std::cout << main->pop_2() << std::endl;
+
+}
+
+void Data_Structure::mirror_tree(TreeNode *root) {
+    if (!root) {
+        return;
+    }
+    TreeNode *tmp = root->left;
+    root->left = root->right;
+    root->right = tmp;
+
+    mirror_tree(root->left);
+    mirror_tree(root->right);
+}
+
+void Data_Structure::local_main_mirror_tree() {
+
+    auto *main = new Data_Structure();
+
+    vector<int> v = {1, 2, 4, 5, 7, 8, 4};
+    Utility::print_vector(v);
+    TreeNode *root = Utility::get_tree(v);
+    Utility::print_vector(Utility::tree_traversal(root));
+    main->mirror_tree(root);
+    Utility::print_vector(Utility::tree_traversal(root));
+
+}
+
+vector<int> Data_Structure::print_matrix(vector<vector<int>> matrix) {
+
+    int row = static_cast<int>(matrix.size());
+    int col = static_cast<int>(matrix[0].size());
+
+    vector<int> a;
+    if (row == 0 || col == 0) {
+        return a;
+    }
+    int times = (row < col ? row - 1 : col - 1) / 2 + 1;
+
+    for (int i = 0; i < times; ++i) {
+
+        for (int j = i; j <= col - i - 1; ++j) {
+            a.push_back(matrix[i][j]);
+        }
+        for (int k = i + 1; k <= row - i - 1; ++k) {
+            a.push_back(matrix[k][col - i - 1]);
+        }
+        for (int l = col - i - 2; (l >= i) && (row - i - 1 != i); --l) {
+            a.push_back(matrix[row - i - 1][l]);
+        }
+        for (int n = row - i - 2; (n > i) && (col - i - 1 != i); --n) {
+            a.push_back(matrix[n][i]);
+        }
+    }
+    return a;
+}
+
+void Data_Structure::local_main_print_matrix() {
+
+    vector<vector<int>> m = {{1,  2,  3,  4},
+                             {5,  6,  7,  8},
+                             {9,  10, 11, 12},
+                             {13, 14, 15, 16}};
+    vector<vector<int>> m2 = {{1, 2,  3,  4},
+                              {5, 6,  7,  8},
+                              {9, 10, 11, 12}};
+    auto *main = new Data_Structure();
+    Utility::print_vector(main->print_matrix(m));
+    Utility::print_vector(main->print_matrix(m2));
+}
+
+void Data_Structure::push(int value) {
+
+    s3.push(value);
+    if (s4.empty() || s4.top() >= value) {//“＝”重要
+        s4.push(value);
+    }
+}
+
+void Data_Structure::pop(){
+    if(s3.top() == s4.top()){
+        s4.pop();
+    }
+    s3.pop();
+}
+
+int Data_Structure::top(){
+    return s3.top();
+}
+
+int Data_Structure::min(){
+    return s4.top();
+}
+
+void Data_Structure::local_main_stack_min() {
+
+    auto *main = new Data_Structure();
+
+    main->push(3);
+    main->push(2);
+    main->push(3);
+    main->push(2);
+    cout << main->min() << endl;
+    main->pop();
+    cout << main->min() << endl;
+    main->push(1);
+    cout << main->min() << endl;
+
 
 }

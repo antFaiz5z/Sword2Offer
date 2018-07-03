@@ -43,14 +43,43 @@ public:
     /*
      * 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
      */
-    void push(int node);
-    int pop();
+    void push_2(int node);
+    int pop_2();
     static void local_main_2stacks_1queue();
+
+    /*
+     * 操作给定的二叉树，将其变换为源二叉树的镜像。
+     */
+    void mirror_tree(TreeNode *root);
+    static void local_main_mirror_tree();
+
+    /*
+     * 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，
+     * 例如，如果输入如下矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+     * 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.
+     */
+    vector<int> print_matrix(vector<vector<int>> matrix);
+    static void local_main_print_matrix();
+
+    /*
+     * 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数。
+     */
+    void push(int value);
+    void pop();
+    int top();
+    int min();
+    static void local_main_stack_min();
 
 private:
 
     std::stack<int> s1;
     std::stack<int> s2;
+
+    std::stack<int> s3;
+    std::stack<int> s4;
+
+
+
 };
 
 
