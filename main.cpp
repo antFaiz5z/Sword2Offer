@@ -16,7 +16,8 @@ int main() {
     //Code_Thinking::local_main_power();
     //Data_Structure::local_main_mirror_tree();
     //Data_Structure::local_main_print_matrix();
-    Data_Structure::local_main_stack_min();
+    //Data_Structure::local_main_stack_min();
+    Loop_and_Recursion::local_main_permutation();
 
     return 0;
 }

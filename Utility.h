@@ -5,10 +5,12 @@
 #ifndef JIANZHIOFFER_UTILITY_H
 #define JIANZHIOFFER_UTILITY_H
 
+#include <iostream>
 #include <vector>
 #include <queue>
 
 using namespace std;
+
 
 struct ListNode {
     int val;
@@ -33,7 +35,10 @@ public:
     static double get_time();
     static void print_during(double start, double end);
 
-    static void print_vector(vector<int> v);
+
+    static void print_vector_int(vector<int> v);
+    static void print_vector_string(vector<string> v);
+
 
     static ListNode *get_list(vector<int> v);
 

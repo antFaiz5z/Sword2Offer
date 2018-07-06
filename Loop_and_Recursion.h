@@ -5,6 +5,11 @@
 #ifndef JIANZHIOFFER_LOOP_AND_RECURSION_H
 #define JIANZHIOFFER_LOOP_AND_RECURSION_H
 
+#include <iostream>
+#include <cstring>
+#include <vector>
+
+using namespace std;
 
 class Loop_and_Recursion {
 
@@ -19,6 +24,11 @@ public:
      */
     int jumpFloorII(int number);
     static void local_main_jumpFloor();
+
+
+    vector<string> permutation(string str);
+    void permutation_recur(vector<string> &res, int k, string str);
+    static void local_main_permutation();
 
 };
 
