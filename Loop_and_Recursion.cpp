@@ -67,6 +67,6 @@ vector<string> Loop_and_Recursion::permutation(string str) {
 void Loop_and_Recursion::local_main_permutation() {
 
     auto *main = new Loop_and_Recursion();
-    string str = "bbcc";
+    string str = "abbc";
     Utility::print_vector_string(main->permutation(str));
 }

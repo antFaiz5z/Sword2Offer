@@ -3,8 +3,7 @@ project(JianzhiOffer)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(
-        JianzhiOffer
+add_executable( JianzhiOffer
         main.cpp
         Utility.cpp
         Utility.h
