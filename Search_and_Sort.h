@@ -6,6 +6,9 @@
 #define JIANZHIOFFER_SEARCH_AND_SORT_H
 
 #include <vector>
+#include <string>
+
+using namespace std;
 
 class Search_and_Sort {
 
@@ -17,14 +20,12 @@ public:
      * 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。
      * NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
      */
-    int minNumberInRotateArray(std::vector<int> rotateArray);//效率较低
+    int minNumberInRotateArray(vector<int> rotateArray);//效率较低
+    int minNumberInRotateArray_II(vector<int> rotateArray);//无法应对存在相等数据情况
+    int find(vector<int> &rotateArray, int left, int right);
 
-    int minNumberInRotateArray_II(std::vector<int> rotateArray);//无法应对存在相等数据情况
-    int find(std::vector<int> &rotateArray, int left, int right);
-
-    int minNumberInRotateArray_standard(std::vector<int> rotateArray);
-    int find_min(std::vector<int> &rotateArray, int left, int right);
-
+    int minNumberInRotateArray_standard(vector<int> rotateArray);
+    int find_min(vector<int> &rotateArray, int left, int right);
     static void local_main_minNumberInRotateArray();
 
 

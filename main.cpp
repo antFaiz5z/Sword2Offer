@@ -18,7 +18,10 @@ int main() {
     //Data_Structure::local_main_print_matrix();
     //Data_Structure::local_main_stack_min();
     //Loop_and_Recursion::local_main_permutation();
-    Code_Thinking::local_main_find_continuous_seq();
+    //Code_Thinking::local_main_find_continuous_seq();
+    //Code_Thinking::local_main_find_nums_with_sum();
+    //Data_Structure::local_main_left_rotate_string();
+    Data_Structure::local_main_reverse_sentence();
 
     return 0;
 }

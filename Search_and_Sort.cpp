@@ -5,8 +5,9 @@
 #include "Search_and_Sort.h"
 
 #include <iostream>
+#include <algorithm>
 
-int Search_and_Sort::minNumberInRotateArray(std::vector<int> rotateArray) {
+int Search_and_Sort::minNumberInRotateArray(vector<int> rotateArray) {
 
     if (rotateArray.empty()) {
         return 0;
@@ -24,7 +25,7 @@ int Search_and_Sort::minNumberInRotateArray(std::vector<int> rotateArray) {
     return -1;
 }
 
-int Search_and_Sort::minNumberInRotateArray_II(std::vector<int> rotateArray) {
+int Search_and_Sort::minNumberInRotateArray_II(vector<int> rotateArray) {
 
     if (rotateArray.empty()) {
         return 0;
@@ -34,7 +35,7 @@ int Search_and_Sort::minNumberInRotateArray_II(std::vector<int> rotateArray) {
     return find(rotateArray, left, right);
 }
 
-int Search_and_Sort::find(std::vector<int> &rotateArray, int left, int right) {
+int Search_and_Sort::find(vector<int> &rotateArray, int left, int right) {
 
     int mid = (left + right) / 2;
     if (rotateArray[mid] < rotateArray[left] && rotateArray[mid] < rotateArray[right]) {
@@ -46,7 +47,7 @@ int Search_and_Sort::find(std::vector<int> &rotateArray, int left, int right) {
     }
 }
 
-int Search_and_Sort::minNumberInRotateArray_standard(std::vector<int> rotateArray) {
+int Search_and_Sort::minNumberInRotateArray_standard(vector<int> rotateArray) {
 
     if (rotateArray.empty()) {
         return 0;
@@ -74,7 +75,7 @@ int Search_and_Sort::minNumberInRotateArray_standard(std::vector<int> rotateArra
     return rotateArray[mid];
 }
 
-int Search_and_Sort::find_min(std::vector<int> &rotateArray, int left, int right) {
+int Search_and_Sort::find_min(vector<int> &rotateArray, int left, int right) {
 
     int ret = rotateArray[0];
     for (int i = 1; i < rotateArray.size() - 1; ++i) {
@@ -88,7 +89,7 @@ int Search_and_Sort::find_min(std::vector<int> &rotateArray, int left, int right
 void Search_and_Sort::local_main_minNumberInRotateArray() {
 
     //std::vector<int> a = {4,5,6,7,8,9,1,2,3};
-    std::vector<int> a = {4, 5, 6, 7, 8, 8, 1, 3, 3};
+    vector<int> a = {4, 5, 6, 7, 8, 8, 1, 3, 3};
 
     auto *main = new Search_and_Sort();
     std::cout << main->minNumberInRotateArray(a) << std::endl;

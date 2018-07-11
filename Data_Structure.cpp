@@ -299,18 +299,18 @@ void Data_Structure::push(int value) {
     }
 }
 
-void Data_Structure::pop(){
-    if(s3.top() == s4.top()){
+void Data_Structure::pop() {
+    if (s3.top() == s4.top()) {
         s4.pop();
     }
     s3.pop();
 }
 
-int Data_Structure::top(){
+int Data_Structure::top() {
     return s3.top();
 }
 
-int Data_Structure::min(){
+int Data_Structure::min() {
     return s4.top();
 }
 
@@ -328,5 +328,90 @@ void Data_Structure::local_main_stack_min() {
     main->push(1);
     cout << main->min() << endl;
 
+}
+
+
+string Data_Structure::left_rotate_string(string str, int n) {
+
+    unsigned long len = str.size();
+    if (len == 0) {
+        return str;
+    }
+    n %= len;
+    str += str;
+    return str.substr(static_cast<unsigned long>(n), len);
+
+}
+
+string Data_Structure::left_rotate_string_standard(string str, int n) {
+
+    int len = static_cast<int>(str.size());
+    if (len == 0 || n == 0) {
+        return str;
+    }
+    n %= len;
+    for (int i = 0, j = n - 1; i < j; ++i, --j) {
+        swap(str[i], str[j]);
+    }
+    for (int i = n, j = len - 1; i < j; ++i, --j) {
+        swap(str[i], str[j]);
+    }
+    for (int i = 0, j = len - 1; i < j; ++i, --j) {
+        swap(str[i], str[j]);
+    }
+    return str;
+
+}
+
+void reverse(string &str, int m, int n) {
+
+    char temp;
+    while (m < n) {
+        swap(str[m++], str[n--]);
+    }
+}
+
+string Data_Structure::left_rotate_string_standard_II(string str, int n) {
+
+    int len = static_cast<int>(str.size());
+    if (len == 0 || n == 0) {
+        return str;
+    }
+    n %= len;
+    reverse(str, 0, n - 1);
+    reverse(str, n, len - 1);
+    reverse(str, 0, len - 1);
+    return str;
+}
+
+
+void Data_Structure::local_main_left_rotate_string() {
+
+    auto *main = new Data_Structure();
+    string str = "abcdefghijkl";
+    cout << main->left_rotate_string(str, 7) << endl;
+    str = "abcdefghijkl";
+    cout << main->left_rotate_string_standard(str, 7) << endl;
+    str = "abcdefghijkl";
+    cout << main->left_rotate_string_standard_II(str, 7) << endl;
+}
+
+string Data_Structure::reverse_sentence(string str) {
+
+    string res, tmp;
+    for (char i : str) {
+        i == ' ' ? (res = i + tmp + res, tmp = "") : (tmp += i); // NOLINT
+    }
+    if (!tmp.empty()) res = tmp + res;
+    return res;
+
+}
+
+void Data_Structure::local_main_reverse_sentence() {
+
+    auto *main = new Data_Structure();
+    string str = "student. incredible a am I";
+    cout  << main->reverse_sentence(str) << endl;
+    cout  << main->reverse_sentence(main->reverse_sentence(str)) << endl;
 
 }

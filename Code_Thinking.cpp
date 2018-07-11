@@ -5,7 +5,7 @@
 #include "Code_Thinking.h"
 
 #include <algorithm>
-#include <math.h>
+#include <cmath>
 
 double Code_Thinking::power(double base, int exponent) {
     double ret = 1;
@@ -48,7 +48,6 @@ void Code_Thinking::local_main_power() {
 
 void Code_Thinking::reOrderArray(std::vector<int> &array) {
 
-
 }
 
 void Code_Thinking::local_main_reOrderArray() {
@@ -80,7 +79,7 @@ vector<vector<int>> Code_Thinking::find_continuous_seq(int sum) {
             ret.push_back(sub_ret);
         }
     }
-    reverse(ret.begin(),ret.end());
+    reverse(ret.begin(), ret.end());
     return ret;
 
 }
@@ -97,21 +96,60 @@ vector<vector<int>> Code_Thinking::find_continuous_seq_standard(int sum) {
             ans.push_back(an);
         }
     }
-   return ans;
+    return ans;
 }
 
 void Code_Thinking::local_main_find_continuous_seq() {
 
     auto *main = new Code_Thinking();
     vector<vector<int>> ret = main->find_continuous_seq_standard(45);
-    for (int i = 0; i < ret.size(); ++i) {
-        Utility::print_vector_int(ret[i]);
+    for (const auto &i : ret) {
+        Utility::print_vector_int(i);
     }
     ret = main->find_continuous_seq(45);
-    for (int i = 0; i < ret.size(); ++i) {
-        Utility::print_vector_int(ret[i]);
+    for (const auto &i : ret) {
+        Utility::print_vector_int(i);
     }
 }
+
+
+vector<int> Code_Thinking::find_nums_with_sum(const vector<int> &array, int sum) {
+
+    int head = 0, tail = static_cast<int>(array.size() - 1);
+    vector<int> ret;
+    while (head < tail) {
+
+        if (array[head] + array[tail] == sum) {
+            ret.push_back(array[head]);
+            ret.push_back(array[tail]);
+            return ret;
+        } else if (array[head] + array[tail] < sum) {
+            head++;
+        } else {
+            tail--;
+        }
+    }
+    return ret;
+}
+
+void Code_Thinking::local_main_find_nums_with_sum() {
+
+    auto *main = new Code_Thinking();
+    vector<int> a{1,2,5,6,8,9,20,23,34};
+    Utility::print_vector_int(main->find_nums_with_sum(a, 25));
+
+}
+
+bool Code_Thinking::is_continuous(vector<int> nums) {
+
+
+}
+
+void Code_Thinking::local_main_is_continuous() {
+
+
+}
+
 
 
 
