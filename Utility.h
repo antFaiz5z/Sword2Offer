@@ -27,7 +27,6 @@ struct TreeNode {
     explicit TreeNode(int x) : val(x), left(nullptr), right(nullptr) {};
 };
 
-
 class Utility {
 
 public:
@@ -36,14 +35,20 @@ public:
     static void print_during(double start, double end);
 
 
-    static void print_vector_int(vector<int> v);
-    static void print_vector_string(vector<string> v);
-
-
     static ListNode *get_list(vector<int> v);
-
     static TreeNode *get_tree(vector<int> v);
-    static vector<int> tree_traversal(TreeNode* root);
+    static vector<int> tree_traversal(TreeNode *root);
+
+
+    template<typename T>
+    static void print_vector(vector<T> v) {
+        typename vector<T>::iterator it;
+        for (it = v.begin(); it != v.end(); it++) {
+            cout << *it << ",";
+        }
+        cout << endl;
+    }
+
 };
 
 

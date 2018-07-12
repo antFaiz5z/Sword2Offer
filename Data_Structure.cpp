@@ -240,11 +240,11 @@ void Data_Structure::local_main_mirror_tree() {
     auto *main = new Data_Structure();
 
     vector<int> v = {1, 2, 4, 5, 7, 8, 4};
-    Utility::print_vector_int(v);
+    Utility::print_vector(v);
     TreeNode *root = Utility::get_tree(v);
-    Utility::print_vector_int(Utility::tree_traversal(root));
+    Utility::print_vector(Utility::tree_traversal(root));
     main->mirror_tree(root);
-    Utility::print_vector_int(Utility::tree_traversal(root));
+    Utility::print_vector(Utility::tree_traversal(root));
 
 }
 
@@ -287,8 +287,8 @@ void Data_Structure::local_main_print_matrix() {
                               {5, 6,  7,  8},
                               {9, 10, 11, 12}};
     auto *main = new Data_Structure();
-    Utility::print_vector_int(main->print_matrix(m));
-    Utility::print_vector_int(main->print_matrix(m2));
+    Utility::print_vector(main->print_matrix(m));
+    Utility::print_vector(main->print_matrix(m2));
 }
 
 void Data_Structure::push(int value) {

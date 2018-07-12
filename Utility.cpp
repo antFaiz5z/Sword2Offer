@@ -22,23 +22,6 @@ void Utility::print_during(double start, double end) {
 }
 
 
-void Utility::print_vector_int(vector<int> v) {
-
-    vector<int>::iterator it;
-    for(it = v.begin(); it != v.end(); it++){
-        cout << *it << ",";
-    }
-    cout << endl;
-}
-
-void Utility::print_vector_string(vector<string> v) {
-
-    vector<string>::iterator it;
-    for(it = v.begin(); it != v.end(); it++){
-        cout << *it << ",";
-    }
-    cout << endl;
-}
 
 ListNode *Utility::get_list(vector<int> v) {
 

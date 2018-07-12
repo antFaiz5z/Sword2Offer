@@ -3,6 +3,7 @@
 //
 #include "Utility.h"
 #include "Code_Thinking.h"
+#include "Search_and_Sort.h"
 
 #include <algorithm>
 #include <cmath>
@@ -104,11 +105,11 @@ void Code_Thinking::local_main_find_continuous_seq() {
     auto *main = new Code_Thinking();
     vector<vector<int>> ret = main->find_continuous_seq_standard(45);
     for (const auto &i : ret) {
-        Utility::print_vector_int(i);
+        Utility::print_vector(i);
     }
     ret = main->find_continuous_seq(45);
     for (const auto &i : ret) {
-        Utility::print_vector_int(i);
+        Utility::print_vector(i);
     }
 }
 
@@ -136,18 +137,59 @@ void Code_Thinking::local_main_find_nums_with_sum() {
 
     auto *main = new Code_Thinking();
     vector<int> a{1,2,5,6,8,9,20,23,34};
-    Utility::print_vector_int(main->find_nums_with_sum(a, 25));
+    Utility::print_vector(main->find_nums_with_sum(a, 25));
 
 }
 
-bool Code_Thinking::is_continuous(vector<int> nums) {
+bool Code_Thinking::is_continuous(vector<int> numbers) {
 
+    if(numbers.empty()){
+        return false;
+    }
+    sort(numbers.begin(), numbers.end());
 
+    int count_0 = 0;
+    int count_differ = 0;
+    int num_before = 0;
+
+    for(int i : numbers){
+        if(i == 0){
+            count_0++;
+        }else{
+            if(num_before != 0){
+                count_differ += (i - num_before -1);
+            }
+            if(num_before == i){
+                return false;
+            }
+            num_before = i;
+        }
+    }
+    return count_0 >= count_differ;
 }
 
 void Code_Thinking::local_main_is_continuous() {
 
+    auto *main = new Code_Thinking();
+    cout << main->is_continuous(vector<int>{4,7,2,8,0,0,5}) << endl;
+}
 
+
+int Code_Thinking::add(int num1, int num2) {
+
+    int tmp;
+    while (num2 != 0){
+        tmp = num1^num2;
+        num2 = (num1&num2) << 1;
+        num1 = tmp;
+    }
+    return num1;
+
+}
+void Code_Thinking::local_main_add() {
+
+    auto *main = new Code_Thinking();
+    cout << main->add(5,5) << endl;
 }
 
 
