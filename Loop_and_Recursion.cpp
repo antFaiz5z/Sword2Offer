@@ -3,21 +3,48 @@
 //
 
 #include "Loop_and_Recursion.h"
-#include "Utility.h"
+
 #include <unordered_set>
 #include <algorithm>
 
+#include "Utility.h"
+
 int Loop_and_Recursion::jumpFloor(int number) {
 
-    if (number == 0) {
-        return 0;
-    } else if (number == 1) {
-        return 1;
-    } else if (number == 2) {
-        return 2;
+    if (number <= 2) {
+        return number;
     } else {
         return jumpFloor(number - 1) + jumpFloor(number - 2);
     }
+}
+
+int Loop_and_Recursion::jumpFloor_dynamic_programming(int number) {
+
+    if (number <= 2) {
+        return number;
+    }
+    vector<int> fibonacci(static_cast<unsigned long>(number));
+    fibonacci[0] = 1;
+    fibonacci[1] = 2;
+    for (int i = 2; i < number; ++i) {
+        fibonacci[i] = fibonacci[i -1] + fibonacci[i -2];
+    }
+    return fibonacci[number -1];
+}
+
+int Loop_and_Recursion::jumpFloor_dynamic_programming_2(int number) {
+
+    if (number <= 2) {
+        return number;
+    }
+    int pre1 = 1, pre2 = 2;
+    int ret = 0;
+    for (int i = 3; i <= number ; ++i) {
+        ret = pre1 + pre2;
+        pre1 = pre2;
+        pre2 = ret;
+    }
+    return ret;
 }
 
 int Loop_and_Recursion::jumpFloorII(int number) {
@@ -31,11 +58,31 @@ int Loop_and_Recursion::jumpFloorII(int number) {
     }
 }
 
+int Loop_and_Recursion::jumpFloorII_dynamic_programming(int number) {
+
+    /*int *dp = new int[number];
+    for (int i = 0; i < number; ++i) {
+        cout << dp[i] <<endl;
+    }*/
+    vector<int> dp(number, 1);
+    for (int i = 0; i < number; ++i) {
+        for (int j = 0; j < i; ++j) {
+            dp[i] += dp[j];
+        }
+    }
+    return dp[number -1];
+
+}
+
 void Loop_and_Recursion::local_main_jumpFloor() {
 
     auto *main = new Loop_and_Recursion();
-    std::cout << main->jumpFloor(3) << std::endl;
-    std::cout << main->jumpFloorII(3) << std::endl;
+    int n = 11;
+    cout << main->jumpFloor(n) << endl;
+    cout << main->jumpFloor_dynamic_programming(n) << endl;
+    cout << main->jumpFloor_dynamic_programming_2(n) << endl;
+    cout << main->jumpFloorII(n) << endl;
+    cout << main->jumpFloorII_dynamic_programming(n);
 }
 
 void Loop_and_Recursion::permutation_recur(vector<string> &res, int k, string str) {

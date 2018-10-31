@@ -16,15 +16,20 @@ class Loop_and_Recursion {
 public:
 
     /*
-     * 10.1 斐波那契数列
+     * 10.2 跳台阶
      * 一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
      */
+    // 斐波那契数列
     int jumpFloor(int number);
+    int jumpFloor_dynamic_programming(int number);
+    int jumpFloor_dynamic_programming_2(int number);
     /*
-     * 10.2 跳台阶
+     * 10.4 变态跳台阶
      * 一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
      */
+    // XX三角
     int jumpFloorII(int number);
+    int jumpFloorII_dynamic_programming(int number);
     static void local_main_jumpFloor();
 
     /*

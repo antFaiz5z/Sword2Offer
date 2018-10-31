@@ -34,6 +34,6 @@ int Bit_Operation::add(int num1, int num2) {
 
 void Bit_Operation::local_main_add() {
 
-    auto *main = new Bit_Operation();
-    cout << main->add(5,5) << endl;
+    auto *instance = get_instance();
+    cout << instance->add(5,5) << endl;
 }
