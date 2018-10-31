@@ -15,6 +15,7 @@ class Code_Thinking {
 public:
 
     /*
+     * 16. 数值的整数次方
      * 考察代码完整性
      * 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。
      */
@@ -26,6 +27,7 @@ public:
     static void local_main_reOrderArray();
 
     /*
+     * 57.2 和为 S 的连续正数序列
      * 小明很喜欢数学,有一天他在做数学作业时,要求计算出9~16的和,他马上就写出了正确答案是100。
      * 但是他并不满足于此,他在想究竟有多少种连续的正数序列的和为100(至少包括两个数)。
      * 没多久,他就得到另一组连续正数和为100的序列:18,19,20,21,22。
@@ -37,6 +39,7 @@ public:
     static void local_main_find_continuous_seq();
 
     /*
+     * 57.1 和为 S 的两个数字
      * 输入一个递增排序的数组和一个数字S，在数组中查找两个数，
      * 使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。
      * 描述：对应每个测试案例，输出两个数，小的先输出。
@@ -45,6 +48,7 @@ public:
     static void local_main_find_nums_with_sum();
 
     /*
+     * 61. 扑克牌顺子
      * LL今天心情特别好,因为他去买了一副扑克牌,发现里面居然有2个大王,2个小王(一副牌原本是54张^_^)...
      * 他随机从中抽出了5张牌,想测测自己的手气,看看能不能抽到顺子,如果抽到的话,他决定去买体育彩票,嘿嘿！！
      * “红心A,黑桃3,小王,大王,方片5”,“Oh My God!”不是顺子.....
@@ -55,11 +59,6 @@ public:
     bool is_continuous(vector<int> numbers);
     static void local_main_is_continuous();
 
-    /*
-     * 写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。
-     */
-    int add(int num1, int num2);
-    static void local_main_add();
 };
 
 

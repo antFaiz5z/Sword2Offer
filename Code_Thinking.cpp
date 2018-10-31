@@ -175,22 +175,6 @@ void Code_Thinking::local_main_is_continuous() {
 }
 
 
-int Code_Thinking::add(int num1, int num2) {
-
-    int tmp;
-    while (num2 != 0){
-        tmp = num1^num2;
-        num2 = (num1&num2) << 1;
-        num1 = tmp;
-    }
-    return num1;
-
-}
-void Code_Thinking::local_main_add() {
-
-    auto *main = new Code_Thinking();
-    cout << main->add(5,5) << endl;
-}
 
 
 

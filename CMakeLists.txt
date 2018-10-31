@@ -14,4 +14,6 @@ add_executable( JianzhiOffer
         Loop_and_Recursion.cpp
         Loop_and_Recursion.h
         Code_Thinking.cpp
-        Code_Thinking.h)
+        Code_Thinking.h
+        Bit_Operation.cpp
+        Bit_Operation.h)
