@@ -11,24 +11,24 @@
 
 int main() {
 
-    //Data_Structure::local_main_find();
-    //Data_Structure::local_main_replace_space();
-    //Data_Structure::local_main_printListFromTailToHead();
-    //Data_Structure::local_main_2stacks_1queue();
-    //Search_and_Sort::local_main_minNumberInRotateArray();
-    Loop_and_Recursion::local_main_jumpFloor();
-    //Code_Thinking::local_main_power();
-    //Data_Structure::local_main_mirror_tree();
-    //Data_Structure::local_main_print_matrix();
-    //Data_Structure::local_main_stack_min();
-    //Loop_and_Recursion::local_main_permutation();
-    //Code_Thinking::local_main_find_continuous_seq();
-    //Code_Thinking::local_main_find_nums_with_sum();
-    //Data_Structure::local_main_left_rotate_string();
-    //Data_Structure::local_main_reverse_sentence();
-    //Code_Thinking::local_main_is_continuous();
-    //Bit_Operation::local_main_add();
-    //Bit_Operation::local_main_bit1count();
+    //Data_Structure::local_main_find();                        //4
+    //Data_Structure::local_main_replace_space();               //5
+    //Data_Structure::local_main_printListFromTailToHead();     //6
+    //Data_Structure::local_main_2stacks_1queue();              //9
+    //Search_and_Sort::local_main_minNumberInRotateArray();     //11
+    Loop_and_Recursion::local_main_jumpFloor();                 //10
+    //Code_Thinking::local_main_power();                        //16
+    //Data_Structure::local_main_mirror_tree();                 //27
+    //Data_Structure::local_main_print_matrix();                //29
+    //Data_Structure::local_main_stack_min();                   //30
+    //Loop_and_Recursion::local_main_permutation();             //38
+    //Code_Thinking::local_main_find_continuous_seq();          //57.2
+    //Code_Thinking::local_main_find_nums_with_sum();           //57.1
+    //Data_Structure::local_main_left_rotate_string();          //58.2
+    //Data_Structure::local_main_reverse_sentence();            //58.1
+    //Code_Thinking::local_main_is_continuous();                //61
+    //Bit_Operation::local_main_add();                          //15
+    //Bit_Operation::local_main_bit1count();                    //65
 
     return 0;
 }
