@@ -13,6 +13,7 @@ add_executable( JianzhiOffer
         Algorithm/Bit_Operation.cpp Algorithm/Bit_Operation.h)
 
 
-add_executable(DesignModel
+add_executable( DesignModel
         DesignModel/main.cpp
-        DesignModel/Singleton.cpp DesignModel/Singleton.h)
+        DesignModel/Singleton.cpp DesignModel/Singleton.h
+        DesignModel/Observer.cpp DesignModel/Observer.h DesignModel/Adapter.cpp DesignModel/Adapter.h DesignModel/Builder.cpp DesignModel/Builder.h DesignModel/Prototype.cpp DesignModel/Prototype.h)
