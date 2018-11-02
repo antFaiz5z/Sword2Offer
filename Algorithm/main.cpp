@@ -15,8 +15,9 @@ int main() {
     //Data_Structure::local_main_replace_space();               //5
     //Data_Structure::local_main_printListFromTailToHead();     //6
     //Data_Structure::local_main_2stacks_1queue();              //9
-    //Search_and_Sort::local_main_minNumberInRotateArray();     //11
     Loop_and_Recursion::local_main_jumpFloor();                 //10
+    //Search_and_Sort::local_main_minNumberInRotateArray();     //11
+    //Bit_Operation::local_main_add();                          //15
     //Code_Thinking::local_main_power();                        //16
     //Data_Structure::local_main_mirror_tree();                 //27
     //Data_Structure::local_main_print_matrix();                //29
@@ -27,7 +28,6 @@ int main() {
     //Data_Structure::local_main_left_rotate_string();          //58.2
     //Data_Structure::local_main_reverse_sentence();            //58.1
     //Code_Thinking::local_main_is_continuous();                //61
-    //Bit_Operation::local_main_add();                          //15
     //Bit_Operation::local_main_bit1count();                    //65
 
     return 0;

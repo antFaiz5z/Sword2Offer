@@ -4,10 +4,15 @@ project(JianzhiOffer)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable( JianzhiOffer
-        main.cpp
-        Utility.cpp Utility.h
-        Data_Structure.cpp Data_Structure.h
-        Search_and_Sort.cpp Search_and_Sort.h
-        Loop_and_Recursion.cpp Loop_and_Recursion.h
-        Code_Thinking.cpp Code_Thinking.h
-        Bit_Operation.cpp Bit_Operation.h)
+        Algorithm/main.cpp
+        Algorithm/Utility.cpp Algorithm/Utility.h
+        Algorithm/Data_Structure.cpp Algorithm/Data_Structure.h
+        Algorithm/Search_and_Sort.cpp Algorithm/Search_and_Sort.h
+        Algorithm/Loop_and_Recursion.cpp Algorithm/Loop_and_Recursion.h
+        Algorithm/Code_Thinking.cpp Algorithm/Code_Thinking.h
+        Algorithm/Bit_Operation.cpp Algorithm/Bit_Operation.h)
+
+
+add_executable(DesignModel
+        DesignModel/main.cpp
+        DesignModel/Singleton.cpp DesignModel/Singleton.h)
