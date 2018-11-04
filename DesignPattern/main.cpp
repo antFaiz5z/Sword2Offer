@@ -23,7 +23,14 @@ int main(){
 
     cout << *product << endl;
 
-    Prototype* proto = new Concrete("afrf");
+    Prototype* proto = new Concrete("instance");
+
+    Prototype* proto2 = proto->clone();
+    Prototype* proto3 = proto2->clone();
+
+    proto->dosomething();
+    proto2->dosomething();
+    proto3->dosomething();
 
 
 

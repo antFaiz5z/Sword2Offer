@@ -36,7 +36,7 @@ public:
     }
 
     void dosomething() override{
-        cout << "------" << name << endl;
+        cout << "------ " << name << endl;
     }
 
 private:
