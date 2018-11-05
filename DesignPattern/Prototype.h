@@ -19,25 +19,29 @@ class Prototype {
 public:
 
     Prototype() = default;
+
     virtual ~Prototype() = default;
-    virtual Prototype* clone() = 0;
-    virtual void dosomething() = 0;
+
+    virtual Prototype *clone() = 0;
+
+    virtual void do_something() = 0;
 };
 
-class Concrete : public Prototype{
+class Concrete : public Prototype {
 
 public:
 
-    Concrete(string name) : name(std::move(name)){}
-    Concrete(const Concrete& concrete){
+    Concrete(string name) : name(std::move(name)) {}
+
+    Concrete(const Concrete &concrete) {
         name = concrete.name;
     }
 
-    Concrete* clone() override{
+    Concrete *clone() override {
         return new Concrete(*this);
     }
 
-    void dosomething() override{
+    void do_something() override {
         cout << "------" << name << "------" << endl;
     }
 

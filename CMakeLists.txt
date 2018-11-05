@@ -3,7 +3,7 @@ project(JianzhiOffer)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable( JianzhiOffer
+add_executable(JianzhiOffer
         Algorithm/main.cpp
         Algorithm/Utility.cpp Algorithm/Utility.h
         Algorithm/Data_Structure.cpp Algorithm/Data_Structure.h
@@ -20,4 +20,4 @@ add_executable(DesignPattern
         DesignPattern/Adapter.cpp DesignPattern/Adapter.h
         DesignPattern/Builder.cpp DesignPattern/Builder.h
         DesignPattern/Prototype.cpp DesignPattern/Prototype.h
-        DesignPattern/Decorator.cpp DesignPattern/Decorator.h)
+        DesignPattern/Decorator.cpp DesignPattern/Decorator.h DesignPattern/Command.cpp DesignPattern/Command.h DesignPattern/ResponsibilityChain.cpp DesignPattern/ResponsibilityChain.h DesignPattern/Memento.cpp DesignPattern/Memento.h)

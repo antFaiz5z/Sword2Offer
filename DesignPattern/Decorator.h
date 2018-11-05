@@ -12,17 +12,18 @@
 
 using namespace std;
 
-class Component{
+class Component {
 
 public:
 
     virtual string name() = 0;
+
     virtual double price() = 0;
 
     friend ostream &operator<<(ostream &os, Component &component);
 };
 
-class ConcreteComponent1 : public Component{
+class ConcreteComponent1 : public Component {
 
 public:
 
@@ -36,7 +37,7 @@ public:
     }
 };
 
-class ConcreteComponent2 : public Component{
+class ConcreteComponent2 : public Component {
 
 public:
 
@@ -50,28 +51,29 @@ public:
     }
 };
 
-class Decorator : public Component{
+class Decorator : public Component {
 
 public:
 
-    Decorator(Component* component): component(component){}
+    Decorator(Component *component) : component(component) {}
 
     string name() override {
         return component->name();
     }
+
     double price() override {
         return component->price();
     }
 
 protected:
-    Component* component;
+    Component *component;
 };
 
-class ConcreteDecorator1 : public Decorator{
+class ConcreteDecorator1 : public Decorator {
 
 public:
 
-    ConcreteDecorator1(Component* component) : Decorator(component){}
+    ConcreteDecorator1(Component *component) : Decorator(component) {}
 
     string name() override {
         return component->name() + " decorator_1";
@@ -82,11 +84,11 @@ public:
     }
 };
 
-class ConcreteDecorator2 : public Decorator{
+class ConcreteDecorator2 : public Decorator {
 
 public:
 
-    ConcreteDecorator2(Component* component) : Decorator(component){}
+    ConcreteDecorator2(Component *component) : Decorator(component) {}
 
     string name() override {
         return component->name() + " decorator_2";

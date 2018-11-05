@@ -15,30 +15,32 @@
 
 using namespace std;
 
-class Observer{
+class Observer {
 
 public:
 
     virtual void update(float price) = 0;
 };
 
-class Subject{
+class Subject {
 
 public:
 
-    virtual void attach(Observer*) = 0;
-    virtual void detach(Observer*) = 0;
+    virtual void attach(Observer *) = 0;
+
+    virtual void detach(Observer *) = 0;
+
     virtual void notify() = 0;
 };
 
 
-class ConcreteObserver : public Observer{
+class ConcreteObserver : public Observer {
 
 public:
 
-    explicit ConcreteObserver(string name) : m_name(std::move(name)){}
+    explicit ConcreteObserver(string name) : m_name(std::move(name)) {}
 
-    void update(float price){
+    void update(float price) {
         cout << m_name << ":" << price << endl;
     }
 
@@ -47,36 +49,39 @@ private:
     string m_name;
 };
 
-class ConcreteSubject : public Subject{
+class ConcreteSubject : public Subject {
 
 public:
 
-    ConcreteSubject(){m_price = 0;}
-    explicit ConcreteSubject(float price) : m_price(price){}
-    void set_price(float price){
+    ConcreteSubject() { m_price = 0; }
+
+    explicit ConcreteSubject(float price) : m_price(price) {}
+
+    void set_price(float price) {
         m_price = price;
     }
 
-    void attach(Observer* ob) override {
+    void attach(Observer *ob) override {
 
         m_observers.push_back(ob);
     }
 
-    void detach(Observer* ob) override {
+    void detach(Observer *ob) override {
         m_observers.remove(ob);
     }
 
-    void notify() override{
+    void notify() override {
 
         auto it = m_observers.begin();
-        while (it != m_observers.end()){
+        while (it != m_observers.end()) {
             (*it)->update(m_price);
             ++it;
         }
     }
+
 private:
 
-    list<Observer*> m_observers;
+    list<Observer *> m_observers;
     float m_price;
 
 };

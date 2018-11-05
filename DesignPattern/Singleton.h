@@ -15,10 +15,10 @@ class Singleton {
 
 public:
 
-    Singleton* get_instance(){
+    Singleton *get_instance() {
 
-        static Singleton* instance;
-        if(instance == nullptr){
+        static Singleton *instance;
+        if (instance == nullptr) {
             instance = new Singleton();
         }
         return instance;
@@ -27,9 +27,12 @@ public:
 private:
 
     Singleton() = default;
+
     ~Singleton() = default;
-    Singleton(const Singleton&);
-    Singleton& operator=(const Singleton&);
+
+    Singleton(const Singleton &);
+
+    Singleton &operator=(const Singleton &);
 
 };
 
