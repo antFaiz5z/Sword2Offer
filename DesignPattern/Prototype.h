@@ -3,6 +3,8 @@
 //
 // Created by faiz on 18-11-2.
 //
+// 原型模式（Prototype Pattern）
+// 是一种创建型设计模式，允许一个对象再创建另外一个可定制的对象，而无需知道任何创建的细节。
 
 #ifndef JIANZHIOFFER_PROTOTYPE_H
 #define JIANZHIOFFER_PROTOTYPE_H
@@ -36,7 +38,7 @@ public:
     }
 
     void dosomething() override{
-        cout << "------ " << name << endl;
+        cout << "------" << name << "------" << endl;
     }
 
 private:
