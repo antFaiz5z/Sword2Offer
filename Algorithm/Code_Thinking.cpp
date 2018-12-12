@@ -1,12 +1,13 @@
 //
 // Created by faiz on 18-5-12.
 //
-#include "Utility.h"
 #include "Code_Thinking.h"
-#include "Search_and_Sort.h"
 
 #include <algorithm>
 #include <cmath>
+
+#include "Utility.h"
+#include "Search_and_Sort.h"
 
 double Code_Thinking::power(double base, int exponent) {
     double ret = 1;

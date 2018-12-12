@@ -20,4 +20,7 @@ add_executable(DesignPattern
         DesignPattern/Adapter.cpp DesignPattern/Adapter.h
         DesignPattern/Builder.cpp DesignPattern/Builder.h
         DesignPattern/Prototype.cpp DesignPattern/Prototype.h
-        DesignPattern/Decorator.cpp DesignPattern/Decorator.h DesignPattern/Command.cpp DesignPattern/Command.h DesignPattern/ResponsibilityChain.cpp DesignPattern/ResponsibilityChain.h DesignPattern/Memento.cpp DesignPattern/Memento.h)
+        DesignPattern/Decorator.cpp DesignPattern/Decorator.h
+        DesignPattern/Command.cpp DesignPattern/Command.h
+        DesignPattern/ResponsibilityChain.cpp DesignPattern/ResponsibilityChain.h
+        DesignPattern/Memento.cpp DesignPattern/Memento.h)
