@@ -116,20 +116,19 @@ vector<string> Loop_and_Recursion::permutation(string str) {
 
 void Loop_and_Recursion::local_main_permutation() {
 
-    auto *main = new Loop_and_Recursion();
     string str = "abbc";
-    Utility::print_vector(main->permutation(str));
+    Utility::print_vector(get_instance()->permutation(str));
 }
 
 bool Loop_and_Recursion::has_path(char *matrix, int rows, int cols, char *str) {
 
-    if (rows <= 0 || cols <= 0 || matrix == nullptr || str == nullptr){
+    if (rows <= 0 || cols <= 0 || matrix == nullptr || str == nullptr) {
         return false;
     }
 
     //int *flags = new int(strlen(matrix));//error
     //int *flags = new int[strlen(matrix)];//ok
-    int *flags = (int *)malloc(sizeof(int) * strlen(matrix));
+    int *flags = (int *) malloc(sizeof(int) * strlen(matrix));
 
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
@@ -167,29 +166,54 @@ bool Loop_and_Recursion::backtracking_has_path(char *matrix, int rows, int cols,
 
 void Loop_and_Recursion::local_main_has_path() {
 
-    auto *main = new Loop_and_Recursion();
-
     char *matrix = const_cast<char *>("abcesfcsadee");
     char *str1 = const_cast<char *>("bcced");
     char *str2 = const_cast<char *>("abcb");
 
-    std::cout << main->has_path(matrix, 3, 4, str1) << std::endl;
-    std::cout << main->has_path(matrix, 3, 4, str2) << std::endl;
-
+    std::cout << get_instance()->has_path(matrix, 3, 4, str1) << std::endl;
+    std::cout << get_instance()->has_path(matrix, 3, 4, str2) << std::endl;
 }
 
 int Loop_and_Recursion::moving_count(int threshold, int rows, int cols) {
-    return 0;
+
+    bool *flags[rows];
+
+    for (int i = 0; i < rows; ++i) {
+        flags[i] = new bool[cols];
+        for (int j = 0; j < cols; ++j) {
+            flags[i][j] = false;
+        }
+    }
+    return backtracking_moving_count(threshold, rows, cols, 0, 0, flags);
 }
 
-int Loop_and_Recursion::backtracking_moving_count(int threshold, int rows, int cols, int i, int j, bool *flags) {
-    return 0;
+int Loop_and_Recursion::backtracking_moving_count(int threshold, int rows, int cols, int i, int j, bool *flags[]) {
+
+    if (0 > i || i >= rows || 0 > j || j >= cols ||
+        get_digit_sum(i) + get_digit_sum(j) > threshold || flags[i][j]) {
+        return 0;
+    }
+
+    flags[i][j] = true;
+
+    return backtracking_moving_count(threshold, rows, cols, i - 1, j, flags)
+           + backtracking_moving_count(threshold, rows, cols, i + 1, j, flags)
+           + backtracking_moving_count(threshold, rows, cols, i, j - 1, flags)
+           + backtracking_moving_count(threshold, rows, cols, i, j + 1, flags)
+           + 1;
 }
 
 int Loop_and_Recursion::get_digit_sum(int n) {
-    return 0;
+
+    int sum = 0;
+    while (n != 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    return sum;
 }
 
 void Loop_and_Recursion::local_main_moving_count() {
 
+    std::cout << get_instance()->moving_count(11, 10, 10) << std::endl;
 }

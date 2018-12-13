@@ -15,6 +15,13 @@ class Loop_and_Recursion {
 
 public:
 
+    static Loop_and_Recursion *get_instance(){
+        static Loop_and_Recursion *instance;
+        if (instance == nullptr){
+            instance = new Loop_and_Recursion;
+        }
+        return instance;
+    }
     /*
      * 10.1 斐波那契数列
      * 10.2 跳台阶
@@ -64,9 +71,16 @@ public:
      * 但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？
      */
     int moving_count(int threshold, int rows, int cols);
-    int backtracking_moving_count(int threshold, int rows, int cols, int i, int j, bool *flags);
+    int backtracking_moving_count(int threshold, int rows, int cols, int i, int j, bool *flags[]);
     int get_digit_sum(int n);
     static void local_main_moving_count();
+
+
+private:
+    Loop_and_Recursion() = default;
+    ~Loop_and_Recursion() = default;
+    Loop_and_Recursion(const Loop_and_Recursion &);
+    Loop_and_Recursion & operator=(const Loop_and_Recursion &);
 };
 
 

@@ -18,7 +18,8 @@ int main() {
     //Data_Structure::local_main_2stacks_1queue();              //9
     //Loop_and_Recursion::local_main_jumpFloor();               //10
     //Search_and_Sort::local_main_minNumberInRotateArray();     //11
-    Loop_and_Recursion::local_main_has_path();                  //12
+    //Loop_and_Recursion::local_main_has_path();                //12
+    Loop_and_Recursion::local_main_moving_count();              //13
     //Bit_Operation::local_main_add();                          //15
     //Code_Thinking::local_main_power();                        //16
     //Data_Structure::local_main_mirror_tree();                 //27
