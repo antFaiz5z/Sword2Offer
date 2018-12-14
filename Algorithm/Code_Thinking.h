@@ -59,6 +59,20 @@ public:
     bool is_continuous(vector<int> numbers);
     static void local_main_is_continuous();
 
+    /*
+     * 14. 整数拆分 (Leetcode.343)
+     * 给定一个正整数 n，将其拆分为至少两个正整数的和，并使这些整数的乘积最大化。 返回你可以获得的最大乘积。
+     *
+     * 贪心思路：
+     * 尽可能多剪长度为 3 的绳子，并且不允许有长度为 1 的绳子出现。
+     * 如果出现了，就从已经切好长度为 3 的绳子中拿出一段与长度为 1 的绳子重新组合，把它们切成两段长度为 2 的绳子。
+     * 证明：当 n >= 5 时，3(n - 3) - 2(n - 2) = n - 5 >= 0。
+     * 因此把长度大于 5 的绳子切成两段，令其中一段长度为 3 可以使得两段的乘积最大。
+     */
+    int integer_break_greedy(int n);
+    int integer_break_dp(int n);
+    static void local_main_integer_break();
+
 };
 
 

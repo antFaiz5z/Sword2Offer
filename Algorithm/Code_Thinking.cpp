@@ -137,14 +137,14 @@ vector<int> Code_Thinking::find_nums_with_sum(const vector<int> &array, int sum)
 void Code_Thinking::local_main_find_nums_with_sum() {
 
     auto *main = new Code_Thinking();
-    vector<int> a{1,2,5,6,8,9,20,23,34};
+    vector<int> a{1, 2, 5, 6, 8, 9, 20, 23, 34};
     Utility::print_vector(main->find_nums_with_sum(a, 25));
 
 }
 
 bool Code_Thinking::is_continuous(vector<int> numbers) {
 
-    if(numbers.empty()){
+    if (numbers.empty()) {
         return false;
     }
     sort(numbers.begin(), numbers.end());
@@ -153,14 +153,14 @@ bool Code_Thinking::is_continuous(vector<int> numbers) {
     int count_differ = 0;
     int num_before = 0;
 
-    for(int i : numbers){
-        if(i == 0){
+    for (int i : numbers) {
+        if (i == 0) {
             count_0++;
-        }else{
-            if(num_before != 0){
-                count_differ += (i - num_before -1);
+        } else {
+            if (num_before != 0) {
+                count_differ += (i - num_before - 1);
             }
-            if(num_before == i){
+            if (num_before == i) {
                 return false;
             }
             num_before = i;
@@ -172,11 +172,63 @@ bool Code_Thinking::is_continuous(vector<int> numbers) {
 void Code_Thinking::local_main_is_continuous() {
 
     auto *main = new Code_Thinking();
-    cout << main->is_continuous(vector<int>{4,7,2,8,0,0,5}) << endl;
+    cout << main->is_continuous(vector<int>{4, 7, 2, 8, 0, 0, 5}) << endl;
 }
 
+int Code_Thinking::integer_break_greedy(int n) {
 
+    if (n < 2) {
+        return 0;
+    }
+    if (n == 2) {
+        return 1;
+    }
+    if (n == 3) {
+        return 2;
+    }
+    int timesof3 = n / 3;
+    if (1 == n % 3) {
+        return static_cast<int>(pow(3, timesof3 - 1) * 2 * 2);
+    } else if (0 == n % 3) {
+        return static_cast<int>(pow(3, timesof3));
+    } else if (2 == n % 3) {
+        return static_cast<int>(pow(3, timesof3) * 2);
+    }
+    return 0;
+}
 
+int Code_Thinking::integer_break_dp(int n) {
 
+    if (n <= 1) {
+        return 0;
+    }
+    //int dp[n + 1];//error, not 0
+    //int dp[n + 1]{};//ok
+    //int dp[n + 1]{0};//ok
+    int *dp = new int[n +1];//ok
+    //int *dp = new int[n +1]();//ok
+    //int *dp = new int[n +1]{};//ok
+    //int *dp = new int[n +1]{0};//ok
+    dp[1] = 1;
+    for (int i = 2; i <= n; ++i) {
+        for (int j = 1; j < i; ++j) {
+            dp[i] = max(dp[i], max(j * (i - j), dp[j] * (i - j)));
+        }
+    }
+    return dp[n];
+}
 
+void Code_Thinking::local_main_integer_break() {
 
+    auto *main = new Code_Thinking();
+
+    std::cout << main->integer_break_greedy(1) << std::endl
+              << main->integer_break_greedy(3) << std::endl
+              << main->integer_break_greedy(4) << std::endl
+              << main->integer_break_greedy(5) << std::endl;
+    std::cout << main->integer_break_dp(1) << std::endl
+              << main->integer_break_dp(3) << std::endl
+              << main->integer_break_dp(4) << std::endl
+              << main->integer_break_dp(5) << std::endl;
+
+}

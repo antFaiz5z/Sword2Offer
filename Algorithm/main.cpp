@@ -8,7 +8,6 @@
 
 // 题目序号排列参考
 // https://github.com/CyC2018/CS-Notes/blob/master/notes/%E5%89%91%E6%8C%87%20offer%20%E9%A2%98%E8%A7%A3.md
-// 而非书籍本体
 
 int main() {
 
@@ -19,9 +18,11 @@ int main() {
     //Loop_and_Recursion::local_main_jumpFloor();               //10
     //Search_and_Sort::local_main_minNumberInRotateArray();     //11
     //Loop_and_Recursion::local_main_has_path();                //12
-    Loop_and_Recursion::local_main_moving_count();              //13
+    //Loop_and_Recursion::local_main_moving_count();            //13
+    //Code_Thinking::local_main_integer_break();                //14
     //Bit_Operation::local_main_add();                          //15
     //Code_Thinking::local_main_power();                        //16
+    Loop_and_Recursion::local_main_print_1_to_n_digits();       //17
     //Data_Structure::local_main_mirror_tree();                 //27
     //Data_Structure::local_main_print_matrix();                //29
     //Data_Structure::local_main_stack_min();                   //30

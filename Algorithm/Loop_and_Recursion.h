@@ -75,6 +75,11 @@ public:
     int get_digit_sum(int n);
     static void local_main_moving_count();
 
+    void print_1_to_n_digits(int n);
+    void backtracking_print_1_to_n_digits(char nums[], int digit, int n);
+    void print_num(const char nums[]);
+    static void local_main_print_1_to_n_digits();
+
 
 private:
     Loop_and_Recursion() = default;

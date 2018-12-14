@@ -217,3 +217,45 @@ void Loop_and_Recursion::local_main_moving_count() {
 
     std::cout << get_instance()->moving_count(11, 10, 10) << std::endl;
 }
+
+void Loop_and_Recursion::print_1_to_n_digits(int n) {
+
+    if (n < 0){
+        return;
+    }
+    char *nums = new char[n];
+    backtracking_print_1_to_n_digits(nums, 0, n);
+}
+
+void Loop_and_Recursion::backtracking_print_1_to_n_digits(char *nums, int digit, int n) {
+
+    if(digit == n){
+        print_num(nums);
+        return;
+    }
+    for (int i = 0; i < 10; ++i) {
+        nums[digit] = static_cast<char>('0' + i);
+        backtracking_print_1_to_n_digits(nums, digit +1, n);
+    }
+}
+
+void Loop_and_Recursion::print_num(const char *nums) {
+
+    int index = 0;
+    while (index < strlen(nums) && nums[index] == '0'){
+        index++;
+    }
+    while (index < strlen(nums)){
+        std::cout << nums[index++];
+    }
+    std::cout << std::endl;
+}
+
+void Loop_and_Recursion::local_main_print_1_to_n_digits() {
+
+    auto *main = new Loop_and_Recursion();
+
+    main->print_1_to_n_digits(2);
+}
+
+
