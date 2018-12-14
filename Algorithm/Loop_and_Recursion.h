@@ -75,6 +75,14 @@ public:
     int get_digit_sum(int n);
     static void local_main_moving_count();
 
+    /*
+     * 17. 打印从 1 到最大的 n 位数
+     * 输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数即 999。
+     *
+     * 思路:
+     * 由于 n 可能会非常大，因此不能直接用 int 表示数字，而是用 char 数组进行存储。
+     * 使用回溯法得到所有的数。
+     */
     void print_1_to_n_digits(int n);
     void backtracking_print_1_to_n_digits(char nums[], int digit, int n);
     void print_num(const char nums[]);
