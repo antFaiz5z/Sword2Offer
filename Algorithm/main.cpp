@@ -22,7 +22,8 @@ int main() {
     //Code_Thinking::local_main_integer_break();                //14
     //Bit_Operation::local_main_add();                          //15
     //Code_Thinking::local_main_power();                        //16
-    Loop_and_Recursion::local_main_print_1_to_n_digits();       //17
+    //Loop_and_Recursion::local_main_print_1_to_n_digits();       //17
+    Loop_and_Recursion::local_main_delete_node();               //18
     //Data_Structure::local_main_mirror_tree();                 //27
     //Data_Structure::local_main_print_matrix();                //29
     //Data_Structure::local_main_stack_min();                   //30

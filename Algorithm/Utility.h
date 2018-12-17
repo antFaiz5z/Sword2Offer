@@ -31,20 +31,34 @@ class Utility {
 
 public:
 
-    static double get_time();
-    static void print_during(double start, double end);
+    static double get_time();//获取当前时间
+    static void print_during(double start, double end);//获取时间间隔
 
 
-    static ListNode *get_list(vector<int> v);
-    static TreeNode *get_tree(vector<int> v);
-    static vector<int> tree_traversal(TreeNode *root);
+    static ListNode *get_list(vector<int> v);//创建链表
+    static TreeNode *get_tree(vector<int> v);//创建树
+    static vector<int> tree_traversal(TreeNode *root);//树层次遍历
 
 
     template<typename T>
-    static void print_vector(vector<T> v) {
+    static void print_vector(vector<T> v) {//打印vector
         typename vector<T>::iterator it;
         for (it = v.begin(); it != v.end(); it++) {
             cout << *it << ",";
+        }
+        cout << endl;
+    }
+
+    static void print_list(ListNode *head) {//打印链表
+
+        if (nullptr == head) {
+            return;
+        }
+        ListNode *p = head;
+        cout << p->val << ", ";
+        while (nullptr != p->next) {
+            p = p->next;
+            cout << p->val << ", ";
         }
         cout << endl;
     }

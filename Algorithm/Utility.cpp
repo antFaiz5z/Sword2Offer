@@ -25,12 +25,12 @@ void Utility::print_during(double start, double end) {
 
 ListNode *Utility::get_list(vector<int> v) {
 
-    ListNode *head = new ListNode(0);
+    auto *head = new ListNode(0);//头结点值为0
     ListNode *now = head;
 
     vector<int>::iterator it;
     for (it = v.begin(); it != v.end(); it++) {
-        ListNode *tmp = new ListNode(*it);
+        auto *tmp = new ListNode(*it);
         now->next = tmp;
         now = tmp;
     }

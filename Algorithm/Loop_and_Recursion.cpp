@@ -220,7 +220,7 @@ void Loop_and_Recursion::local_main_moving_count() {
 
 void Loop_and_Recursion::print_1_to_n_digits(int n) {
 
-    if (n < 0){
+    if (n < 0) {
         return;
     }
     char *nums = new char[n];
@@ -229,23 +229,23 @@ void Loop_and_Recursion::print_1_to_n_digits(int n) {
 
 void Loop_and_Recursion::backtracking_print_1_to_n_digits(char *nums, int digit, int n) {
 
-    if(digit == n){
+    if (digit == n) {
         print_num(nums);
         return;
     }
     for (int i = 0; i < 10; ++i) {
         nums[digit] = static_cast<char>('0' + i);
-        backtracking_print_1_to_n_digits(nums, digit +1, n);
+        backtracking_print_1_to_n_digits(nums, digit + 1, n);
     }
 }
 
 void Loop_and_Recursion::print_num(const char *nums) {
 
     int index = 0;
-    while (index < strlen(nums) && nums[index] == '0'){
+    while (index < strlen(nums) && nums[index] == '0') {
         index++;
     }
-    while (index < strlen(nums)){
+    while (index < strlen(nums)) {
         std::cout << nums[index++];
     }
     std::cout << std::endl;
@@ -253,9 +253,55 @@ void Loop_and_Recursion::print_num(const char *nums) {
 
 void Loop_and_Recursion::local_main_print_1_to_n_digits() {
 
-    auto *main = new Loop_and_Recursion();
+    get_instance()->print_1_to_n_digits(2);
+}
 
-    main->print_1_to_n_digits(2);
+ListNode *Loop_and_Recursion::delete_node(ListNode *head, ListNode *todelete) {
+
+    if (head == nullptr || todelete == nullptr) {
+        return nullptr;
+    }
+
+    if (todelete->next != nullptr) {
+        todelete->val = todelete->next->val;
+        todelete->next = todelete->next->next;
+        return head;
+    } else {
+        ListNode *p = head;
+        while (p->next != todelete) {
+            p++;
+        }
+        p->next = nullptr;
+        return head;
+    }
+}
+
+ListNode *Loop_and_Recursion::delete_dup_node(ListNode *head) {
+
+    if (nullptr == head || nullptr == head->next) {
+        return head;
+    }
+    ListNode *next = head->next;
+    if (head->val == next->val) {
+        while (nullptr != next && head->val == next->val) {
+            next = next->next;
+        }
+        return delete_dup_node(next);
+    } else {
+        head->next = delete_dup_node(next);
+        return head;
+    }
+}
+
+void Loop_and_Recursion::local_main_delete_node() {
+
+    ListNode *head = Utility::get_list(vector<int>({1, 2, 2, 3, 4, 4, 5, 6, 6}));
+    Utility::print_list(head);
+    ListNode *todelete = head->next->next->next->next;
+    get_instance()->delete_node(head, todelete);
+    Utility::print_list(head);
+    get_instance()->delete_dup_node(head);
+    Utility::print_list(head);
 }
 
 
