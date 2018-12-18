@@ -111,6 +111,18 @@ public:
     ListNode* delete_dup_node(ListNode *head);
     static void local_main_delete_node();
 
+    /*
+     * 19. 正则表达式匹配
+     * 请实现一个函数用来匹配包括'.'和'*'的正则表达式。模式中的字符'.'表示任意一个字符，
+     * 而'*'表示它前面的字符可以出现任意次（包含0次）。
+     * 在本题中，匹配是指字符串的所有字符匹配整个模式。
+     * 例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但是与"aa.a"和"ab*a"均不匹配
+     */
+    bool regx_match_backtracking_error(char *str, char *pattern);//未考虑“.*”情况
+    bool regx_match_backtracking(char *str, char *pattern);
+    bool regx_match_matrix(char *str, char *pattern);
+    static void local_main_match();
+
 
 
 private:

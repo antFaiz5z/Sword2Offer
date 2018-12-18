@@ -1,9 +1,6 @@
-#include <utility>
-
 //
 // Created by faiz on 18-5-12.
 //
-
 #include "Loop_and_Recursion.h"
 
 #include <unordered_set>
@@ -304,4 +301,106 @@ void Loop_and_Recursion::local_main_delete_node() {
     Utility::print_list(head);
 }
 
+bool Loop_and_Recursion::regx_match_backtracking_error(char *str, char *pattern) {
 
+    /*if (nullptr == pattern) {
+        return nullptr == str;
+    }*/
+    if ('\0' == *pattern) {
+        return '\0' == *str;
+    }
+
+    if (*pattern == '.') {
+        return regx_match_backtracking_error(str + 1, pattern + 1);
+    }
+    if (*(pattern + 1) == '*') {
+        if (*str != *pattern) {
+            return regx_match_backtracking_error(str, pattern + 2);
+        } else {
+            return regx_match_backtracking_error(str + 1, pattern) || regx_match_backtracking_error(str, pattern + 2);
+        }
+    } else {
+        if (*str != *pattern) {
+            return false;
+        } else {
+            return regx_match_backtracking_error(str + 1, pattern + 1);
+        }
+    }
+}
+
+
+bool Loop_and_Recursion::regx_match_backtracking(char *str, char *pattern) {
+
+    if ('\0' == *pattern) {
+        return '\0' == *str;
+    }
+
+    if (*(pattern + 1) == '*') {
+        if (*str == *pattern || (*str != '\0' && '.' == *pattern)) {
+            return regx_match_backtracking(str + 1, pattern) || regx_match_backtracking(str, pattern + 2);
+        } else {
+            return regx_match_backtracking(str, pattern + 2);
+        }
+    } else {
+        if (*str == *pattern || (*str != '\0' && '.' == *pattern)) {
+            return regx_match_backtracking(str + 1, pattern + 1);
+        } else {
+            return false;
+        }
+    }
+
+}
+
+bool Loop_and_Recursion::regx_match_matrix(char *str, char *pattern) {
+
+    size_t m = strlen(str), n = strlen(pattern);
+    bool *dp[m +1];
+    for (int i = 0; i < m +1; ++i) {
+        dp[i] = new bool[n +1];
+    }
+
+    dp[0][0] = true;
+    for (int i = 1; i <= n; i++)
+        if (pattern[i - 1] == '*')
+            dp[0][i] = dp[0][i - 2];
+
+    for (int i = 1; i <= m; i++)
+        for (int j = 1; j <= n; j++)
+            if (str[i - 1] == pattern[j - 1] || pattern[j - 1] == '.')
+                dp[i][j] = dp[i - 1][j - 1];
+            else if (pattern[j - 1] == '*')
+                if (pattern[j - 2] == str[i - 1] || pattern[j - 2] == '.') {
+                    dp[i][j] |= dp[i][j - 1]; // a* counts as single a
+                    dp[i][j] |= dp[i - 1][j]; // a* counts as multiple a
+                    dp[i][j] |= dp[i][j - 2]; // a* counts as empty
+                } else
+                    dp[i][j] = dp[i][j - 2];   // a* only counts as empty
+
+    return dp[m][n];
+}
+
+
+void Loop_and_Recursion::local_main_match() {
+
+    char *str = const_cast<char *>("aaa");
+    char *s1 = str, *s2 = str,*s3 = str,*s4 = str,*s5 = str;
+    char *pattern1 = const_cast<char *>("a.a");
+    char *pattern2 = const_cast<char *>("ab*ac*a");
+    char *pattern3 = const_cast<char *>("aa.a");
+    char *pattern4 = const_cast<char *>("ab*a");
+    char *pattern5 = const_cast<char *>(".*");
+
+
+    std::cout << get_instance()->regx_match_backtracking(s1, pattern1) << std::endl
+              << get_instance()->regx_match_backtracking(s2, pattern2) << std::endl
+              << get_instance()->regx_match_backtracking(s3, pattern3) << std::endl
+              << get_instance()->regx_match_backtracking(s4, pattern4) << std::endl
+              << get_instance()->regx_match_backtracking(s5, pattern5) << std::endl;
+
+    std::cout << get_instance()->regx_match_matrix(s1, pattern1) << std::endl
+              << get_instance()->regx_match_matrix(s2, pattern2) << std::endl
+              << get_instance()->regx_match_matrix(s3, pattern3) << std::endl
+              << get_instance()->regx_match_matrix(s4, pattern4) << std::endl
+              << get_instance()->regx_match_matrix(s5, pattern5) << std::endl;
+
+}

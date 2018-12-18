@@ -232,3 +232,13 @@ void Code_Thinking::local_main_integer_break() {
               << main->integer_break_dp(5) << std::endl;
 
 }
+
+bool Code_Thinking::is_numeric(char *string) {
+
+
+    return false;
+}
+
+void Code_Thinking::local_main_is_numeric() {
+
+}
