@@ -6,7 +6,6 @@
 #include <sys/time.h>
 #include <iostream>
 
-
 double Utility::get_time() {
 
     struct timeval time{};
@@ -20,8 +19,6 @@ void Utility::print_during(double start, double end) {
 
     std::cout << "During: " << end - start << "ms." << std::endl;
 }
-
-
 
 ListNode *Utility::get_list(vector<int> v) {
 
@@ -40,22 +37,20 @@ ListNode *Utility::get_list(vector<int> v) {
 TreeNode *Utility::get_tree(vector<int> v) {//层次遍历
 
     queue<TreeNode*> q;
-
     int i = 0;
-
-    TreeNode *root = new TreeNode(v[i++]);
+    auto *root = new TreeNode(v[i++]);
     q.push(root);
 
     while(i < v.size()){
         TreeNode *par = q.front();
         q.pop();
 
-        TreeNode *left = new TreeNode(v[i++]);
+        auto *left = new TreeNode(v[i++]);
         par->left = left;
         q.push(left);
 
         if(i < v.size()){
-            TreeNode *right = new TreeNode(v[i++]);
+            auto *right = new TreeNode(v[i++]);
             par->right = right;
             q.push(right);
         }

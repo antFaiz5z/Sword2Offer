@@ -220,7 +220,6 @@ void Data_Structure::local_main_2stacks_1queue() {
     std::cout << main->pop_2() << std::endl;
     main->push_2(8);
     std::cout << main->pop_2() << std::endl;
-
 }
 
 void Data_Structure::mirror_tree(TreeNode *root) {
@@ -327,9 +326,7 @@ void Data_Structure::local_main_stack_min() {
     cout << main->min() << endl;
     main->push(1);
     cout << main->min() << endl;
-
 }
-
 
 string Data_Structure::left_rotate_string(string str, int n) {
 
@@ -384,7 +381,6 @@ string Data_Structure::left_rotate_string_standard_II(string str, int n) {
     return str;
 }
 
-
 void Data_Structure::local_main_left_rotate_string() {
 
     auto *main = new Data_Structure();
@@ -404,14 +400,93 @@ string Data_Structure::reverse_sentence(string str) {
     }
     if (!tmp.empty()) res = tmp + res;
     return res;
-
 }
 
 void Data_Structure::local_main_reverse_sentence() {
 
     auto *main = new Data_Structure();
     string str = "student. incredible a am I";
-    cout  << main->reverse_sentence(str) << endl;
-    cout  << main->reverse_sentence(main->reverse_sentence(str)) << endl;
+    cout << main->reverse_sentence(str) << endl;
+    cout << main->reverse_sentence(main->reverse_sentence(str)) << endl;
 
+}
+
+ListNode *Data_Structure::find_Kth2tail_mine(ListNode *head, unsigned int k) {
+
+    if (nullptr == head || k <= 0) {
+        return nullptr;
+    }
+    int counter = 0;
+    ListNode *now = head;
+    return find_Kth2tail_mine_backtracking(now, counter, k);
+}
+
+ListNode *Data_Structure::find_Kth2tail_mine_backtracking(ListNode *now, int &counter, int k) {
+
+    ListNode *temp = now;
+    if (temp->next) {
+        temp = temp->next;
+    } else {
+        counter = 1;
+        if (k == 1) {
+            return now;
+        }
+        return nullptr;
+    }
+    ListNode *ret = find_Kth2tail_mine_backtracking(temp, counter, k);
+    if (!ret) {
+        if (++counter == k) {
+            return now;
+        }
+        return nullptr;
+    } else {
+        return ret;
+    }
+    /*if (++counter == k) {
+        return now;
+    }
+    if (ret) {
+        return ret;
+    } else {
+        return nullptr;
+    }*/
+}
+
+ListNode *Data_Structure::find_Kth2tail(ListNode *head, unsigned int k) {
+
+    if (nullptr == head || k <= 0){
+        return nullptr;
+    }
+    ListNode *p = head, *q = head;
+    for (int i = 1; i < k; ++i) {
+        if(q->next){
+            q = q->next;
+        }else{
+            return nullptr;
+        }
+    }
+    while (q->next){
+        p = p->next;
+        q = q->next;
+    }
+    return p;
+}
+
+void Data_Structure::local_main_find_Kth2tail() {
+
+    auto main = new Data_Structure();
+    vector<int> v({1, 2, 3, 4, 5, 6, 7, 8, 9});
+    ListNode *head = Utility::get_list(v);  //头结点值为0
+    ListNode *ret = main->find_Kth2tail_mine(head, 10);
+    if (ret) {
+        cout << ret->val << endl;
+    } else {
+        cout << "null" << endl;
+    }
+    ListNode *ret2 = main->find_Kth2tail(head, 0);
+    if (ret2) {
+        cout << ret2->val << endl;
+    } else {
+        cout << "null" << endl;
+    }
 }

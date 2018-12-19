@@ -100,6 +100,20 @@ public:
     string reverse_sentence(string str);
     static void local_main_reverse_sentence();
 
+    /*
+     * 22. 链表中倒数第 K 个结点
+     * 输入一个链表，输出该链表中倒数第k个结点。
+     *
+     * 思路：
+     * 设链表的长度为 N。设两个指针 P1 和 P2，先让 P1 移动 K 个节点，
+     * 则还有 N - K 个节点可以移动。此时让 P1 和 P2 同时移动，
+     * 可以知道当 P1 移动到链表结尾时，P2 移动到 N - K 个节点处，该位置就是倒数第 K 个节点。
+     */
+    ListNode *find_Kth2tail_mine(ListNode *head, unsigned int k);
+    ListNode *find_Kth2tail_mine_backtracking(ListNode *now, int &counter, int k);
+    ListNode *find_Kth2tail(ListNode *head, unsigned int k);
+    static void local_main_find_Kth2tail();
+
 private:
 
     std::stack<int> s1;
@@ -107,8 +121,6 @@ private:
 
     std::stack<int> s3;
     std::stack<int> s4;
-
 };
-
 
 #endif //JIANZHIOFFER_LIST_H

@@ -42,18 +42,89 @@ double Code_Thinking::power_standard(double base, int exponent) {
 }
 
 void Code_Thinking::local_main_power() {
+
     auto *main = new Code_Thinking();
     std::cout << main->power(5, 3) << std::endl;
     std::cout << main->power_standard(5, 3) << std::endl;
-
 }
 
-void Code_Thinking::reOrderArray(std::vector<int> &array) {
+void Code_Thinking::reOrderArray_copy(vector<int> &array) {
 
+    if (array.empty()) {
+        return;
+    }
+    int odd_count = 0;
+
+    for (int &it : array) {
+        if (it % 2 == 1) {
+            odd_count++;
+        }
+    }
+    vector<int> copy(array);
+
+    int i = 0, j = odd_count;
+    for (int &it : copy) {
+        if (it % 2 == 1) {
+            array[i++] = it;
+        } else {
+            array[j++] = it;
+        }
+    }
+}
+
+void Code_Thinking::reOrderArray_insert(vector<int> &array) {
+
+    if (array.empty()) {
+        return;
+    }
+    int even_index = 0, odd_index, temp = 0;
+    while (even_index < array.size()) {
+        while (even_index < array.size() && array[even_index] % 2 == 1) {
+            even_index++;
+        }
+        if (even_index == (array.size() - 1) || even_index == array.size()) {
+            return;
+        }
+        odd_index = even_index + 1;
+        while (odd_index < array.size() && array[odd_index] % 2 == 0) {
+            odd_index++;
+        }
+        if (odd_index == array.size()){
+            return;
+        }
+        temp = array[odd_index];
+        for (int i = odd_index; i > even_index; --i) {
+            array[i] = array[i - 1];
+        }
+        array[even_index++] = temp;
+    }
+}
+
+void Code_Thinking::reOrderArray_stl(vector<int> &array) {
+
+    if (array.empty()) {
+        return;
+    }
+    stable_partition(array.begin(), array.end(), is_odd);
+}
+
+bool Code_Thinking::is_odd(int n) {
+    //return n % 2 == 1;
+    return (n & 1) == 1;
 }
 
 void Code_Thinking::local_main_reOrderArray() {
 
+    auto main = new Code_Thinking();
+    vector<int> v1({1, 5, 3, 6, 3, 7, 8, 4, 6, 3, 1});
+    vector<int> v2(v1), v3(v1);
+    Utility::print_vector(v1);
+    main->reOrderArray_copy(v1);
+    Utility::print_vector(v1);
+    main->reOrderArray_insert(v2);
+    Utility::print_vector(v2);
+    main->reOrderArray_stl(v3);
+    Utility::print_vector(v3);
 }
 
 vector<vector<int>> Code_Thinking::find_continuous_seq(int sum) {
@@ -205,7 +276,7 @@ int Code_Thinking::integer_break_dp(int n) {
     //int dp[n + 1];//error, not 0
     //int dp[n + 1]{};//ok
     //int dp[n + 1]{0};//ok
-    int *dp = new int[n +1];//ok
+    int *dp = new int[n + 1];//ok
     //int *dp = new int[n +1]();//ok
     //int *dp = new int[n +1]{};//ok
     //int *dp = new int[n +1]{0};//ok

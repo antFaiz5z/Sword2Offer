@@ -1,7 +1,6 @@
 //
 // Created by faiz on 18-4-15.
 //
-
 #ifndef JIANZHIOFFER_UTILITY_H
 #define JIANZHIOFFER_UTILITY_H
 
@@ -10,7 +9,6 @@
 #include <queue>
 
 using namespace std;
-
 
 struct ListNode {
     int val;
@@ -34,11 +32,9 @@ public:
     static double get_time();//获取当前时间
     static void print_during(double start, double end);//获取时间间隔
 
-
-    static ListNode *get_list(vector<int> v);//创建链表
+    static ListNode *get_list(vector<int> v);//创建链表， 头结点值为0
     static TreeNode *get_tree(vector<int> v);//创建树
     static vector<int> tree_traversal(TreeNode *root);//树层次遍历
-
 
     template<typename T>
     static void print_vector(vector<T> v) {//打印vector
@@ -62,8 +58,6 @@ public:
         }
         cout << endl;
     }
-
 };
-
 
 #endif //JIANZHIOFFER_UTILITY_H

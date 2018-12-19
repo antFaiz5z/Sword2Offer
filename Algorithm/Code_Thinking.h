@@ -23,7 +23,16 @@ public:
     double power_standard(double base, int exponent);
     static void local_main_power();
 
-    void reOrderArray(vector<int> &array);
+    /*
+     * 21. 调整数组顺序使奇数位于偶数前面
+     * 输入一个整数数组，实现一个函数来调整该数组中数字的顺序，
+     * 使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，
+     * 并保证奇数和奇数，偶数和偶数之间的相对位置不变。
+     */
+    void reOrderArray_copy(vector<int> &array);
+    void reOrderArray_insert(vector<int> &array);
+    void reOrderArray_stl(vector<int> &array);
+    static bool is_odd(int n);
     static void local_main_reOrderArray();
 
     /*
