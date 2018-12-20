@@ -454,18 +454,18 @@ ListNode *Data_Structure::find_Kth2tail_mine_backtracking(ListNode *now, int &co
 
 ListNode *Data_Structure::find_Kth2tail(ListNode *head, unsigned int k) {
 
-    if (nullptr == head || k <= 0){
+    if (nullptr == head || k <= 0) {
         return nullptr;
     }
     ListNode *p = head, *q = head;
     for (int i = 1; i < k; ++i) {
-        if(q->next){
+        if (q->next) {
             q = q->next;
-        }else{
+        } else {
             return nullptr;
         }
     }
-    while (q->next){
+    while (q->next) {
         p = p->next;
         q = q->next;
     }
@@ -490,3 +490,69 @@ void Data_Structure::local_main_find_Kth2tail() {
         cout << "null" << endl;
     }
 }
+
+ListNode *Data_Structure::entry_node_of_loop(ListNode *head) {
+
+    if (!head || !head->next || !head->next->next) {
+        return nullptr;
+    }
+    ListNode *slow = head->next, *fast = head->next->next;
+    while (fast != slow) {
+        if (slow->next) {
+            slow = slow->next;
+        } else {
+            return nullptr;
+        }
+        if (fast->next->next) {
+            fast = fast->next->next;
+        } else {
+            return nullptr;
+        }
+    }
+    fast = head;
+    while (fast != slow) {
+        slow = slow->next;
+        fast = fast->next;
+    }
+    return fast;
+}
+
+void Data_Structure::local_main_entry_node_of_loop() {
+
+    auto main = new Data_Structure();
+    ListNode *head = Utility::get_list(vector<int>({1, 2, 3, 4, 5, 6, 7, 8, 9}));
+    ListNode *tail = head;
+    while (tail->next) {
+        tail = tail->next;
+    }
+    tail->next = head->next->next->next; //3
+    cout << main->entry_node_of_loop(head)->val << endl;
+}
+
+ListNode *Data_Structure::reverse_list_recur(ListNode *head) {
+
+    if (!head) {
+        return nullptr;
+    }
+    //ListNode *now = head;
+    ListNode *ret = reverse_list_recur(head->next);
+    if (ret) {
+        head->next->next = head;
+        head->next = nullptr;
+        return ret;
+    } else {
+        return head;
+    }
+}
+
+ListNode *Data_Structure::reverse_list_itera(ListNode *head) {
+    return nullptr;
+}
+
+void Data_Structure::local_main_reverse_list() {
+
+    auto main = new Data_Structure();
+    Utility::print_list(main->reverse_list_recur(Utility::get_list(vector<int>({1,2,3,4,5,6,7,8,9}))));
+}
+
+
