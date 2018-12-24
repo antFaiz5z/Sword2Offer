@@ -130,10 +130,35 @@ public:
     ListNode *entry_node_of_loop(ListNode *head);
     static void local_main_entry_node_of_loop();
 
-
+    /*
+     * 24. 反转链表
+     * 输入一个链表，反转链表后，输出新链表的表头。
+     */
     ListNode *reverse_list_recur(ListNode *head);
+    ListNode *reverse_list_recurII(ListNode *head);
     ListNode *reverse_list_itera(ListNode *head);
     static void local_main_reverse_list();
+
+    /*
+     * 26. 树的子结构
+     * 输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
+     */
+    bool is_sub_tree(TreeNode *root1, TreeNode *root2);
+    bool recur_is_sub_tree(TreeNode *root1, TreeNode *root2);
+    static void local_main_is_sub_tree();
+
+    /*
+     * 28 对称的二叉树
+     * 请实现一个函数，用来判断一颗二叉树是不是对称的。
+     * 注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。
+     */
+    bool is_symmetrical(TreeNode *root);
+    bool recur_is_symmetrical(TreeNode *root1, TreeNode *root2);
+    static void local_main_is_symmetrical();
+
+
+    bool is_pop_order(vector<int> push, vector<int> pop);
+    static void local_main_is_pop_order();
 
 private:
 

@@ -534,7 +534,6 @@ ListNode *Data_Structure::reverse_list_recur(ListNode *head) {
     if (!head) {
         return nullptr;
     }
-    //ListNode *now = head;
     ListNode *ret = reverse_list_recur(head->next);
     if (ret) {
         head->next->next = head;
@@ -545,14 +544,135 @@ ListNode *Data_Structure::reverse_list_recur(ListNode *head) {
     }
 }
 
+ListNode *Data_Structure::reverse_list_recurII(ListNode *head) {
+
+    if (!head || !head->next) {
+        return head;
+    }
+    ListNode *next = head->next;
+    head->next = nullptr;
+    ListNode *ret = reverse_list_recurII(next);
+    next->next = head;
+    return ret;
+}
+
 ListNode *Data_Structure::reverse_list_itera(ListNode *head) {
-    return nullptr;
+
+    ListNode temp = ListNode(-1);
+    ListNode *next;
+    while (head) {
+        next = head->next;
+        head->next = temp.next;
+        temp.next = head;
+        head = next;
+    }
+    return temp.next;
 }
 
 void Data_Structure::local_main_reverse_list() {
 
     auto main = new Data_Structure();
-    Utility::print_list(main->reverse_list_recur(Utility::get_list(vector<int>({1,2,3,4,5,6,7,8,9}))));
+    vector<int> v({1, 2, 3, 4, 5, 6, 7, 8, 9});
+    Utility::print_list(main->reverse_list_recur(Utility::get_list(v)));
+    Utility::print_list(main->reverse_list_recurII(Utility::get_list(v)));
+    Utility::print_list(main->reverse_list_itera(Utility::get_list(v)));
 }
+
+bool Data_Structure::is_sub_tree(TreeNode *root1, TreeNode *root2) {
+
+    if (!root1 || !root2) {
+        return false;
+    }
+    return recur_is_sub_tree(root1, root2)
+           || is_sub_tree(root1->left, root2)
+           || is_sub_tree(root1->right, root2);
+}
+
+bool Data_Structure::recur_is_sub_tree(TreeNode *root1, TreeNode *root2) {
+
+    if (!root2) {
+        return true;
+    }
+    if (!root1) {
+        return false;
+    }
+    if (root1->val != root2->val) {
+        return false;
+    }
+    return recur_is_sub_tree(root1->left, root2->left)
+           && recur_is_sub_tree(root1->right, root2->right);
+}
+
+void Data_Structure::local_main_is_sub_tree() {
+
+    auto main = new Data_Structure();
+    cout << main->is_sub_tree(
+            Utility::get_tree(vector<int>({1, 2, 3, 4, 5, 6, 7})),
+            Utility::get_tree(vector<int>({2, 4, 5})))
+         << endl;
+}
+
+bool Data_Structure::is_symmetrical(TreeNode *root) {
+
+    if (!root) {
+        return true;
+    }
+    return recur_is_symmetrical(root->left, root->right);
+}
+
+bool Data_Structure::recur_is_symmetrical(TreeNode *root1, TreeNode *root2) {
+
+    if (!root1 && !root2) {
+        return true;
+    }
+    if (!root1 || !root2) {
+        return false;
+    }
+    if (root1->val != root2->val) {
+        return false;
+    }
+    return recur_is_symmetrical(root1->left, root2->right)
+           && recur_is_symmetrical(root1->right, root2->left);
+}
+
+void Data_Structure::local_main_is_symmetrical() {
+
+    auto main = new Data_Structure();
+    cout << main->is_symmetrical(Utility::get_tree(vector<int>({1, 2, 2, 3, 4, 4, 3}))) << endl;
+}
+
+bool Data_Structure::is_pop_order(vector<int> push, vector<int> pop) {
+
+    if (push.empty() && pop.empty()) {
+        return true;
+    }
+    if (push.size() != pop.size()) {
+        return false;
+    }
+    stack<int> s;
+    for (int push_index = 0, pop_index = 0; push_index < push.size(); ++push_index) {
+        s.push(push[push_index]);
+        while (pop_index < pop.size() && !s.empty() && s.top() == pop[pop_index]) {
+            s.pop();
+            pop_index++;
+
+        }
+    }
+    return s.empty();
+}
+
+void Data_Structure::local_main_is_pop_order() {
+
+    auto main = new Data_Structure();
+
+    vector<int> pu({1, 2, 3, 4, 5});
+    vector<int> po1({4, 5, 3, 2, 1});
+    vector<int> po2({4, 3, 5, 1, 2});
+
+    cout << main->is_pop_order(pu, po1) << endl
+         << main->is_pop_order(pu, po2) << endl;
+}
+
+
 
 

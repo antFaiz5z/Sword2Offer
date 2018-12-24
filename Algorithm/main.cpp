@@ -25,13 +25,16 @@ int main() {
     //Loop_and_Recursion::local_main_print_1_to_n_digits();     //17
     //Loop_and_Recursion::local_main_delete_node();             //18
     //Loop_and_Recursion::local_main_match();                   //19
-    //Code_Thinking::local_main_reOrderArray();                   //21
-    //Data_Structure::local_main_find_Kth2tail();                 //22
-    //Data_Structure::local_main_entry_node_of_loop();            //23
-    Data_Structure::local_main_reverse_list();                  //24
+    //Code_Thinking::local_main_reOrderArray();                 //21
+    //Data_Structure::local_main_find_Kth2tail();               //22
+    //Data_Structure::local_main_entry_node_of_loop();          //23
+    //Data_Structure::local_main_reverse_list();                //24
+    //Data_Structure::local_main_is_sub_tree();                 //26
     //Data_Structure::local_main_mirror_tree();                 //27
+    //Data_Structure::local_main_is_symmetrical();              //28
     //Data_Structure::local_main_print_matrix();                //29
     //Data_Structure::local_main_stack_min();                   //30
+    Data_Structure::local_main_is_pop_order();                  //31
     //Loop_and_Recursion::local_main_permutation();             //38
     //Code_Thinking::local_main_find_continuous_seq();          //57.2
     //Code_Thinking::local_main_find_nums_with_sum();           //57.1
