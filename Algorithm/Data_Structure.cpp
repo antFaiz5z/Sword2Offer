@@ -4,6 +4,7 @@
 #include "Data_Structure.h"
 
 #include <iostream>
+#include <algorithm>
 #include <cstring>
 #include <malloc.h>
 
@@ -674,5 +675,134 @@ void Data_Structure::local_main_is_pop_order() {
 }
 
 
+vector<int> Data_Structure::com_tree_2_vector(TreeNode *root) {
+
+    vector<int> v;
+    queue<TreeNode *> q;
+    q.push(root);
+
+    unsigned long count;
+
+    while (!q.empty()) {
+        count = q.size();
+        while (count-- > 0) {
+            TreeNode *node = q.front();
+            q.pop();
+            if (nullptr == node) {
+                continue;
+            }
+            v.push_back(node->val);
+            q.push(node->left);
+            q.push(node->right);
+        }
+    }
+    return v;
+}
+
+vector<vector<int>> Data_Structure::com_tree_2_vector_vector(TreeNode *root) {
+
+    vector<vector<int>> v;
+    queue<TreeNode *> q;
+    q.push(root);
+
+    unsigned long count;
+    while (!q.empty()) {
+        count = q.size();
+        vector<int> row;
+        while (count-- > 0) {
+            TreeNode *node = q.front();
+            q.pop();
+            if (nullptr == node) {
+                continue;
+            }
+            row.push_back(node->val);
+            q.push(node->left);
+            q.push(node->right);
+        }
+        if (!row.empty())
+            v.push_back(row);
+    }
+    return v;
+}
+
+vector<vector<int>> Data_Structure::com_tree_2_vector_vector_zigzag(TreeNode *root) {
+
+    vector<vector<int>> v;
+    queue<TreeNode *> q;
+    q.push(root);
+
+    unsigned long count;
+    bool re = false;
+    while (!q.empty()) {
+        count = q.size();
+        vector<int> row;
+        while (count-- > 0) {
+            TreeNode *node = q.front();
+            q.pop();
+            if (nullptr == node) {
+                continue;
+            }
+            row.push_back(node->val);
+            q.push(node->left);
+            q.push(node->right);
+        }
+        if (!row.empty()) {
+            if (re) {
+                reverse(row.begin(), row.end());
+            }
+            v.push_back(row);
+        }
+        re = !re;
+    }
+    return v;
+}
+
+void Data_Structure::local_main_tree_2_vector() {
+
+    auto main = new Data_Structure();
+
+    TreeNode *root = Utility::get_tree(vector<int>({1, 2, 3, 4, 5, 6, 7}));
+    Utility::print_vector(main->com_tree_2_vector(root));
+    vector<vector<int>> ret = main->com_tree_2_vector_vector(root);
+    for (auto &it : ret) {
+        Utility::print_vector(it);
+    }
+    vector<vector<int>> ret2 = main->com_tree_2_vector_vector_zigzag(root);
+    for (auto &it : ret2) {
+        Utility::print_vector(it);
+    }
+}
+
+bool Data_Structure::is_seq_of_bst(vector<int> sequence) {
+
+    if (sequence.empty()) {
+        return false;
+    }
+    return is_seq_of_bst_judge(sequence, 0, static_cast<int>(sequence.size() - 1));
+}
+
+bool Data_Structure::is_seq_of_bst_judge(vector<int> &sequence, int left, int right) {
+
+    if (right - left <= 1) {//right == left //error
+        return true;        // right <= left //OK  //TODO:??
+    }
+    int middle = right;
+    while (middle > left && sequence[middle - 1] > sequence[right]) {
+        middle--;
+    }
+    for (int i = middle - 1; i >= left; --i) {
+        if (sequence[i] > sequence[right]) {
+            return false;
+        }
+    }
+    return is_seq_of_bst_judge(sequence, left, middle - 1)
+           && is_seq_of_bst_judge(sequence, middle, right - 1);
+}
+
+void Data_Structure::local_main_is_seq_of_bst() {
+
+    auto main = new Data_Structure();
+    cout << main->is_seq_of_bst(vector<int>({1,3,2}));
+}
 
 

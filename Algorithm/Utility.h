@@ -34,7 +34,8 @@ public:
 
     static ListNode *get_list(vector<int> v);//创建链表， 头结点值为0
     static TreeNode *get_tree(vector<int> v);//创建树
-    static vector<int> tree_traversal(TreeNode *root);//树层次遍历
+    static vector<int> tree_traversal(TreeNode *root);//树层次遍历  //TODO:bug
+
 
     template<typename T>
     static void print_vector(vector<T> v) {//打印vector

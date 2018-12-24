@@ -36,12 +36,12 @@ ListNode *Utility::get_list(vector<int> v) {
 
 TreeNode *Utility::get_tree(vector<int> v) {//层次遍历
 
-    queue<TreeNode*> q;
+    queue<TreeNode *> q;
     int i = 0;
     auto *root = new TreeNode(v[i++]);
     q.push(root);
 
-    while(i < v.size()){
+    while (i < v.size()) {
         TreeNode *par = q.front();
         q.pop();
 
@@ -49,7 +49,7 @@ TreeNode *Utility::get_tree(vector<int> v) {//层次遍历
         par->left = left;
         q.push(left);
 
-        if(i < v.size()){
+        if (i < v.size()) {
             auto *right = new TreeNode(v[i++]);
             par->right = right;
             q.push(right);
@@ -58,28 +58,28 @@ TreeNode *Utility::get_tree(vector<int> v) {//层次遍历
     return root;
 }
 
-vector<int> Utility::tree_traversal(TreeNode *root) {//层次遍历
+vector<int> Utility::tree_traversal(TreeNode *root) {//层次遍历，空节点记为-1
 
     vector<int> v;
-    queue<TreeNode*> q;
+    queue<TreeNode *> q;
     q.push(root);
     v.push_back(root->val);
 
     TreeNode *par;
-    while(!q.empty()){
+    while (!q.empty()) {
         par = q.front();
         q.pop();
-        if(par->left || par->right){
-            if(par->left){
+        if (par->left || par->right) {
+            if (par->left) {
                 q.push(par->left);
                 v.push_back(par->left->val);
-            }else{
+            } else {
                 v.push_back(-1);
             }
-            if(par->right){
+            if (par->right) {
                 q.push(par->right);
                 v.push_back(par->right->val);
-            }else{
+            } else {
                 v.push_back(-1);
             }
         }

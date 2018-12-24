@@ -156,9 +156,41 @@ public:
     bool recur_is_symmetrical(TreeNode *root1, TreeNode *root2);
     static void local_main_is_symmetrical();
 
-
+    /*
+     * 31. 栈的压入、弹出序列
+     * 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。
+     * 假设压入栈的所有数字均不相等。
+     * 例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，
+     * 但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）
+     */
     bool is_pop_order(vector<int> push, vector<int> pop);
     static void local_main_is_pop_order();
+
+    /*
+     * 32.1 从上往下打印二叉树
+     * 从上往下打印出二叉树的每个节点，同层节点从左至右打印。
+     */
+    static vector<int> com_tree_2_vector(TreeNode *root);//完全二叉树，层次遍历,忽略空节点
+    /*
+     * 32.2 把二叉树打印成多行
+     */
+    static vector<vector<int>> com_tree_2_vector_vector(TreeNode *root);//完全二叉树，层次遍历,忽略空节点
+    /*
+     * 32.3 按之字形顺序打印二叉树
+     * 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，
+     * 第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。
+     */
+    static vector<vector<int>> com_tree_2_vector_vector_zigzag(TreeNode *root);//完全二叉树，层次遍历,忽略空节点
+    static void local_main_tree_2_vector();
+
+    /*
+     * 33. 二叉搜索树的后序遍历序列
+     * 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。
+     * 如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。
+     */
+    bool is_seq_of_bst(vector<int> sequence);
+    bool is_seq_of_bst_judge(vector<int>& sequence, int left, int right);
+    static void local_main_is_seq_of_bst();
 
 private:
 
