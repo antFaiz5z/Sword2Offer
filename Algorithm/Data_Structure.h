@@ -192,6 +192,41 @@ public:
     bool is_seq_of_bst_judge(vector<int>& sequence, int left, int right);
     static void local_main_is_seq_of_bst();
 
+    /*
+     * 34. 二叉树中和为某一值的路径
+     * 输入一颗二叉树的跟节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。
+     * 路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
+     * (注意: 在返回值的list中，数组长度大的数组靠前)//TODO:???
+     */
+    vector<vector<int>> find_path(TreeNode *root, int expect_num);
+    void find_path_backtracking(TreeNode *root, int expect_num, vector<vector<int>> &ret, vector<int> &path);
+    static void local_main_find_path();
+
+    /*
+     * 35. 复杂链表的复制
+     * 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，
+     * 另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。
+     * （注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
+     *
+     * 思路：
+     * 第一步，在每个节点的后面插入复制的节点。
+     * 第二步，对复制节点的 random 链接进行赋值。
+     * 第三步，拆分。
+     */
+    RandomListNode *clone(RandomListNode *head);
+
+    /*
+     * 36. 二叉搜索树与双向链表
+     * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。
+     * 要求不能创建任何新的结点，只能调整树中结点指针的指向。
+     */
+    TreeNode* tree_2_doubly_list_mine(TreeNode *root);//TODO:error
+    TreeNode* tree_2_doubly_list_mine_backtracking(TreeNode *new_root, TreeNode *root, bool right);
+    TreeNode* tree_2_doubly_list(TreeNode *root);//TODO:error
+    void tree_2_doubly_list_backtracking(TreeNode *root, TreeNode* pre, TreeNode *head);
+    static void local_main_tree_2_doubly_list();
+
+
 private:
 
     std::stack<int> s1;

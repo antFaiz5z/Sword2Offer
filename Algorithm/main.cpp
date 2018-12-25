@@ -36,7 +36,9 @@ int main() {
     //Data_Structure::local_main_stack_min();                   //30
     //Data_Structure::local_main_is_pop_order();                //31
     //Data_Structure::local_main_tree_2_vector();               //32
-    Data_Structure::local_main_is_seq_of_bst();                 //33
+    //Data_Structure::local_main_is_seq_of_bst();                 //33
+    //Data_Structure::local_main_find_path();                     //34
+    Data_Structure::local_main_tree_2_doubly_list();            //36
     //Loop_and_Recursion::local_main_permutation();             //38
     //Code_Thinking::local_main_find_continuous_seq();          //57.2
     //Code_Thinking::local_main_find_nums_with_sum();           //57.1

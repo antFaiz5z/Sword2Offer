@@ -802,7 +802,155 @@ bool Data_Structure::is_seq_of_bst_judge(vector<int> &sequence, int left, int ri
 void Data_Structure::local_main_is_seq_of_bst() {
 
     auto main = new Data_Structure();
-    cout << main->is_seq_of_bst(vector<int>({1,3,2}));
+    cout << main->is_seq_of_bst(vector<int>({1, 3, 2}));
 }
+
+vector<vector<int>> Data_Structure::find_path(TreeNode *root, int expect_num) {
+
+    vector<vector<int>> ret;
+    vector<int> path;
+
+    find_path_backtracking(root, expect_num, ret, path);
+    return ret;
+}
+
+void
+Data_Structure::find_path_backtracking(TreeNode *root, int expect_num, vector<vector<int>> &ret, vector<int> &path) {
+
+    if (nullptr == root) {
+        return;
+    }
+    path.push_back(root->val);
+    expect_num -= root->val;
+
+    if (expect_num == 0 && nullptr == root->left && nullptr == root->right) {
+        ret.push_back(path);
+    } else {
+        find_path_backtracking(root->left, expect_num, ret, path);
+        find_path_backtracking(root->right, expect_num, ret, path);
+    }
+    path.pop_back();
+}
+
+void Data_Structure::local_main_find_path() {
+
+    auto main = new Data_Structure();
+
+    TreeNode *root = Utility::get_tree(vector<int>({10, 5, 12, 4, 7}));
+    vector<vector<int>> ret = main->find_path(root, 22);
+    for (auto &it : ret) {
+        Utility::print_vector(it);
+    }
+}
+
+RandomListNode *Data_Structure::clone(RandomListNode *head) {
+
+    if (!head) {
+        return nullptr;
+    }
+    RandomListNode *p = head;
+    //插入复制节点
+    while (p) {
+        auto *temp = new RandomListNode(p->label);
+        //RandomListNode temp(p->label);//TODO:error
+        temp->next = p->next;
+        p->next = temp;
+        p = p->next->next;
+    }
+    //赋值random
+    p = head;
+    while (p) {
+        if (p->random)
+            p->next->random = p->random->next;
+        p = p->next->next;
+    }
+    //拆分
+    p = head;
+    RandomListNode *next = head->next;
+    RandomListNode *ret = head->next;
+    while (p->next) {
+        p->next = next->next;
+        p = next;
+        next = p->next;
+    }
+    return ret;
+}
+
+TreeNode *Data_Structure::tree_2_doubly_list_mine(TreeNode *root) {
+
+    if (!root) {
+        return nullptr;
+    }
+    TreeNode *new_root = nullptr;
+    tree_2_doubly_list_mine_backtracking(new_root, root, true);
+    return new_root;
+}
+
+TreeNode *Data_Structure::tree_2_doubly_list_mine_backtracking(TreeNode *new_root, TreeNode *root, bool right) {
+
+    if (!root) {
+        return nullptr;
+    }
+    TreeNode *left_ret = tree_2_doubly_list_mine_backtracking(new_root, root->left, false);
+    TreeNode *right_ret = tree_2_doubly_list_mine_backtracking(new_root, root->right, true);
+
+    if (!left_ret && !right_ret && !new_root) {
+        new_root = root;
+    }
+    if (left_ret) {
+        root->left = left_ret;
+        left_ret->right = root;
+    }
+    if (right_ret) {
+        root->right = right_ret;
+        right_ret->left = root;
+    }
+    if (right) {
+        return left_ret ? left_ret : root;
+    } else {
+        return right_ret ? right_ret : root;
+    }
+}
+
+TreeNode *Data_Structure::tree_2_doubly_list(TreeNode *root) {
+
+    TreeNode *pre = nullptr;
+    TreeNode *head = nullptr;
+    tree_2_doubly_list_backtracking(root, pre, head);
+    return head;
+}
+
+void Data_Structure::tree_2_doubly_list_backtracking(TreeNode *root, TreeNode* pre, TreeNode *head) {
+
+    if (!root){
+        return;
+    }
+    tree_2_doubly_list_backtracking(root->left, pre, head);
+    root->left = pre;
+    if (pre) pre->right = root;
+    pre = root;
+    if (!head) head = root;
+    tree_2_doubly_list_backtracking(root->right, pre, head);
+}
+
+void Data_Structure::local_main_tree_2_doubly_list() {
+
+    auto main = new Data_Structure();
+    TreeNode *root = Utility::get_tree(vector<int>({4, 2, 6, 1, 3, 5, 7}));
+    /*TreeNode *ret = main->tree_2_doubly_list_mine(root);
+    while (ret) {
+        cout << ret->val << ",";
+        ret = ret->right;
+    }
+    cout << endl;*/
+    TreeNode *ret2 = main->tree_2_doubly_list(root);
+    while (ret2) {
+        cout << ret2->val << ",";
+        ret2 = ret2->right;
+    }
+    cout << endl;
+}
+
+
 
 
