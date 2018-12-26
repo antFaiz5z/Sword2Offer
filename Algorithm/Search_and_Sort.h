@@ -8,6 +8,8 @@
 #include <vector>
 #include <string>
 
+#include "Utility.h"
+
 using namespace std;
 
 class Search_and_Sort {
@@ -90,7 +92,36 @@ public:
     int find_min(vector<int> &rotateArray, int left, int right);
     static void local_main_minNumberInRotateArray();
 
+    /*
+     * 40. 最小的 K 个数
+     * 输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。
+     * *基于堆排序算法，构建最大堆。时间复杂度为O(nlogk)
+     * *如果用快速排序，时间复杂度为O(nlogn)；
+     * *如果用冒泡排序，时间复杂度为O(n*k)
+     */
+    vector<int> get_least_nums_libfunc(vector<int> inputs, int k);
+    vector<int> get_least_nums_heap(vector<int> inputs, int k);//TODO: to complete
+    vector<int> get_least_nums_quicksort(vector<int> inputs, int k);//TODO: to complete
+    vector<int> get_least_nums_bubble(vector<int> inputs, int k);
+    static void local_main_get_least_nums();
 
+    /*
+     * 41.1 数据流中的中位数
+     * 如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，
+     * 那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，
+     * 那么中位数就是所有数值排序之后中间两个数的平均值。
+     * 我们使用Insert()方法读取数据流，使用GetMedian()方法获取当前读取数据的中位数。
+     */
+    void insert_priorityq(int num);
+    double get_median_priorityq();
+    void insert_insert(int num);
+    double get_median_insert();
+    static void local_main_get_median();
+
+private:
+    //41.1
+    priority_queue<int, vector<int>, less<int>> p;
+    priority_queue<int, vector<int>, greater<int>> q;
 };
 
 

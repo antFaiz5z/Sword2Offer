@@ -313,3 +313,29 @@ bool Code_Thinking::is_numeric(char *string) {
 void Code_Thinking::local_main_is_numeric() {
 
 }
+
+int Code_Thinking::more_than_half_num(vector<int> nums) {
+
+    int majority = nums[0];
+    for (int i = 1, count = 1; i < nums.size(); ++i) {
+
+        count = nums[i] == majority ? count + 1 : count - 1;
+        if (0 == count) {
+            majority = nums[i];
+            count = 1;
+        }
+    }
+    int count = 0;
+    for (int val :nums) {
+        if (val == majority) {
+            ++count;
+        }
+    }
+    return count > nums.size() / 2 ? majority : 0;
+}
+
+void Code_Thinking::local_main_more_than_half_num() {
+
+    auto main = new Code_Thinking();
+    cout << main->more_than_half_num(vector<int>({1,2,3,2,2,2,5,4,2})) << endl;
+}

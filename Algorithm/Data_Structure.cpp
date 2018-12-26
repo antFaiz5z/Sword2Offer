@@ -83,7 +83,7 @@ void Data_Structure::replace_space_standard(char *str, int length) {
 void Data_Structure::local_main_find() {
 
     auto *array = new Data_Structure();
-    vector<vector<int>> a = array->get_array(10, 10);
+    vector <vector<int>> a = array->get_array(10, 10);
 
     double start = Utility::get_time();
     array->find_mine(15, a);
@@ -102,7 +102,7 @@ void Data_Structure::local_main_find() {
 
 
 vector<vector<int>> Data_Structure::get_array(int m, int n) {
-    vector<vector<int>> tmp;
+    vector <vector<int>> tmp;
     vector<int> tmp2;
     for (int l = 0; l < n; ++l) {
         tmp2.push_back(0);
@@ -279,13 +279,13 @@ vector<int> Data_Structure::print_matrix(vector<vector<int>> matrix) {
 
 void Data_Structure::local_main_print_matrix() {
 
-    vector<vector<int>> m = {{1,  2,  3,  4},
-                             {5,  6,  7,  8},
-                             {9,  10, 11, 12},
-                             {13, 14, 15, 16}};
-    vector<vector<int>> m2 = {{1, 2,  3,  4},
-                              {5, 6,  7,  8},
-                              {9, 10, 11, 12}};
+    vector <vector<int>> m = {{1,  2,  3,  4},
+                              {5,  6,  7,  8},
+                              {9,  10, 11, 12},
+                              {13, 14, 15, 16}};
+    vector <vector<int>> m2 = {{1, 2,  3,  4},
+                               {5, 6,  7,  8},
+                               {9, 10, 11, 12}};
     auto *main = new Data_Structure();
     Utility::print_vector(main->print_matrix(m));
     Utility::print_vector(main->print_matrix(m2));
@@ -678,7 +678,7 @@ void Data_Structure::local_main_is_pop_order() {
 vector<int> Data_Structure::com_tree_2_vector(TreeNode *root) {
 
     vector<int> v;
-    queue<TreeNode *> q;
+    queue < TreeNode * > q;
     q.push(root);
 
     unsigned long count;
@@ -701,8 +701,8 @@ vector<int> Data_Structure::com_tree_2_vector(TreeNode *root) {
 
 vector<vector<int>> Data_Structure::com_tree_2_vector_vector(TreeNode *root) {
 
-    vector<vector<int>> v;
-    queue<TreeNode *> q;
+    vector <vector<int>> v;
+    queue < TreeNode * > q;
     q.push(root);
 
     unsigned long count;
@@ -727,8 +727,8 @@ vector<vector<int>> Data_Structure::com_tree_2_vector_vector(TreeNode *root) {
 
 vector<vector<int>> Data_Structure::com_tree_2_vector_vector_zigzag(TreeNode *root) {
 
-    vector<vector<int>> v;
-    queue<TreeNode *> q;
+    vector <vector<int>> v;
+    queue < TreeNode * > q;
     q.push(root);
 
     unsigned long count;
@@ -763,11 +763,11 @@ void Data_Structure::local_main_tree_2_vector() {
 
     TreeNode *root = Utility::get_tree(vector<int>({1, 2, 3, 4, 5, 6, 7}));
     Utility::print_vector(main->com_tree_2_vector(root));
-    vector<vector<int>> ret = main->com_tree_2_vector_vector(root);
+    vector <vector<int>> ret = main->com_tree_2_vector_vector(root);
     for (auto &it : ret) {
         Utility::print_vector(it);
     }
-    vector<vector<int>> ret2 = main->com_tree_2_vector_vector_zigzag(root);
+    vector <vector<int>> ret2 = main->com_tree_2_vector_vector_zigzag(root);
     for (auto &it : ret2) {
         Utility::print_vector(it);
     }
@@ -807,7 +807,7 @@ void Data_Structure::local_main_is_seq_of_bst() {
 
 vector<vector<int>> Data_Structure::find_path(TreeNode *root, int expect_num) {
 
-    vector<vector<int>> ret;
+    vector <vector<int>> ret;
     vector<int> path;
 
     find_path_backtracking(root, expect_num, ret, path);
@@ -837,7 +837,7 @@ void Data_Structure::local_main_find_path() {
     auto main = new Data_Structure();
 
     TreeNode *root = Utility::get_tree(vector<int>({10, 5, 12, 4, 7}));
-    vector<vector<int>> ret = main->find_path(root, 22);
+    vector <vector<int>> ret = main->find_path(root, 22);
     for (auto &it : ret) {
         Utility::print_vector(it);
     }
@@ -886,7 +886,7 @@ TreeNode *Data_Structure::tree_2_doubly_list_mine(TreeNode *root) {
     return new_root;
 }
 
-TreeNode *Data_Structure::tree_2_doubly_list_mine_backtracking(TreeNode *new_root, TreeNode *root, bool right) {
+TreeNode *Data_Structure::tree_2_doubly_list_mine_backtracking(TreeNode *&new_root, TreeNode *root, bool right) {
 
     if (!root) {
         return nullptr;
@@ -920,9 +920,9 @@ TreeNode *Data_Structure::tree_2_doubly_list(TreeNode *root) {
     return head;
 }
 
-void Data_Structure::tree_2_doubly_list_backtracking(TreeNode *root, TreeNode* pre, TreeNode *head) {
+void Data_Structure::tree_2_doubly_list_backtracking(TreeNode *root, TreeNode *pre, TreeNode *head) {
 
-    if (!root){
+    if (!root) {
         return;
     }
     tree_2_doubly_list_backtracking(root->left, pre, head);
@@ -937,20 +937,69 @@ void Data_Structure::local_main_tree_2_doubly_list() {
 
     auto main = new Data_Structure();
     TreeNode *root = Utility::get_tree(vector<int>({4, 2, 6, 1, 3, 5, 7}));
-    /*TreeNode *ret = main->tree_2_doubly_list_mine(root);
+    TreeNode *ret = main->tree_2_doubly_list_mine(root);
     while (ret) {
         cout << ret->val << ",";
         ret = ret->right;
     }
-    cout << endl;*/
-    TreeNode *ret2 = main->tree_2_doubly_list(root);
+    cout << endl;
+    /*TreeNode *ret2 = main->tree_2_doubly_list(root);
     while (ret2) {
         cout << ret2->val << ",";
         ret2 = ret2->right;
     }
-    cout << endl;
+    cout << endl;*/
+}
+
+char *Data_Structure::serialize(TreeNode *root) {
+
+    vector<int> str;
+    serialize_recur(root, str);
+    int *ret = new int[str.size()];
+    for (int i = 0; i < str.size(); ++i) {
+        ret[i] = str[i];
+    }
+    return (char *) ret;
+}
+
+void Data_Structure::serialize_recur(TreeNode *root, vector<int> &str) {
+
+    if (!root) {
+        str.push_back(0xFFFFFF);
+        return;
+    }
+    str.push_back(root->val);
+    serialize_recur(root->left, str);
+    serialize_recur(root->right, str);
+}
+
+TreeNode *Data_Structure::deserialize(char *str) {
+
+    int *index = (int *) str;
+    return deserialize_recur(index);
 }
 
 
+TreeNode *Data_Structure::deserialize_recur(int *&index) {
 
+    if (*index == 0xFFFFFF) {
+        ++index;
+        return nullptr;
+    }
+    auto *node = new TreeNode(*index);
+    ++index;
+    node->left = deserialize_recur(index);
+    node->right = deserialize_recur(index);
+    return node;
+}
 
+void Data_Structure::local_main_serialize() {
+
+    auto main = new Data_Structure();
+
+    TreeNode *root = Utility::get_tree(vector<int>({1, 2, 3, 4, 5, 6, 4, 6, 3, 5, 4, 6, 3, 6, 4}));
+    Utility::print_vector(Utility::tree_traversal(root));
+    char *str = main->serialize(root);
+    //printf("%x\n", str);//TODO: zero inside, how to print
+    Utility::print_vector(Utility::tree_traversal(main->deserialize(str)));
+}

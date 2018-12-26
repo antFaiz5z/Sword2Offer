@@ -1,10 +1,10 @@
+#include <iostream>
+
 #include "Data_Structure.h"
 #include "Search_and_Sort.h"
 #include "Loop_and_Recursion.h"
 #include "Code_Thinking.h"
 #include "Bit_Operation.h"
-
-#include <iostream>
 
 // 题目序号排列参考
 // https://github.com/CyC2018/CS-Notes/blob/master/notes/%E5%89%91%E6%8C%87%20offer%20%E9%A2%98%E8%A7%A3.md
@@ -36,10 +36,13 @@ int main() {
     //Data_Structure::local_main_stack_min();                   //30
     //Data_Structure::local_main_is_pop_order();                //31
     //Data_Structure::local_main_tree_2_vector();               //32
-    //Data_Structure::local_main_is_seq_of_bst();                 //33
-    //Data_Structure::local_main_find_path();                     //34
-    Data_Structure::local_main_tree_2_doubly_list();            //36
+    //Data_Structure::local_main_is_seq_of_bst();               //33
+    //Data_Structure::local_main_find_path();                   //34
+    //Data_Structure::local_main_tree_2_doubly_list();          //36*
+    //Data_Structure::local_main_serialize();                   //37*
     //Loop_and_Recursion::local_main_permutation();             //38
+    //Code_Thinking::local_main_more_than_half_num();           //39
+    Search_and_Sort::local_main_get_least_nums();               //40
     //Code_Thinking::local_main_find_continuous_seq();          //57.2
     //Code_Thinking::local_main_find_nums_with_sum();           //57.1
     //Data_Structure::local_main_left_rotate_string();          //58.2

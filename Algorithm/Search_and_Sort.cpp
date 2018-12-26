@@ -96,3 +96,85 @@ void Search_and_Sort::local_main_minNumberInRotateArray() {
     std::cout << main->minNumberInRotateArray_II(a) << std::endl;
     std::cout << main->minNumberInRotateArray_standard(a) << std::endl;
 }
+
+vector<int> Search_and_Sort::get_least_nums_libfunc(vector<int> inputs, int k) {
+
+    vector<int> ret;
+    if (k <= 0 || k > inputs.size()) {
+        return ret;
+    }
+    sort(inputs.begin(), inputs.end());
+    for (int i = 0; i < k; ++i) {
+        ret.push_back(inputs[i]);
+    }
+    return ret;
+}
+
+vector<int> Search_and_Sort::get_least_nums_heap(vector<int> inputs, int k) {
+    return vector<int>();
+}
+
+vector<int> Search_and_Sort::get_least_nums_quicksort(vector<int> inputs, int k) {
+    return vector<int>();
+}
+
+vector<int> Search_and_Sort::get_least_nums_bubble(vector<int> inputs, int k) {
+
+    vector<int> ret;
+    if (k <= 0 || k > inputs.size()) {
+        return ret;
+    }
+    int temp;
+    for (int i = 0; i < k; ++i) {
+        for (unsigned long j = inputs.size() - 1; j > i; --j) {
+            if (inputs[j - 1] > inputs[j]) {
+                temp = inputs[j];
+                inputs[j] = inputs[j - 1];
+                inputs[j - 1] = temp;
+            }
+        }
+        ret.push_back(inputs[i]);
+    }
+    return ret;
+}
+
+void Search_and_Sort::local_main_get_least_nums() {
+
+    auto main = new Search_and_Sort();
+    Utility::print_vector(main->get_least_nums_libfunc(vector<int>({4, 5, 1, 6, 2, 7, 3, 8}), 4));
+    Utility::print_vector(main->get_least_nums_bubble(vector<int>({4, 5, 1, 6, 2, 7, 3, 8}), 4));
+}
+
+void Search_and_Sort::insert_priorityq(int num) {
+
+    if (p.empty() || num < p.top()) {
+        p.push(num);
+    } else {
+        q.push(num);
+    }
+    if (p.size() == q.size() + 2) {
+        q.push(p.top());
+        p.pop();
+    }
+    if (p.size() + 1 == q.size()) {
+        p.push(q.top());
+        q.pop();
+    }
+}
+
+double Search_and_Sort::get_median_priorityq() {
+    return p.size() == q.size() ? (p.top() + q.top()) / 2.0 : p.top();
+}
+
+void Search_and_Sort::insert_insert(int num) {
+
+}
+
+double Search_and_Sort::get_median_insert() {
+    return 0;
+}
+
+void Search_and_Sort::local_main_get_median() {
+
+}
+

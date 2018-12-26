@@ -220,12 +220,21 @@ public:
      * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。
      * 要求不能创建任何新的结点，只能调整树中结点指针的指向。
      */
-    TreeNode* tree_2_doubly_list_mine(TreeNode *root);//TODO:error
-    TreeNode* tree_2_doubly_list_mine_backtracking(TreeNode *new_root, TreeNode *root, bool right);
+    TreeNode* tree_2_doubly_list_mine(TreeNode *root);//仅限完全二叉树
+    TreeNode* tree_2_doubly_list_mine_backtracking(TreeNode *&new_root, TreeNode *root, bool right);
     TreeNode* tree_2_doubly_list(TreeNode *root);//TODO:error
     void tree_2_doubly_list_backtracking(TreeNode *root, TreeNode* pre, TreeNode *head);
     static void local_main_tree_2_doubly_list();
 
+    /*
+     * 37. 序列化二叉树
+     * 请实现两个函数，分别用来序列化和反序列化二叉树
+     */
+    char *serialize(TreeNode *root);
+    void serialize_recur(TreeNode *root, vector<int> &str);
+    TreeNode *deserialize(char* str);
+    TreeNode *deserialize_recur(int *&index);
+    static void local_main_serialize();
 
 private:
 
