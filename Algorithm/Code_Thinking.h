@@ -115,6 +115,33 @@ public:
      */
     int more_than_half_num(vector<int> nums);
     static void local_main_more_than_half_num();
+
+    /*
+     * 42. 连续子数组的最大和
+     * 例如:{6,-3,-2,7,-15,1,2,2},
+     * 连续子向量的最大和为8(从第0个开始,到第3个为止)。给一个数组，
+     * 返回它的最大连续子序列的和(子向量的长度至少是1)
+     */
+    int find_greatest_sum_of_subarray(vector<int> array);
+    static void local_main_find_greatest_sum_of_subarray();
+
+    /*
+     * 给定一个整数 n，计算所有小于等于 n 的非负整数中数字 1 出现的个数。
+     * 例如：1~13中包含1的数字有1、10、11、12、13因此共出现6次
+     * （注意：非含1数字个数, 因此多个数位上为1的数应被count多次，
+     *  即问题转化为求各个数位上为1时的含1数字的个数）
+     *
+     *  思路：
+     * if n = xyzdabc
+     * and we are considering the occurrence of one on thousand, it should be:
+     * (1) xyz * 1000                     if d == 0
+     * (2) xyz * 1000 + abc + 1           if d == 1
+     * (3) xyz * 1000 + 1000              if d > 1
+     */
+    int count_digit_one(int n);
+    int count_digit_one_std(int n);
+    static void local_main_count_digit_one();
+
 };
 
 

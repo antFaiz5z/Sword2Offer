@@ -852,7 +852,7 @@ RandomListNode *Data_Structure::clone(RandomListNode *head) {
     //插入复制节点
     while (p) {
         auto *temp = new RandomListNode(p->label);
-        //RandomListNode temp(p->label);//TODO:error
+        //RandomListNode temp(le->label);//TODO:error
         temp->next = p->next;
         p->next = temp;
         p = p->next->next;

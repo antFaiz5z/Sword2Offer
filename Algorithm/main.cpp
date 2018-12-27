@@ -42,7 +42,11 @@ int main() {
     //Data_Structure::local_main_serialize();                   //37*
     //Loop_and_Recursion::local_main_permutation();             //38
     //Code_Thinking::local_main_more_than_half_num();           //39
-    Search_and_Sort::local_main_get_least_nums();               //40
+    //Search_and_Sort::local_main_get_least_nums();             //40
+    //Search_and_Sort::local_main_get_median();                 //41.1
+    //Search_and_Sort::local_main_first_appearing_once();       //41.2
+    //Code_Thinking::local_main_find_greatest_sum_of_subarray();//42
+    Code_Thinking::local_main_count_digit_one();                //43*
     //Code_Thinking::local_main_find_continuous_seq();          //57.2
     //Code_Thinking::local_main_find_nums_with_sum();           //57.1
     //Data_Structure::local_main_left_rotate_string();          //58.2

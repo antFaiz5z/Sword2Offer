@@ -89,7 +89,7 @@ void Code_Thinking::reOrderArray_insert(vector<int> &array) {
         while (odd_index < array.size() && array[odd_index] % 2 == 0) {
             odd_index++;
         }
-        if (odd_index == array.size()){
+        if (odd_index == array.size()) {
             return;
         }
         temp = array[odd_index];
@@ -337,5 +337,57 @@ int Code_Thinking::more_than_half_num(vector<int> nums) {
 void Code_Thinking::local_main_more_than_half_num() {
 
     auto main = new Code_Thinking();
-    cout << main->more_than_half_num(vector<int>({1,2,3,2,2,2,5,4,2})) << endl;
+    cout << main->more_than_half_num(vector<int>({1, 2, 3, 2, 2, 2, 5, 4, 2})) << endl;
 }
+
+int Code_Thinking::find_greatest_sum_of_subarray(vector<int> array) {
+
+    if (array.empty()) {
+        return 0;
+    }
+    int greatest = numeric_limits<int>::min();
+    int sum = 0;
+    for (int val:array) {
+        sum = sum < 0 ? val : sum + val;
+        greatest = max(greatest, sum);
+    }
+    return greatest;
+}
+
+void Code_Thinking::local_main_find_greatest_sum_of_subarray() {
+
+    auto main = new Code_Thinking();
+    cout << main->find_greatest_sum_of_subarray(vector<int>({6, -3, -2, 7, -15, 1, 2, 2})) << endl;
+}
+
+int Code_Thinking::count_digit_one(int n) {
+
+    if (n <= 0){
+        return 0;
+    }
+    int q = n, x =1, ret = 0;
+    do{
+        int digit = q % 10;
+        q /= 10;
+        ret += q * x;
+        if(digit == 1) ret += n % x + 1;
+        if(digit > 1) ret += x;
+        x *= 10;
+    }while (q > 0);
+    return ret;
+}
+
+int Code_Thinking::count_digit_one_std(int n) {
+    int ret = 0;
+    for (long long m = 1; m <= n; m *= 10)
+        ret += (n/m + 8) / 10 * m + (n/m % 10 == 1) * (n%m + 1);
+    return ret;
+}
+
+void Code_Thinking::local_main_count_digit_one() {
+
+    auto main = new Code_Thinking();
+    cout << main->count_digit_one(101) <<endl;
+    cout << main->count_digit_one_std(101) <<endl;
+}
+

@@ -145,36 +145,67 @@ void Search_and_Sort::local_main_get_least_nums() {
     Utility::print_vector(main->get_least_nums_bubble(vector<int>({4, 5, 1, 6, 2, 7, 3, 8}), 4));
 }
 
-void Search_and_Sort::insert_priorityq(int num) {
+void Search_and_Sort::insert_num(int num) {
 
-    if (p.empty() || num < p.top()) {
-        p.push(num);
+    if (le.empty() || num < le.top()) {
+        le.push(num);
     } else {
-        q.push(num);
+        gr.push(num);
     }
-    if (p.size() == q.size() + 2) {
-        q.push(p.top());
-        p.pop();
+    if (le.size() == gr.size() + 2) {
+        gr.push(le.top());
+        le.pop();
     }
-    if (p.size() + 1 == q.size()) {
-        p.push(q.top());
-        q.pop();
+    if (le.size() + 1 == gr.size()) {
+        le.push(gr.top());
+        gr.pop();
     }
 }
 
-double Search_and_Sort::get_median_priorityq() {
-    return p.size() == q.size() ? (p.top() + q.top()) / 2.0 : p.top();
-}
-
-void Search_and_Sort::insert_insert(int num) {
-
-}
-
-double Search_and_Sort::get_median_insert() {
-    return 0;
+double Search_and_Sort::get_median() {
+    return le.size() == gr.size() ? (le.top() + gr.top()) / 2.0 : le.top();
 }
 
 void Search_and_Sort::local_main_get_median() {
 
+    auto main = new Search_and_Sort();
+    main->insert_num(6);
+    main->insert_num(5);
+    main->insert_num(6);
+    main->insert_num(4);
+    cout << main->get_median() << endl;
+    main->insert_num(10);
+    main->insert_num(7);
+    main->insert_num(3);
+    main->insert_num(1);
+    cout << main->get_median() << endl;
+}
+
+void Search_and_Sort::insert_char(char ch) {
+
+    counts[ch]++;
+    chars.push(ch);
+    while (!chars.empty() && counts[chars.front()] > 1) {
+        chars.pop();
+    }
+}
+
+char Search_and_Sort::first_appearing_once() {
+
+    return chars.empty() ? '#' : chars.front();
+}
+
+void Search_and_Sort::local_main_first_appearing_once() {
+
+    auto main = new Search_and_Sort();
+    main->insert_char('g');
+    main->insert_char('o');
+    cout << main->first_appearing_once() <<endl;
+    main->insert_char('o');
+    main->insert_char('g');
+    cout << main->first_appearing_once() <<endl;
+    main->insert_char('l');
+    main->insert_char('e');
+    cout << main->first_appearing_once() <<endl;
 }
 

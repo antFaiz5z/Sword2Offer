@@ -112,16 +112,28 @@ public:
      * 那么中位数就是所有数值排序之后中间两个数的平均值。
      * 我们使用Insert()方法读取数据流，使用GetMedian()方法获取当前读取数据的中位数。
      */
-    void insert_priorityq(int num);
-    double get_median_priorityq();
-    void insert_insert(int num);
-    double get_median_insert();
+    void insert_num(int num);
+    double get_median();
     static void local_main_get_median();
+
+    /*
+     * 41.2 字符流中第一个不重复的字符
+     * 请实现一个函数用来找出字符流中第一个只出现一次的字符。
+     * 例如，当从字符流中只读出前两个字符"go"时，第一个只出现一次的字符是"g"。
+     * 当从该字符流中读出前六个字符“google"时，第一个只出现一次的字符是"l"。
+     * 如果当前字符流没有存在出现一次的字符，返回#字符。
+     */
+    void insert_char(char ch);
+    char first_appearing_once();
+    static void local_main_first_appearing_once();
 
 private:
     //41.1
-    priority_queue<int, vector<int>, less<int>> p;
-    priority_queue<int, vector<int>, greater<int>> q;
+    priority_queue<int, vector<int>, less<int>> le;//大顶堆
+    priority_queue<int, vector<int>, greater<int>> gr;//小顶堆
+    //41.2
+    int *counts = new int[256];
+    queue<char> chars;
 };
 
 
