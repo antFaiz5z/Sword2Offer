@@ -362,32 +362,121 @@ void Code_Thinking::local_main_find_greatest_sum_of_subarray() {
 
 int Code_Thinking::count_digit_one(int n) {
 
-    if (n <= 0){
+    if (n <= 0) {
         return 0;
     }
-    int q = n, x =1, ret = 0;
-    do{
+    int q = n, x = 1, ret = 0;
+    do {
         int digit = q % 10;
         q /= 10;
         ret += q * x;
-        if(digit == 1) ret += n % x + 1;
-        if(digit > 1) ret += x;
+        if (digit == 1) ret += n % x + 1;
+        if (digit > 1) ret += x;
         x *= 10;
-    }while (q > 0);
+    } while (q > 0);
     return ret;
 }
 
 int Code_Thinking::count_digit_one_std(int n) {
     int ret = 0;
     for (long long m = 1; m <= n; m *= 10)
-        ret += (n/m + 8) / 10 * m + (n/m % 10 == 1) * (n%m + 1);
+        ret += (n / m + 8) / 10 * m + (n / m % 10 == 1) * (n % m + 1);
     return ret;
 }
 
 void Code_Thinking::local_main_count_digit_one() {
 
     auto main = new Code_Thinking();
-    cout << main->count_digit_one(101) <<endl;
-    cout << main->count_digit_one_std(101) <<endl;
+    cout << main->count_digit_one(101) << endl;
+    cout << main->count_digit_one_std(101) << endl;
 }
 
+string Code_Thinking::print_min_num(vector<int> nums) {
+
+    string ret;
+    if (nums.empty()) {
+        return ret;
+    }
+    sort(nums.begin(), nums.end(), str_cmp);
+    for (int num : nums) {
+        ret += to_string(num);
+    }
+    return ret;
+}
+
+bool Code_Thinking::str_cmp(int a, int b) {
+    return to_string(a) + to_string(b) < to_string(b) + to_string(a);
+}
+
+void Code_Thinking::local_main_print_min_num() {
+
+    auto main = new Code_Thinking();
+    cout << main->print_min_num(vector<int>({3, 32, 321})) << endl;
+}
+
+int Code_Thinking::num_decoding_dp(string s) {
+
+    unsigned long n = s.length();
+    if (0 == n) return 0;
+    int *dp = new int[n + 1];
+    //for(int i = 0; i <= n;i++) dp[i] = 0; //LeetCode默认不为0
+    dp[0] = 1;
+    dp[1] = s.at(0) == '0' ? 0 : 1;
+    for (unsigned long i = 2; i <= n; ++i) {
+        if (s.at(i - 1) != '0') {
+            dp[i] += dp[i - 1];
+        }
+        if (s.at(i - 2) != '0') {
+            if (stoi(s.substr(i - 2, 2)) <= 26) {
+                dp[i] += dp[i - 2];
+            }
+        }
+    }
+    return dp[n];
+}
+
+int Code_Thinking::num_decoding_bt(string s) {
+
+    if (s.empty()) {
+        return 0;
+    }
+    int count = 0;
+    backtracking_num_decoding_bt(s, count);
+    return count;
+}
+
+void Code_Thinking::backtracking_num_decoding_bt(string s, int &count) {
+
+    if (s.length() >= 1 && '0' == s.at(0)) {
+        return;
+    }
+    unsigned long n = s.length();
+    if (1 == n || 0 == n) {
+        count++;
+        return;
+    }
+    if ('1' == s.at(0) || ('2' == s.at(0) && '6' >= s.at(1))) {
+        if ('0' != s.at(1)) {
+            backtracking_num_decoding_bt(s.substr(1, n - 1), count);
+        }
+        backtracking_num_decoding_bt(s.substr(2, n - 2), count);
+    } else {
+        backtracking_num_decoding_bt(s.substr(1, n - 1), count);
+    }
+}
+
+void Code_Thinking::local_main_num_decoding() {
+
+    auto main = new Code_Thinking();
+    cout << main->num_decoding_dp("0") << endl
+         << main->num_decoding_dp("110") << endl
+         << main->num_decoding_dp("27") << endl
+         << main->num_decoding_dp("226") << endl
+         << main->num_decoding_dp("111") << endl;
+
+    cout << main->num_decoding_bt("0") << endl
+         << main->num_decoding_bt("110") << endl
+         << main->num_decoding_bt("27") << endl
+         << main->num_decoding_bt("226") << endl
+         << main->num_decoding_bt("226") << endl;
+}

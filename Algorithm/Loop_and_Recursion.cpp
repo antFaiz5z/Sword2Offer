@@ -354,9 +354,9 @@ bool Loop_and_Recursion::regx_match_backtracking(char *str, char *pattern) {
 bool Loop_and_Recursion::regx_match_matrix(char *str, char *pattern) {
 
     size_t m = strlen(str), n = strlen(pattern);
-    bool *dp[m +1];
-    for (int i = 0; i < m +1; ++i) {
-        dp[i] = new bool[n +1];
+    bool *dp[m + 1];
+    for (int i = 0; i < m + 1; ++i) {
+        dp[i] = new bool[n + 1];
     }
 
     dp[0][0] = true;
@@ -368,14 +368,15 @@ bool Loop_and_Recursion::regx_match_matrix(char *str, char *pattern) {
         for (int j = 1; j <= n; j++)
             if (str[i - 1] == pattern[j - 1] || pattern[j - 1] == '.')
                 dp[i][j] = dp[i - 1][j - 1];
-            else if (pattern[j - 1] == '*')
+            else if (pattern[j - 1] == '*') {
                 if (pattern[j - 2] == str[i - 1] || pattern[j - 2] == '.') {
                     dp[i][j] |= dp[i][j - 1]; // a* counts as single a
                     dp[i][j] |= dp[i - 1][j]; // a* counts as multiple a
                     dp[i][j] |= dp[i][j - 2]; // a* counts as empty
-                } else
+                } else {
                     dp[i][j] = dp[i][j - 2];   // a* only counts as empty
-
+                }
+            }
     return dp[m][n];
 }
 
@@ -383,7 +384,7 @@ bool Loop_and_Recursion::regx_match_matrix(char *str, char *pattern) {
 void Loop_and_Recursion::local_main_match() {
 
     char *str = const_cast<char *>("aaa");
-    char *s1 = str, *s2 = str,*s3 = str,*s4 = str,*s5 = str;
+    char *s1 = str, *s2 = str, *s3 = str, *s4 = str, *s5 = str;
     char *pattern1 = const_cast<char *>("a.a");
     char *pattern2 = const_cast<char *>("ab*ac*a");
     char *pattern3 = const_cast<char *>("aa.a");
@@ -403,4 +404,28 @@ void Loop_and_Recursion::local_main_match() {
               << get_instance()->regx_match_matrix(s4, pattern4) << std::endl
               << get_instance()->regx_match_matrix(s5, pattern5) << std::endl;
 
+}
+
+int Loop_and_Recursion::get_most(vector<vector<int>> board) {
+
+    if (board.empty() || board[0].empty()) {
+        return 0;
+    }
+    unsigned long n = board[0].size();
+    int *dp = new int[n];
+    for (vector<int> &row : board) {
+        dp[0] += row[0];
+        for (int i = 1; i < n; ++i) {
+            dp[i] = max(dp[i], dp[i - 1]) + row[i];
+        }
+    }
+    return dp[n - 1];
+}
+
+void Loop_and_Recursion::local_main_get_most() {
+
+    cout << get_instance()->get_most(vector<vector<int>>({{1, 2, 3, 4, 5, 6},
+                                                          {1, 2, 3, 4, 5, 6},
+                                                          {1, 2, 3, 4, 5, 6},
+                                                          {1, 2, 3, 4, 5, 6}})) << endl;
 }

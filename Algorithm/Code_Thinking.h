@@ -142,6 +142,28 @@ public:
     int count_digit_one_std(int n);
     static void local_main_count_digit_one();
 
+    /*
+     * 45. 把数组排成最小的数
+     * 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，
+     * 打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，
+     * 则打印出这三个数字能排成的最小数字为321323。
+     */
+    string print_min_num(vector<int> nums);
+    static bool str_cmp(int a, int b);
+    static void local_main_print_min_num();
+
+    /*
+     * 46. 把数字翻译成字符串  LeetCode.91
+     * 给定一个数字，按照如下规则翻译成字符串：1 翻译成“a”，2 翻译成“b”... 26 翻译成“z”。
+     * 一个数字有多种翻译可能，例如 12258 一共有 5 种，分别是 bccfi，bwfi，bczi，mcfi，mzi。
+     * 实现一个函数，用来计算一个数字有多少种不同的翻译方法。
+     */
+    int num_decoding_dp(string s);
+    int num_decoding_bt(string s);//LeetCode显示超时
+    void backtracking_num_decoding_bt(string s, int &count);
+    static void local_main_num_decoding();
+
+
 };
 
 

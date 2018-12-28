@@ -123,6 +123,14 @@ public:
     bool regx_match_matrix(char *str, char *pattern);
     static void local_main_match();
 
+    /*
+     * 47. 礼物的最大价值
+     * 在一个 m*n 的棋盘的每一个格都放有一个礼物，每个礼物都有一定价值（大于 0）。
+     * 从左上角开始拿礼物，每次向右或向下移动一格，直到右下角结束。给定一个棋盘，求拿到礼物的最大价值。
+     */
+    int get_most(vector<vector<int>> board);
+    static void local_main_get_most();
+
 
 
 private:
