@@ -276,7 +276,7 @@ int Code_Thinking::integer_break_dp(int n) {
     //int dp[n + 1];//error, not 0
     //int dp[n + 1]{};//ok
     //int dp[n + 1]{0};//ok
-    int *dp = new int[n + 1];//ok
+    int *dp = new int[n + 1];//ok       //LeetCode: error, not 0
     //int *dp = new int[n +1]();//ok
     //int *dp = new int[n +1]{};//ok
     //int *dp = new int[n +1]{0};//ok
@@ -479,4 +479,41 @@ void Code_Thinking::local_main_num_decoding() {
          << main->num_decoding_bt("27") << endl
          << main->num_decoding_bt("226") << endl
          << main->num_decoding_bt("226") << endl;
+}
+
+int Code_Thinking::longest_substr_no_dup(string str) {
+
+    unsigned long n = str.length();
+    if (0 == n || 1 == n) {
+        return static_cast<int>(n);
+    }
+    bool *exist = new bool[26]{};
+    int longest = 0, now = 1;
+    exist[str.at(0) - 'a'] = true;
+
+    for (unsigned long i = 0, j = 1; j < n; ++j) {
+        if (exist[str.at(j) - 'a']) {
+            while (str.at(i) != str.at(j)) {
+                exist[str.at(i++) - 'a'] = false;
+                now -= 1;
+            }
+            ++i;
+        } else {
+            exist[str.at(j) - 'a'] = true;
+            ++now;
+        }
+        longest = max(longest, now);
+    }
+    return longest;
+}
+
+void Code_Thinking::local_main_longest_substr_no_dup() {
+
+    auto main = new Code_Thinking();
+    cout << main->longest_substr_no_dup("") << endl
+         << main->longest_substr_no_dup("a") << endl
+         << main->longest_substr_no_dup("aa") << endl
+         << main->longest_substr_no_dup("aaa") << endl
+         << main->longest_substr_no_dup("aba") << endl
+         << main->longest_substr_no_dup("arabcacfr") << endl;
 }

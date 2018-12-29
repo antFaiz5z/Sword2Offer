@@ -164,6 +164,10 @@ public:
     static void local_main_num_decoding();
 
 
+    int longest_substr_no_dup(string str);
+    static void local_main_longest_substr_no_dup();
+
+
 };
 
 
