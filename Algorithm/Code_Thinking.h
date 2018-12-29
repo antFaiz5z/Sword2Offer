@@ -163,7 +163,11 @@ public:
     void backtracking_num_decoding_bt(string s, int &count);
     static void local_main_num_decoding();
 
-
+    /*
+     * 48. 最长不含重复字符的子字符串
+     * 输入一个字符串（只包含 a~z 的字符），求其最长不含重复字符的子字符串的长度。
+     * 例如对于 arabcacfr，最长不含重复字符的子字符串为 acfr，长度为 4。
+     */
     int longest_substr_no_dup(string str);
     static void local_main_longest_substr_no_dup();
 
