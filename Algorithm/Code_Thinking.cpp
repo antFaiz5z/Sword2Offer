@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <map>
 
 #include "Utility.h"
 #include "Search_and_Sort.h"
@@ -516,4 +517,93 @@ void Code_Thinking::local_main_longest_substr_no_dup() {
          << main->longest_substr_no_dup("aaa") << endl
          << main->longest_substr_no_dup("aba") << endl
          << main->longest_substr_no_dup("arabcacfr") << endl;
+}
+
+int Code_Thinking::get_ugly_num(int index) {
+
+    if (index < 7) {
+        return index;
+    }
+    int p2 = 0, p3 = 0, p5 = 0, now = 1;
+    vector<int> ugly = {now};
+    while (ugly.size() < index) {
+        now = min(ugly[p2] * 2, min(ugly[p3] * 3, ugly[p5] * 5));
+        if (ugly[p2] * 2 == now) p2++;
+        if (ugly[p3] * 3 == now) p3++;
+        if (ugly[p5] * 5 == now) p5++;
+        ugly.push_back(now);
+    }
+    return now;
+}
+
+void Code_Thinking::local_main_get_ugly_num() {
+
+    auto main = new Code_Thinking();
+    for (int i = 1; i < 15; ++i) {
+        cout << main->get_ugly_num(i) << endl;
+    }
+}
+
+int Code_Thinking::first_not_repeat_char_index(string str) {//以上实现的空间复杂度还不是最优的。
+    // 考虑到只需要找到只出现一次的字符，那么需要统计的次数信息只有 0,1,更大，使用两个比特位就能存储这些信息。
+
+    map<char, int> mp;
+    for (char i : str) {
+        mp[i]++;
+    }
+    for (int i = 0; i < str.length(); ++i) {
+        if (mp[str[i]] == 1) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void Code_Thinking::local_main_first_not_repeat_char_index() {
+
+    auto main = new Code_Thinking();
+    cout << main->first_not_repeat_char_index("eeggsregagage") << endl;
+}
+
+int Code_Thinking::inverse_pairs(vector<int> data) {
+
+    if (data.empty()) {
+        return 0;
+    }
+    vector<int> copy(data);
+    return backtracking_inverse_pairs(data, copy, 0, static_cast<int>(data.size() - 1));
+}
+
+int Code_Thinking::backtracking_inverse_pairs(vector<int> &data, vector<int> &copy, int low, int high) {
+
+    if (low == high) {
+        return 0;
+    }
+    int mid = (low + high) >> 1;
+    int left_count = backtracking_inverse_pairs(data, copy, low, mid);
+    int right_count = backtracking_inverse_pairs(data, copy, mid + 1, high);
+    int i = mid, j = high, k = high, count = 0;
+
+    while (i >= low && j > mid) {
+        if (data[i] > data[j]) {
+            count += (j - mid);
+            if (count >= 1000000007) {
+                count %= 1000000007;
+            }
+            copy[k--] = data[i--];
+        } else {
+            copy[k--] = data[j--];
+        }
+    }
+    while (i >= low) copy[k--] = data[i--];
+    while (j > mid) copy[k--] = data[j--];
+    for (int l = low; l < high; ++l) data[l] = copy[l];
+
+    return (left_count + right_count + count) % 1000000007;
+}
+
+void Code_Thinking::local_main_inverse_pairs() {
+
+    auto main = new Code_Thinking();
+    cout << main->inverse_pairs(vector<int>({1,2,3,4,5,6,7,0})) << endl;//7
 }

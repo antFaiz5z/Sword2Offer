@@ -50,7 +50,10 @@ int main() {
     //Code_Thinking::local_main_print_min_num();                //45
     //Code_Thinking::local_main_num_decoding();                 //46
     //Loop_and_Recursion::local_main_get_most();                //47
-    Code_Thinking::local_main_longest_substr_no_dup();          //48
+    //Code_Thinking::local_main_longest_substr_no_dup();        //48
+    //Code_Thinking::local_main_get_ugly_num();                 //49
+    //Code_Thinking::local_main_first_not_repeat_char_index();  //50
+    Code_Thinking::local_main_inverse_pairs();                  //51
     //Code_Thinking::local_main_find_continuous_seq();          //57.2
     //Code_Thinking::local_main_find_nums_with_sum();           //57.1
     //Data_Structure::local_main_left_rotate_string();          //58.2

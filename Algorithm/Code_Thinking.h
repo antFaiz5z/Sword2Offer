@@ -171,6 +171,33 @@ public:
     int longest_substr_no_dup(string str);
     static void local_main_longest_substr_no_dup();
 
+    /*
+     * 49. 丑数
+     * 把只包含质因子2、3和5的数称作丑数（Ugly Number）。
+     * 例如6、8都是丑数，但14不是，因为它包含质因子7。
+     * 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。
+     */
+    int get_ugly_num(int index);
+    static void local_main_get_ugly_num();
+
+    /*
+     * 50. 第一个只出现一次的字符位置
+     * 在一个字符串中找到第一个只出现一次的字符，并返回它的位置。
+     */
+    int first_not_repeat_char_index(string str);
+    static void local_main_first_not_repeat_char_index();
+
+    /*
+     * 51. 数组中的逆序对
+     * 在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。
+     * 输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007
+     *
+     * 思路：
+     * 常规：O(n^2)    归并排序: 时间O(nlogn) 空间O(n)
+     */
+    int inverse_pairs(vector<int> data);//TODO: error
+    int backtracking_inverse_pairs(vector<int> &data, vector<int> &copy, int low, int high);
+    static void local_main_inverse_pairs();
 
 };
 
