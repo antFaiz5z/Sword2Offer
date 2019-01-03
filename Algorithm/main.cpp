@@ -6,9 +6,6 @@
 #include "Code_Thinking.h"
 #include "Bit_Operation.h"
 
-// 题目序号排列参考
-// https://github.com/CyC2018/CS-Notes/blob/master/notes/%E5%89%91%E6%8C%87%20offer%20%E9%A2%98%E8%A7%A3.md
-
 int main() {
 
     //Data_Structure::local_main_find();                        //4
@@ -46,14 +43,20 @@ int main() {
     //Search_and_Sort::local_main_get_median();                 //41.1
     //Search_and_Sort::local_main_first_appearing_once();       //41.2
     //Code_Thinking::local_main_find_greatest_sum_of_subarray();//42
-    //Code_Thinking::local_main_count_digit_one();              //43*    44<=
+    //Code_Thinking::local_main_count_digit_one();              //43*    44未做
     //Code_Thinking::local_main_print_min_num();                //45
     //Code_Thinking::local_main_num_decoding();                 //46
     //Loop_and_Recursion::local_main_get_most();                //47
     //Code_Thinking::local_main_longest_substr_no_dup();        //48
     //Code_Thinking::local_main_get_ugly_num();                 //49
     //Code_Thinking::local_main_first_not_repeat_char_index();  //50
-    Code_Thinking::local_main_inverse_pairs();                  //51
+    //Code_Thinking::local_main_inverse_pairs();                //51*
+    //Data_Structure::local_main_find_first_common_node();      //52
+    //Code_Thinking::local_main_get_count_of_k();               //53
+    //Loop_and_Recursion::local_main_kth_node();                //54
+    //Loop_and_Recursion::local_main_tree_depth();              //55.1
+    //Loop_and_Recursion::local_main_is_balanced();             //55.2
+    Bit_Operation::local_main_find_nums_appear_once();          //56
     //Code_Thinking::local_main_find_continuous_seq();          //57.2
     //Code_Thinking::local_main_find_nums_with_sum();           //57.1
     //Data_Structure::local_main_left_rotate_string();          //58.2

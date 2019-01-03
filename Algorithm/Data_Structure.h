@@ -236,6 +236,14 @@ public:
     TreeNode *deserialize_recur(int *&index);
     static void local_main_serialize();
 
+    /*
+     * 52. 两个链表的第一个公共结点
+     * 输入两个链表，找出它们的第一个公共结点。
+     * 注意：题目没有明确两链表一定相交
+     */
+    ListNode *find_first_common_node(ListNode *head1, ListNode *head2);
+    static void local_main_find_first_common_node();
+
 private:
 
     std::stack<int> s1;

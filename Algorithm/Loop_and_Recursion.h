@@ -131,6 +131,32 @@ public:
     int get_most(vector<vector<int>> board);
     static void local_main_get_most();
 
+    /*
+     * 54. 二叉查找树的第 K 个结点
+     * 给定一棵二叉搜索树，请找出其中的第k小的结点。
+     * 例如， （5，3，7，2，4，6，8）中，按结点数值大小顺序第三小结点的值为4。
+     */
+    TreeNode *kth_node(TreeNode *root, int k);
+    TreeNode *inorder_kth_node(TreeNode *root, int k, int &count);
+    static void local_main_kth_node();
+
+    /*
+     * 55.1 二叉树的深度
+     * 输入一棵二叉树，求该树的深度。
+     * 从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，
+     * 最长路径的长度为树的深度。
+     */
+    int tree_depth(TreeNode *root);
+    static void local_main_tree_depth();
+
+    /*
+     * 55.2 平衡二叉树
+     * 输入一棵二叉树，判断该二叉树是否是平衡二叉树。
+     */
+    bool is_balanced(TreeNode *root);
+    int backtracking_is_balanced(TreeNode *root, bool &ret);
+    static void local_main_is_balanced();
+
 
 
 private:

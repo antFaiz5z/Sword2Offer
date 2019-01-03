@@ -83,7 +83,7 @@ void Data_Structure::replace_space_standard(char *str, int length) {
 void Data_Structure::local_main_find() {
 
     auto *array = new Data_Structure();
-    vector <vector<int>> a = array->get_array(10, 10);
+    vector<vector<int>> a = array->get_array(10, 10);
 
     double start = Utility::get_time();
     array->find_mine(15, a);
@@ -102,7 +102,7 @@ void Data_Structure::local_main_find() {
 
 
 vector<vector<int>> Data_Structure::get_array(int m, int n) {
-    vector <vector<int>> tmp;
+    vector<vector<int>> tmp;
     vector<int> tmp2;
     for (int l = 0; l < n; ++l) {
         tmp2.push_back(0);
@@ -279,13 +279,13 @@ vector<int> Data_Structure::print_matrix(vector<vector<int>> matrix) {
 
 void Data_Structure::local_main_print_matrix() {
 
-    vector <vector<int>> m = {{1,  2,  3,  4},
-                              {5,  6,  7,  8},
-                              {9,  10, 11, 12},
-                              {13, 14, 15, 16}};
-    vector <vector<int>> m2 = {{1, 2,  3,  4},
-                               {5, 6,  7,  8},
-                               {9, 10, 11, 12}};
+    vector<vector<int>> m = {{1,  2,  3,  4},
+                             {5,  6,  7,  8},
+                             {9,  10, 11, 12},
+                             {13, 14, 15, 16}};
+    vector<vector<int>> m2 = {{1, 2,  3,  4},
+                              {5, 6,  7,  8},
+                              {9, 10, 11, 12}};
     auto *main = new Data_Structure();
     Utility::print_vector(main->print_matrix(m));
     Utility::print_vector(main->print_matrix(m2));
@@ -678,7 +678,7 @@ void Data_Structure::local_main_is_pop_order() {
 vector<int> Data_Structure::com_tree_2_vector(TreeNode *root) {
 
     vector<int> v;
-    queue < TreeNode * > q;
+    queue<TreeNode *> q;
     q.push(root);
 
     unsigned long count;
@@ -701,8 +701,8 @@ vector<int> Data_Structure::com_tree_2_vector(TreeNode *root) {
 
 vector<vector<int>> Data_Structure::com_tree_2_vector_vector(TreeNode *root) {
 
-    vector <vector<int>> v;
-    queue < TreeNode * > q;
+    vector<vector<int>> v;
+    queue<TreeNode *> q;
     q.push(root);
 
     unsigned long count;
@@ -727,8 +727,8 @@ vector<vector<int>> Data_Structure::com_tree_2_vector_vector(TreeNode *root) {
 
 vector<vector<int>> Data_Structure::com_tree_2_vector_vector_zigzag(TreeNode *root) {
 
-    vector <vector<int>> v;
-    queue < TreeNode * > q;
+    vector<vector<int>> v;
+    queue<TreeNode *> q;
     q.push(root);
 
     unsigned long count;
@@ -763,11 +763,11 @@ void Data_Structure::local_main_tree_2_vector() {
 
     TreeNode *root = Utility::get_tree(vector<int>({1, 2, 3, 4, 5, 6, 7}));
     Utility::print_vector(main->com_tree_2_vector(root));
-    vector <vector<int>> ret = main->com_tree_2_vector_vector(root);
+    vector<vector<int>> ret = main->com_tree_2_vector_vector(root);
     for (auto &it : ret) {
         Utility::print_vector(it);
     }
-    vector <vector<int>> ret2 = main->com_tree_2_vector_vector_zigzag(root);
+    vector<vector<int>> ret2 = main->com_tree_2_vector_vector_zigzag(root);
     for (auto &it : ret2) {
         Utility::print_vector(it);
     }
@@ -807,7 +807,7 @@ void Data_Structure::local_main_is_seq_of_bst() {
 
 vector<vector<int>> Data_Structure::find_path(TreeNode *root, int expect_num) {
 
-    vector <vector<int>> ret;
+    vector<vector<int>> ret;
     vector<int> path;
 
     find_path_backtracking(root, expect_num, ret, path);
@@ -837,7 +837,7 @@ void Data_Structure::local_main_find_path() {
     auto main = new Data_Structure();
 
     TreeNode *root = Utility::get_tree(vector<int>({10, 5, 12, 4, 7}));
-    vector <vector<int>> ret = main->find_path(root, 22);
+    vector<vector<int>> ret = main->find_path(root, 22);
     for (auto &it : ret) {
         Utility::print_vector(it);
     }
@@ -1003,3 +1003,20 @@ void Data_Structure::local_main_serialize() {
     //printf("%x\n", str);//TODO: zero inside, how to print
     Utility::print_vector(Utility::tree_traversal(main->deserialize(str)));
 }
+
+ListNode *Data_Structure::find_first_common_node(ListNode *head1, ListNode *head2) {
+
+    //if (!head1 || !head2) {
+    //    return nullptr;
+    //}
+    ListNode *p1 = head1, *p2 = head2;
+    while (p1 != p2) {
+        p1 = p1 ? p1->next : head2;
+        p2 = p2 ? p2->next : head1;
+        //p1 = p1->next ? p1->next : head2;//错误，由于题目没有明确两链表一定相交
+        //p2 = p2->next ? p2->next : head1;
+    }
+    return p1;
+}
+
+void Data_Structure::local_main_find_first_common_node() {}

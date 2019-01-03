@@ -605,5 +605,63 @@ int Code_Thinking::backtracking_inverse_pairs(vector<int> &data, vector<int> &co
 void Code_Thinking::local_main_inverse_pairs() {
 
     auto main = new Code_Thinking();
-    cout << main->inverse_pairs(vector<int>({1,2,3,4,5,6,7,0})) << endl;//7
+    cout << main->inverse_pairs(vector<int>({1, 2, 3, 4, 5, 6, 7, 0})) << endl;//7
+}
+
+int Code_Thinking::get_count_of_k(vector<int> data, int k) {
+    /*if (data.empty()) {
+        return 0;
+    }*/
+    int first = bs_get_count_of_k(data, k);
+    int last = bs_get_count_of_k(data, k + 1);
+    return (first == data.size() || data[first] != k) ? 0 : last - first;
+    //  当data.empty时 防止访问越界|| 当数组中不含k时
+    //  当数组全小于k时
+}
+
+int Code_Thinking::bs_get_count_of_k(vector<int> &data, int k) {//找到最小的不小于k的index
+
+    int low = 0, high = static_cast<int>(data.size());//不为size-1， 是由于可能data[size-1]==k, 获取last时错误
+    while (low < high) {
+        int mid = (low + high) / 2;
+        if (data[mid] >= k) {
+            high = mid;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return low;
+}
+
+int Code_Thinking::get_count_of_k_stl(vector<int> data, int k) {
+
+    auto pair = equal_range(data.begin(), data.end(), k);
+    return static_cast<int>(pair.second - pair.first);
+}
+
+//因为data中都是整数，所以可以稍微变一下，不是搜索k的两个位置，而是搜索k-0.5和k+0.5
+//这两个数应该插入的位置，然后相减即可。
+/*class Solution {
+public:
+    int GetNumberOfK(vector<int> data ,int k) {
+        return biSearch(data, k+0.5) - biSearch(data, k-0.5) ;
+    }
+private:
+    int biSearch(const vector<int> & data, double num){
+        int s = 0, e = data.size()-1;
+        while(s <= e){
+            int mid = (e - s)/2 + s;
+            if(data[mid] < num)
+                s = mid + 1;
+            else if(data[mid] > num)
+                e = mid - 1;
+        }
+        return s;
+    }
+};*/
+void Code_Thinking::local_main_get_count_of_k() {
+
+    auto main = new Code_Thinking();
+    cout << main->get_count_of_k(vector<int>({1, 2, 3, 3, 3, 3, 4, 6}), 3) << endl;
+    cout << main->get_count_of_k_stl(vector<int>({1, 2, 3, 3, 3, 3, 4, 6}), 3) << endl;
 }

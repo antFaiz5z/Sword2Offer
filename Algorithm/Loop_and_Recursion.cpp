@@ -429,3 +429,58 @@ void Loop_and_Recursion::local_main_get_most() {
                                                           {1, 2, 3, 4, 5, 6},
                                                           {1, 2, 3, 4, 5, 6}})) << endl;
 }
+
+TreeNode *Loop_and_Recursion::kth_node(TreeNode *root, int k) {
+
+    int count = 0;
+    return inorder_kth_node(root, k, count);
+}
+
+TreeNode *Loop_and_Recursion::inorder_kth_node(TreeNode *root, int k, int &count) {
+
+    if (!root) return nullptr;
+    TreeNode *ret;
+    ret = inorder_kth_node(root->left, k, count);
+    if (ret) return ret;
+    if (++count == k) return root;
+    ret = inorder_kth_node(root->right, k, count);
+    if (ret) return ret;
+    return nullptr;
+}
+
+void Loop_and_Recursion::local_main_kth_node() {
+
+    cout << get_instance()->kth_node(Utility::get_tree(vector<int>({5, 3, 7, 2, 4, 6, 8})), 3)->val << endl;
+}
+
+int Loop_and_Recursion::tree_depth(TreeNode *root) {
+
+    return !root ? 0 : 1 + max(tree_depth(root->left), tree_depth(root->right));
+}
+
+void Loop_and_Recursion::local_main_tree_depth() {
+
+    cout << get_instance()->tree_depth(Utility::get_tree(vector<int>({5, 3, 7, 2, 4, 6, 8}))) << endl;
+}
+
+bool Loop_and_Recursion::is_balanced(TreeNode *root) {
+
+    bool ret = true;
+    backtracking_is_balanced(root, ret);
+    return ret;
+}
+
+int Loop_and_Recursion::backtracking_is_balanced(TreeNode *root, bool &ret) {
+
+    if (!root || !ret) return 0;
+    int left = backtracking_is_balanced(root->left, ret);
+    int right = backtracking_is_balanced(root->right, ret);
+    if (!ret) return 0;
+    if (left - right > 1 || left - right < -1) ret = false;
+    return max(left, right) + 1;
+}
+
+void Loop_and_Recursion::local_main_is_balanced() {
+
+    cout << get_instance()->is_balanced(Utility::get_tree(vector<int>({1,2,3,4,5,6,7,8}))) << endl;
+}

@@ -6,6 +6,7 @@
 #define JIANZHIOFFER_BIT_OPERATION_H
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -38,7 +39,8 @@ public:
     int add(int num1, int num2);
     static void local_main_add();
 
-
+    void find_nums_appear_once(vector<int> data, int *num1, int *num2);
+    static void local_main_find_nums_appear_once();
 
 
 

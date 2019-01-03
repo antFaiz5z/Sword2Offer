@@ -126,6 +126,7 @@ public:
     static void local_main_find_greatest_sum_of_subarray();
 
     /*
+     * 43. 从 1 到 n 整数中 1 出现的次数
      * 给定一个整数 n，计算所有小于等于 n 的非负整数中数字 1 出现的个数。
      * 例如：1~13中包含1的数字有1、10、11、12、13因此共出现6次
      * （注意：非含1数字个数, 因此多个数位上为1的数应被count多次，
@@ -198,6 +199,18 @@ public:
     int inverse_pairs(vector<int> data);//TODO: error
     int backtracking_inverse_pairs(vector<int> &data, vector<int> &copy, int low, int high);
     static void local_main_inverse_pairs();
+
+    /*
+     * 53. 数字在排序数组中出现的次数
+     * 统计一个数字在排序数组中出现的次数。
+     *
+     * 思路：
+     * 常规：O(n)      二分查找: O(logn)
+     */
+    int get_count_of_k(vector<int> data, int k);
+    int bs_get_count_of_k(vector<int> &data, int k);
+    int get_count_of_k_stl(vector<int> data, int k);
+    static void local_main_get_count_of_k();
 
 };
 
