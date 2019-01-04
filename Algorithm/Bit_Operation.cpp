@@ -40,8 +40,8 @@ void Bit_Operation::local_main_add() {
 
 void Bit_Operation::find_nums_appear_once(vector<int> data, int *num1, int *num2) {
 
-    if (!num1) num1 = new int[1];
-    if (!num2) num2 = new int[1];
+    //if (!num1) num1 = new int[1];//判题系统负责初始化
+    //if (!num2) num2 = new int[1];
     int diff = 0;
     for (int num : data) diff ^= num;
     diff &= -diff;
@@ -52,13 +52,12 @@ void Bit_Operation::find_nums_appear_once(vector<int> data, int *num1, int *num2
             *num2 ^= num;
         }
     }
-
 }
 
 void Bit_Operation::local_main_find_nums_appear_once() {
 
     auto main = new Bit_Operation();
-    int *num1, *num2;
+    int *num1 = new int[1], *num2 = new int[1];
     main->find_nums_appear_once(vector<int>({1, 2, 3, 4, 5, 6, 1, 2, 5, 6}), num1, num2);
-    cout << *num1 << ", " << *num2 <<endl;
+    cout << *num1 << ", " << *num2 << endl;
 }

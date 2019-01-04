@@ -212,6 +212,59 @@ public:
     int get_count_of_k_stl(vector<int> data, int k);
     static void local_main_get_count_of_k();
 
+    /*
+     * 62. 圆圈中最后剩下的数
+     * 让小朋友们围成一个大圈。然后，随机指定一个数 m，让编号为 0 的小朋友开始报数。
+     * 每次喊到 m-1 的那个小朋友要出列唱首歌，然后可以在礼品箱中任意的挑选礼物，
+     * 并且不再回到圈中，从他的下一个小朋友开始，继续 0...m-1 报数 ....
+     * 这样下去 .... 直到剩下最后一个小朋友，可以不用表演。
+     *
+     * 思路：
+     * 约瑟夫环，圆圈长度为 n 的解可以看成长度为 n-1 的解再加上报数的长度 m。
+     * 因为是圆圈，所以最后需要对 n 取余。
+     */
+    int last_remaining(int n, int m);
+    static void local_main_last_remaining();
+
+    /*
+     * 63. Best Time to Buy and Sell Stock     LeetCode.121
+     * 可以有一次买入和一次卖出，那么买入必须在前。求最大收益。
+     */
+    int max_profit(vector<int> prices);
+    static void local_main_max_profit();
+
+    /*
+     * 64. 求 1+2+3+...+n
+     * 要求不能使用乘除法、for、while、if、else、switch、case 等关键字及条件判断语句 A ? B : C。
+     *
+     * 思路：
+     * 使用递归解法最重要的是指定返回条件，但是本题无法直接使用 if 语句来指定返回条件。
+     * 条件与 && 具有短路原则，即在第一个条件语句为 false 的情况下不会去执行第二个条件语句。
+     * 利用这一特性，将递归的返回条件取非然后作为 && 的第一个条件语句，递归的主体转换为第二个条件语句，
+     * 那么当递归的返回条件为 true 的情况下就不会执行递归的主体部分，递归返回。
+     * 本题的递归返回条件为 n <= 0，取非后就是 n > 0；
+     * 递归的主体部分为 sum += Sum_Solution(n - 1)，
+     * 转换为条件语句后就是 (sum += Sum_Solution(n - 1)) > 0。
+     */
+    int sum(int n);
+    int sum_II(int n);
+    static void local_main_sum();
+
+    /*
+     * 66. 构建乘积数组
+     * 给定一个数组 A[0, 1,..., n-1]，请构建一个数组 B[0, 1,..., n-1]，
+     * 其中 B 中的元素 B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1]。
+     * 要求不能使用除法。
+     */
+    vector<int> multiply(const vector<int> &A);
+    static void local_main_multiply();
+
+    /*
+     * 67. 把字符串转换成整数
+     * 将一个字符串转换成一个整数，字符串不是一个合法的数值则返回 0，要求不能使用字符串转换整数的库函数。
+     */
+    int str2int(string str);
+    static void local_main_str2int();
 };
 
 

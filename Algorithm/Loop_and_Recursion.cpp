@@ -482,5 +482,34 @@ int Loop_and_Recursion::backtracking_is_balanced(TreeNode *root, bool &ret) {
 
 void Loop_and_Recursion::local_main_is_balanced() {
 
-    cout << get_instance()->is_balanced(Utility::get_tree(vector<int>({1,2,3,4,5,6,7,8}))) << endl;
+    cout << get_instance()->is_balanced(Utility::get_tree(vector<int>({1, 2, 3, 4, 5, 6, 7, 8}))) << endl;
+}
+
+TreeNode *Loop_and_Recursion::lowest_common_ancestor_bst(TreeNode *root, TreeNode *p, TreeNode *q) {
+
+    if (!root) return nullptr;
+    if (root->val > p->val && root->val > q->val){
+        return lowest_common_ancestor_bst(root->left, p, q);
+    }
+    if (root->val < p->val && root->val < q->val){
+        return lowest_common_ancestor_bst(root->right, p, q);
+    }
+    return root;
+}
+
+TreeNode *Loop_and_Recursion::lowest_common_ancestor(TreeNode *root, TreeNode *p, TreeNode *q) {
+
+    if (!root || root == p || root == q) return root;
+    TreeNode *left = lowest_common_ancestor(root->left, p, q);
+    TreeNode *right = lowest_common_ancestor(root->right, p, q);
+    return !left ? right : !right ? left : root;
+}
+
+void Loop_and_Recursion::local_main_lowest_common_ancestor() {
+
+    TreeNode *root = Utility::get_tree(vector<int>({6,2,8,0,4,7,9}));
+    TreeNode *p = root->left;
+    TreeNode *q = root->left->right;
+    cout << get_instance()->lowest_common_ancestor_bst(root, p, q)->val <<endl;
+    cout << get_instance()->lowest_common_ancestor(root, p, q)->val <<endl;
 }

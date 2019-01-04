@@ -214,6 +214,7 @@ public:
      * 第三步，拆分。
      */
     RandomListNode *clone(RandomListNode *head);
+    static void local_main_clone();
 
     /*
      * 36. 二叉搜索树与双向链表
@@ -243,6 +244,18 @@ public:
      */
     ListNode *find_first_common_node(ListNode *head1, ListNode *head2);
     static void local_main_find_first_common_node();
+
+    /*
+     * 59. 滑动窗口的最大值
+     * 给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。
+     * 例如，如果输入数组 {2, 3, 4, 2, 6, 2, 5, 1} 及滑动窗口的大小 3，
+     * 那么一共存在 6 个滑动窗口，他们的最大值分别为 {4, 4, 6, 6, 6, 5}。
+     *
+     * 注意：C++无法使用优先队列方法解，由于priority_queue无remove方法
+     * 因此使用双向队列
+     */
+    vector<int> max_in_windows(const vector<int> &num, unsigned int size);
+    static void local_main_max_in_windows();
 
 private:
 

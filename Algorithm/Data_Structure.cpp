@@ -876,6 +876,8 @@ RandomListNode *Data_Structure::clone(RandomListNode *head) {
     return ret;
 }
 
+void Data_Structure::local_main_clone(){}
+
 TreeNode *Data_Structure::tree_2_doubly_list_mine(TreeNode *root) {
 
     if (!root) {
@@ -1013,10 +1015,30 @@ ListNode *Data_Structure::find_first_common_node(ListNode *head1, ListNode *head
     while (p1 != p2) {
         p1 = p1 ? p1->next : head2;
         p2 = p2 ? p2->next : head1;
-        //p1 = p1->next ? p1->next : head2;//错误，由于题目没有明确两链表一定相交
+        //p1 = p1->next ? p1->next : head2;//错误，由于题目没有明确两链表一定相交，会造成无限循环
         //p2 = p2->next ? p2->next : head1;
     }
     return p1;
 }
 
 void Data_Structure::local_main_find_first_common_node() {}
+
+vector<int> Data_Structure::max_in_windows(const vector<int> &num, unsigned int size) {
+
+    vector<int> ret;
+    deque<int> q;
+
+    for (int i = 0; i < num.size(); ++i) {
+        while (!q.empty() && num[q.back()] <= num[i]) q.pop_back();
+        while (!q.empty() && i - q.front() >= size) q.pop_front();
+        q.push_back(i);
+        if (size && i +1 >= size) ret.push_back(num[q.front()]);//size==0时ret为空
+    }
+    return ret;
+}
+
+void Data_Structure::local_main_max_in_windows() {
+
+    auto main = new Data_Structure();
+    Utility::print_vector(main->max_in_windows(vector<int>({2, 3, 4, 2, 6, 2, 5, 1}), 3));
+}

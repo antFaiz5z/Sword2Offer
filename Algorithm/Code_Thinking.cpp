@@ -665,3 +665,104 @@ void Code_Thinking::local_main_get_count_of_k() {
     cout << main->get_count_of_k(vector<int>({1, 2, 3, 3, 3, 3, 4, 6}), 3) << endl;
     cout << main->get_count_of_k_stl(vector<int>({1, 2, 3, 3, 3, 3, 4, 6}), 3) << endl;
 }
+
+int Code_Thinking::last_remaining(int n, int m) {
+
+    if (n == 0) return -1;
+    if (n == 1) return 0;
+    return (last_remaining(n - 1, m) + m) % n;
+}
+
+void Code_Thinking::local_main_last_remaining() {
+
+    auto main = new Code_Thinking();
+    cout << main->last_remaining(4, 2) << endl;
+}
+
+int Code_Thinking::max_profit(vector<int> prices) {
+
+    if (prices.size() <= 1) {
+        return 0;
+    }
+    int so_far_min = prices[0], max_profit = 0;
+    for (int i = 1; i < prices.size(); ++i) {
+        so_far_min = min(so_far_min, prices[i]);
+        max_profit = max(max_profit, prices[i] - so_far_min);
+    }
+    return max_profit;
+}
+
+void Code_Thinking::local_main_max_profit() {
+
+    auto main = new Code_Thinking();
+    cout << main->max_profit(vector<int>({7, 1, 5, 3, 6, 4})) << endl;
+}
+
+int Code_Thinking::sum(int n) {
+
+    int s = n;
+    n > 0 && (s += sum(n - 1));
+    return s;
+}
+
+int Code_Thinking::sum_II(int n) {
+
+    char a[n][n + 1];
+    return sizeof(a) >> 1;
+}
+
+void Code_Thinking::local_main_sum() {
+
+    auto main = new Code_Thinking();
+    cout << main->sum(4) << endl;
+    cout << main->sum_II(4) << endl;
+
+}
+
+vector<int> Code_Thinking::multiply(const vector<int> &A) {
+
+    vector<int> ret;
+    int size = static_cast<int>(A.size());
+    if (0 == size) {
+        return ret;
+    }
+    ret.push_back(1);
+    for (int i = 1; i < size; ++i) {
+        ret.push_back(ret.back() * A[i - 1]);
+    }
+    int tmp = 1;
+    for (int j = size - 1; j >= 0; --j) {
+        ret[j] *= tmp;
+        tmp *= A[j];
+    }
+    return ret;
+}
+
+void Code_Thinking::local_main_multiply() {
+
+    auto main = new Code_Thinking();
+    Utility::print_vector(main->multiply(vector<int>({1, 2, 3, 4, 5, 6})));
+}
+
+int Code_Thinking::str2int(string str) {
+
+    int n = static_cast<int>(str.length());
+    if (0 == n) return 0;
+    int ret = 0;
+    bool is_negative = str[0] == '-';
+    for (int i = 0; i < n; ++i) {
+        char c = str[i];
+        if (0 == i && ('+' == c || '-' == c)) continue;
+        if ('0' > c || '9' < c) return 0;
+        ret = ret * 10 + (c - '0');
+    }
+    return is_negative ? -ret : ret;
+}
+
+void Code_Thinking::local_main_str2int() {
+
+    auto main = new Code_Thinking();
+    cout << main->str2int("+3453465") << endl;
+}
+
+

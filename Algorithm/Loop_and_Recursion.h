@@ -157,6 +157,17 @@ public:
     int backtracking_is_balanced(TreeNode *root, bool &ret);
     static void local_main_is_balanced();
 
+    /*
+     * 68. 树中两个节点的最低公共祖先      LeetCode.235/236
+     *
+     * 二叉查找树:
+     * 二叉查找树中，两个节点 p, q 的公共祖先 root 满足 root.val >= p.val && root.val <= q.val。
+     * 普通二叉树:
+     * 在左右子树中查找是否存在 p 或者 q，如果 p 和 q 分别在两个子树中，那么就说明根节点就是最低公共祖先。
+     */
+    TreeNode *lowest_common_ancestor_bst(TreeNode *root, TreeNode *p, TreeNode *q);
+    TreeNode *lowest_common_ancestor(TreeNode *root, TreeNode *p, TreeNode *q);
+    static void local_main_lowest_common_ancestor();
 
 
 private:
