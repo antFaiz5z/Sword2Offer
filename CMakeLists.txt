@@ -4,14 +4,16 @@ project(JianzhiOffer)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(JianzhiOffer
-        Algorithm/main.cpp
-        Algorithm/Utility.cpp Algorithm/Utility.h
-        Algorithm/Data_Structure.cpp Algorithm/Data_Structure.h
-        Algorithm/Search_and_Sort.cpp Algorithm/Search_and_Sort.h
-        Algorithm/Loop_and_Recursion.cpp Algorithm/Loop_and_Recursion.h
-        Algorithm/Code_Thinking.cpp Algorithm/Code_Thinking.h
-        Algorithm/Bit_Operation.cpp Algorithm/Bit_Operation.h)
+        JianzhiOffer/main.cpp
+        JianzhiOffer/Utility.cpp JianzhiOffer/Utility.h
+        JianzhiOffer/Data_Structure.cpp JianzhiOffer/Data_Structure.h
+        JianzhiOffer/Search_and_Sort.cpp JianzhiOffer/Search_and_Sort.h
+        JianzhiOffer/Loop_and_Recursion.cpp JianzhiOffer/Loop_and_Recursion.h
+        JianzhiOffer/Code_Thinking.cpp JianzhiOffer/Code_Thinking.h
+        JianzhiOffer/Bit_Operation.cpp JianzhiOffer/Bit_Operation.h)
 
+add_executable(LeetCode
+        LeetCode/main.cpp)
 
 add_executable(DesignPattern
         DesignPattern/main.cpp
