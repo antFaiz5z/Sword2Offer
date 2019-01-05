@@ -1,1 +1,1 @@
-### JianzhiOffer Solutions by C++
+### Algorithm and design pattern learning.
