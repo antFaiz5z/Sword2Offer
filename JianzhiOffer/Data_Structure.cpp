@@ -1042,3 +1042,61 @@ void Data_Structure::local_main_max_in_windows() {
     auto main = new Data_Structure();
     Utility::print_vector(main->max_in_windows(vector<int>({2, 3, 4, 2, 6, 2, 5, 1}), 3));
 }
+
+
+TreeNode *Data_Structure::reconstruct_binary_tree(vector<int> pre, vector<int> vin) {
+
+    map<int, int> mp;
+    for (int i = 0; i < vin.size(); ++i) {
+        mp.insert(make_pair(vin[i], i));
+    }
+    int now = 0;
+    return recur_reconstruct_binary_tree(mp, pre, 0, static_cast<int>(pre.size() - 1), now);
+}
+
+TreeNode *Data_Structure::recur_reconstruct_binary_tree(map<int, int> &mp, vector<int> &pre,
+                                                            int low, int high, int &now) {
+    int index = mp[pre[now]];
+    auto *node = new TreeNode(pre[now]);
+    if (low < high) {
+        if (index > low) {
+            node->left = recur_reconstruct_binary_tree(mp, pre, low, index - 1, ++now);
+        }
+        if (index < high) {
+            node->right = recur_reconstruct_binary_tree(mp, pre, index + 1, high, ++now);
+        }
+    }
+    return node;
+}
+
+void Data_Structure::local_main_reconstruct_binary_tree() {
+
+    auto main = new Data_Structure();
+    Utility::print_vector(Utility::tree_traversal(main->reconstruct_binary_tree(
+            vector<int>({1, 2, 4, 7, 3, 5, 6, 8}), vector<int>({4, 7, 2, 1, 5, 3, 8, 6}))));
+
+}
+
+TreeLinkNode *Data_Structure::get_next(TreeLinkNode *node) {
+
+    if (!node) return nullptr;
+    TreeLinkNode *ret = nullptr;
+    if (node->right) {
+        ret = node->right;
+        while (ret->left) {
+            ret = ret->left;
+        }
+        return ret;
+    } else {
+        ret = node;
+        while (ret->next){
+            if (ret->next->left == ret){
+                return ret->next;
+            }
+            ret = ret->next;
+        }
+        return nullptr;
+    }
+}
+
+void Data_Structure::local_main_get_next() {}

@@ -7,6 +7,29 @@
 #include <iostream>
 #include <algorithm>
 
+bool Search_and_Sort::duplicate(int *numbers, int length, int *duplication) {
+
+    if(0 == length){
+        return false;
+    }
+    for (int i = 0; i < length; ++i) {
+        while (numbers[i] != i){
+            if (numbers[i] == numbers[numbers[i]]){
+                duplication[0] = numbers[i];
+                return true;
+            }
+            int tmp = numbers[i];
+            numbers[i] = numbers[tmp];
+            numbers[tmp] = tmp;
+            //numbers[i] = numbers[numbers[i]];//error
+            //numbers[numbers[i]] = tmp;
+        }
+    }
+    return false;
+}
+
+void Search_and_Sort::local_main_duplicate() {}
+
 int Search_and_Sort::minNumberInRotateArray(vector<int> rotateArray) {
 
     if (rotateArray.empty()) {
@@ -208,4 +231,5 @@ void Search_and_Sort::local_main_first_appearing_once() {
     main->insert_char('e');
     cout << main->first_appearing_once() <<endl;
 }
+
 

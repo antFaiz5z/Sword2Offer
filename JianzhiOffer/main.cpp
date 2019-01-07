@@ -7,10 +7,13 @@
 #include "Bit_Operation.h"
 
 int main() {
-                                                                            //3未做
+
+    //Search_and_Sort::local_main_duplicate();                  //3
     //Data_Structure::local_main_find();                        //4
     //Data_Structure::local_main_replace_space();               //5
-    //Data_Structure::local_main_printListFromTailToHead();     //6         7、8未做
+    //Data_Structure::local_main_printListFromTailToHead();     //6
+    //Data_Structure::local_main_reconstruct_binary_tree();     //7
+    Data_Structure::local_main_get_next();                      //8
     //Data_Structure::local_main_2stacks_1queue();              //9
     //Loop_and_Recursion::local_main_jumpFloor();               //10
     //Search_and_Sort::local_main_minNumberInRotateArray();     //11
@@ -71,7 +74,7 @@ int main() {
     //Bit_Operation::local_main_bit1count();                    //65
     //Code_Thinking::local_main_multiply();                     //66
     //Code_Thinking::local_main_str2int();                      //67
-    Loop_and_Recursion::local_main_lowest_common_ancestor();    //68
+    //Loop_and_Recursion::local_main_lowest_common_ancestor();  //68
 
     return 0;
 }

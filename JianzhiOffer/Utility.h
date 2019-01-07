@@ -17,6 +17,14 @@ struct ListNode {
     explicit ListNode(int x) : val(x), next(nullptr) {};
 };
 
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next;
+    struct RandomListNode *random;
+
+    explicit RandomListNode(int x) : label(x), next(nullptr) ,random(nullptr){};
+};
+
 struct TreeNode {
     int val;
     struct TreeNode *left;
@@ -25,13 +33,17 @@ struct TreeNode {
     explicit TreeNode(int x) : val(x), left(nullptr), right(nullptr) {};
 };
 
-struct RandomListNode {
-    int label;
-    struct RandomListNode *next;
-    struct RandomListNode *random;
+struct TreeLinkNode {
+    int val;
+    struct TreeLinkNode *left;
+    struct TreeLinkNode *right;
+    struct TreeLinkNode *next;
 
-    explicit RandomListNode(int x) : label(x), next(nullptr) ,random(nullptr){};
+    explicit TreeLinkNode(int x) :val(x), left(nullptr), right(nullptr), next(nullptr) {
+
+    }
 };
+
 
 class Utility {
 

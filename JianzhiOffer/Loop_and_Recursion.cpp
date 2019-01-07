@@ -488,10 +488,10 @@ void Loop_and_Recursion::local_main_is_balanced() {
 TreeNode *Loop_and_Recursion::lowest_common_ancestor_bst(TreeNode *root, TreeNode *p, TreeNode *q) {
 
     if (!root) return nullptr;
-    if (root->val > p->val && root->val > q->val){
+    if (root->val > p->val && root->val > q->val) {
         return lowest_common_ancestor_bst(root->left, p, q);
     }
-    if (root->val < p->val && root->val < q->val){
+    if (root->val < p->val && root->val < q->val) {
         return lowest_common_ancestor_bst(root->right, p, q);
     }
     return root;
@@ -507,9 +507,9 @@ TreeNode *Loop_and_Recursion::lowest_common_ancestor(TreeNode *root, TreeNode *p
 
 void Loop_and_Recursion::local_main_lowest_common_ancestor() {
 
-    TreeNode *root = Utility::get_tree(vector<int>({6,2,8,0,4,7,9}));
+    TreeNode *root = Utility::get_tree(vector<int>({6, 2, 8, 0, 4, 7, 9}));
     TreeNode *p = root->left;
     TreeNode *q = root->left->right;
-    cout << get_instance()->lowest_common_ancestor_bst(root, p, q)->val <<endl;
-    cout << get_instance()->lowest_common_ancestor(root, p, q)->val <<endl;
+    cout << get_instance()->lowest_common_ancestor_bst(root, p, q)->val << endl;
+    cout << get_instance()->lowest_common_ancestor(root, p, q)->val << endl;
 }
