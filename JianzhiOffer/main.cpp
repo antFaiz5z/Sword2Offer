@@ -13,7 +13,7 @@ int main() {
     //Data_Structure::local_main_replace_space();               //5
     //Data_Structure::local_main_printListFromTailToHead();     //6
     //Data_Structure::local_main_reconstruct_binary_tree();     //7
-    Data_Structure::local_main_get_next();                      //8
+    //Data_Structure::local_main_get_next();                    //8
     //Data_Structure::local_main_2stacks_1queue();              //9
     //Loop_and_Recursion::local_main_jumpFloor();               //10
     //Search_and_Sort::local_main_minNumberInRotateArray();     //11
@@ -24,12 +24,13 @@ int main() {
     //Code_Thinking::local_main_power();                        //16
     //Loop_and_Recursion::local_main_print_1_to_n_digits();     //17
     //Loop_and_Recursion::local_main_delete_node();             //18
-    //Loop_and_Recursion::local_main_match();                   //19        20未做
+    //Loop_and_Recursion::local_main_match();                   //19
     //Code_Thinking::local_main_is_numeric();                   //20
     //Code_Thinking::local_main_reOrderArray();                 //21
     //Data_Structure::local_main_find_Kth2tail();               //22
     //Data_Structure::local_main_entry_node_of_loop();          //23
-    //Data_Structure::local_main_reverse_list();                //24        25未做
+    //Data_Structure::local_main_reverse_list();                //24
+    //Data_Structure::local_main_merge();                       //25
     //Data_Structure::local_main_is_sub_tree();                 //26
     //Data_Structure::local_main_mirror_tree();                 //27
     //Data_Structure::local_main_is_symmetrical();              //28

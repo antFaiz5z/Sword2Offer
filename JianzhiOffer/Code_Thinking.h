@@ -104,7 +104,7 @@ public:
             return new String(str).matches("[+-]?\\d*(\\.\\d+)?([eE][+-]?\\d+)?");
         }
      */
-    bool is_numeric(char *string);//TODO: to complete
+    bool is_numeric(char *string);
     static void local_main_is_numeric();
 
     /*

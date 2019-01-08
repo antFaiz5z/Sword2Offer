@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cmath>
 #include <map>
+#include <cstring>
 
 #include "Utility.h"
 #include "Search_and_Sort.h"
@@ -307,12 +308,42 @@ void Code_Thinking::local_main_integer_break() {
 
 bool Code_Thinking::is_numeric(char *string) {
 
-
-    return false;
+    if (nullptr == string || 0 == strlen(string)) return false;
+    bool point = false, e = false;
+    int point_pos = -1, e_pos = -1;
+    for (int i = 0; i < strlen(string); ++i) {
+        if (string[i] == '+' || string[i] == '-') {
+            if (i == strlen(string) -1) return false;
+            if (i != e_pos + 1) return false;
+        } else if (string[i] >= '0' && string[i] <= '9') {
+        } else if (string[i] == '.') {
+            if (i == strlen(string) -1) return false;
+            if (point || e) return false;
+            point = true;
+            point_pos = i;
+            if (point_pos == e_pos +1 ) return false;
+        } else if (string[i] == 'e' || string[i] == 'E') {
+            if (i == strlen(string) -1) return false;
+            if (e) return false;
+            e = true;
+            e_pos = i;
+            if (e_pos == point_pos +1) return false;
+        } else {
+            return false;
+        }
+    }
+    return true;
 }
 
 void Code_Thinking::local_main_is_numeric() {
 
+    auto main = new Code_Thinking();
+    cout << main->is_numeric(const_cast<char *>("+100")) << endl
+            << main->is_numeric(const_cast<char *>("5e2")) << endl
+            << main->is_numeric(const_cast<char *>("3.1416")) << endl
+            << main->is_numeric(const_cast<char *>("-1E-16")) << endl
+            << main->is_numeric(const_cast<char *>("1a3.14")) << endl
+            << main->is_numeric(const_cast<char *>("12e+4.3")) << endl;
 }
 
 int Code_Thinking::more_than_half_num(vector<int> nums) {

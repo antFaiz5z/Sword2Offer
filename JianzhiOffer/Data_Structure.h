@@ -141,6 +141,13 @@ public:
     static void local_main_reverse_list();
 
     /*
+     * 25. 合并两个排序的链表
+     * 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。
+     */
+    ListNode *merge(ListNode *head1, ListNode *head2);
+    static void local_main_merge();
+
+    /*
      * 26. 树的子结构
      * 输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
      */
@@ -197,7 +204,7 @@ public:
      * 34. 二叉树中和为某一值的路径
      * 输入一颗二叉树的跟节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。
      * 路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
-     * (注意: 在返回值的list中，数组长度大的数组靠前)//TODO:???
+     * (注意: 在返回值的list中，数组长度大的数组靠前)//TODO:??
      */
     vector<vector<int>> find_path(TreeNode *root, int expect_num);
     void find_path_backtracking(TreeNode *root, int expect_num, vector<vector<int>> &ret, vector<int> &path);

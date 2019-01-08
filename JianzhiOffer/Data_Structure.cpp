@@ -579,6 +579,33 @@ void Data_Structure::local_main_reverse_list() {
     Utility::print_list(main->reverse_list_itera(Utility::get_list(v)));
 }
 
+ListNode *Data_Structure::merge(ListNode *head1, ListNode *head2) {
+
+    if (!head1) return head2;
+    if (!head2) return head1;
+    ListNode *p1 = head1->val <= head2->val ? head1 : head2;
+    ListNode *p2 = head1->val > head2->val ? head1 : head2;
+    ListNode *p3;
+    ListNode *ret = p1;
+    while (p1 && p2){
+        while (p1->next && p1->next->val <= p2->val){
+            p1 = p1->next;
+        }
+        p3 = p1->next;
+        p1->next = p2;
+        p2 = p3;
+    }
+    return ret;
+}
+
+void Data_Structure::local_main_merge() {
+
+    auto main = new Data_Structure();
+    ListNode *head1 = Utility::get_list(vector<int>({1,3,5,7,9}));
+    ListNode *head2 = Utility::get_list(vector<int>({2,4,6,8,10}));
+    Utility::print_list(main->merge(head1, head2));
+}
+
 bool Data_Structure::is_sub_tree(TreeNode *root1, TreeNode *root2) {
 
     if (!root1 || !root2) {
@@ -852,7 +879,7 @@ RandomListNode *Data_Structure::clone(RandomListNode *head) {
     //插入复制节点
     while (p) {
         auto *temp = new RandomListNode(p->label);
-        //RandomListNode temp(le->label);//TODO:error
+        //RandomListNode temp(le->label);//error TODO:??
         temp->next = p->next;
         p->next = temp;
         p = p->next->next;
@@ -1002,7 +1029,7 @@ void Data_Structure::local_main_serialize() {
     TreeNode *root = Utility::get_tree(vector<int>({1, 2, 3, 4, 5, 6, 4, 6, 3, 5, 4, 6, 3, 6, 4}));
     Utility::print_vector(Utility::tree_traversal(root));
     char *str = main->serialize(root);
-    //printf("%x\n", str);//TODO: zero inside, how to print
+    //printf("%x\n", str);//zero inside, how to print TODO:??
     Utility::print_vector(Utility::tree_traversal(main->deserialize(str)));
 }
 
@@ -1100,3 +1127,4 @@ TreeLinkNode *Data_Structure::get_next(TreeLinkNode *node) {
 }
 
 void Data_Structure::local_main_get_next() {}
+
