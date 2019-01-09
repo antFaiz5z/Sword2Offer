@@ -313,21 +313,21 @@ bool Code_Thinking::is_numeric(char *string) {
     int point_pos = -1, e_pos = -1;
     for (int i = 0; i < strlen(string); ++i) {
         if (string[i] == '+' || string[i] == '-') {
-            if (i == strlen(string) -1) return false;
+            if (i == strlen(string) - 1) return false;
             if (i != e_pos + 1) return false;
         } else if (string[i] >= '0' && string[i] <= '9') {
         } else if (string[i] == '.') {
-            if (i == strlen(string) -1) return false;
+            if (i == strlen(string) - 1) return false;
             if (point || e) return false;
             point = true;
             point_pos = i;
-            if (point_pos == e_pos +1 ) return false;
+            if (point_pos == e_pos + 1) return false;
         } else if (string[i] == 'e' || string[i] == 'E') {
-            if (i == strlen(string) -1) return false;
+            if (i == strlen(string) - 1) return false;
             if (e) return false;
             e = true;
             e_pos = i;
-            if (e_pos == point_pos +1) return false;
+            if (e_pos == point_pos + 1) return false;
         } else {
             return false;
         }
@@ -339,11 +339,11 @@ void Code_Thinking::local_main_is_numeric() {
 
     auto main = new Code_Thinking();
     cout << main->is_numeric(const_cast<char *>("+100")) << endl
-            << main->is_numeric(const_cast<char *>("5e2")) << endl
-            << main->is_numeric(const_cast<char *>("3.1416")) << endl
-            << main->is_numeric(const_cast<char *>("-1E-16")) << endl
-            << main->is_numeric(const_cast<char *>("1a3.14")) << endl
-            << main->is_numeric(const_cast<char *>("12e+4.3")) << endl;
+         << main->is_numeric(const_cast<char *>("5e2")) << endl
+         << main->is_numeric(const_cast<char *>("3.1416")) << endl
+         << main->is_numeric(const_cast<char *>("-1E-16")) << endl
+         << main->is_numeric(const_cast<char *>("1a3.14")) << endl
+         << main->is_numeric(const_cast<char *>("12e+4.3")) << endl;
 }
 
 int Code_Thinking::more_than_half_num(vector<int> nums) {
@@ -697,6 +697,38 @@ void Code_Thinking::local_main_get_count_of_k() {
     cout << main->get_count_of_k_stl(vector<int>({1, 2, 3, 3, 3, 3, 4, 6}), 3) << endl;
 }
 
+vector<pair<int, double>> Code_Thinking::dices_sum(int n) {
+
+    vector<pair<int, double>> ret;
+    vector<vector<double>> f(static_cast<unsigned long>(n + 1),
+                             vector<double>(static_cast<unsigned long>(6 * n + 1)));
+    for (int i = 1; i <= 6; ++i) {
+        f[1][i] = 1.0 / 6;
+    }
+    for (int i = 2; i <= n; ++i) {
+        for (int j = i; j <= 6 * i; ++j) {
+            for (int k = 1; k <= 6; ++k) {
+                if (j > k) f[i][j] += f[i - 1][j - k];
+            }
+            f[i][j] /= 6.0;
+        }
+    }
+    for (int i = n; i <= 6 * n; ++i) {
+        ret.emplace_back(i, f[n][i]);
+    }
+    return ret;
+}
+
+void Code_Thinking::local_main_dices_sum() {
+
+    auto main = new Code_Thinking();
+    auto ret = main->dices_sum(4);
+    for (auto &i : ret) {
+        cout << "[" << i.first << "," << i.second << "], ";
+    }
+
+}
+
 int Code_Thinking::last_remaining(int n, int m) {
 
     if (n == 0) return -1;
@@ -795,5 +827,3 @@ void Code_Thinking::local_main_str2int() {
     auto main = new Code_Thinking();
     cout << main->str2int("+3453465") << endl;
 }
-
-

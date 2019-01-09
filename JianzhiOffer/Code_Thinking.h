@@ -212,6 +212,9 @@ public:
     int get_count_of_k_stl(vector<int> data, int k);
     static void local_main_get_count_of_k();
 
+
+    vector<pair<int, double>> dices_sum(int n);
+    static void local_main_dices_sum();
     /*
      * 62. 圆圈中最后剩下的数
      * 让小朋友们围成一个大圈。然后，随机指定一个数 m，让编号为 0 的小朋友开始报数。

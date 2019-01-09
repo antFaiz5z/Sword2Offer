@@ -49,7 +49,7 @@ int main() {
     //Search_and_Sort::local_main_get_median();                 //41.1
     //Search_and_Sort::local_main_first_appearing_once();       //41.2
     //Code_Thinking::local_main_find_greatest_sum_of_subarray();//42
-    //Code_Thinking::local_main_count_digit_one();              //43*    44未做
+    //Code_Thinking::local_main_count_digit_one();              //43*
     //Code_Thinking::local_main_print_min_num();                //45
     //Code_Thinking::local_main_num_decoding();                 //46
     //Loop_and_Recursion::local_main_get_most();                //47
@@ -67,8 +67,9 @@ int main() {
     //Code_Thinking::local_main_find_nums_with_sum();           //57.1
     //Data_Structure::local_main_left_rotate_string();          //58.2
     //Data_Structure::local_main_reverse_sentence();            //58.1
-    //Data_Structure::local_main_max_in_windows();              //59      60未做
+    //Data_Structure::local_main_max_in_windows();              //59
     //Code_Thinking::local_main_is_continuous();                //61
+    //Code_Thinking::local_main_dices_sum();                    //60
     //Code_Thinking::local_main_last_remaining();               //62
     //Code_Thinking::local_main_max_profit();                   //63
     //Code_Thinking::local_main_sum();                          //64
@@ -76,6 +77,8 @@ int main() {
     //Code_Thinking::local_main_multiply();                     //66
     //Code_Thinking::local_main_str2int();                      //67
     //Loop_and_Recursion::local_main_lowest_common_ancestor();  //68
+
+    //    44
 
     return 0;
 }
