@@ -2,7 +2,7 @@
 // Created by faiz on 18-10-31.
 //
 
-#include "Bit_Operation.h"
+#include "BitOperation.h"
 
 int Bit_Operation::bit1count(int n) {
 

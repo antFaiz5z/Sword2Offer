@@ -2,7 +2,7 @@
 // Created by faiz on 18-5-8.
 //
 
-#include "Search_and_Sort.h"
+#include "SearchAndSort.h"
 
 #include <iostream>
 #include <algorithm>

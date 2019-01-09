@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "Data_Structure.h"
-#include "Search_and_Sort.h"
-#include "Loop_and_Recursion.h"
-#include "Code_Thinking.h"
-#include "Bit_Operation.h"
+#include "DataStructure.h"
+#include "SearchAndSort.h"
+#include "LoopAndRecursion.h"
+#include "CodeThinking.h"
+#include "BitOperation.h"
 
 int main() {
 

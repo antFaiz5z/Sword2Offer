@@ -1,7 +1,7 @@
 //
 // Created by faiz on 18-5-12.
 //
-#include "Code_Thinking.h"
+#include "CodeThinking.h"
 
 #include <algorithm>
 #include <cmath>
@@ -9,7 +9,7 @@
 #include <cstring>
 
 #include "Utility.h"
-#include "Search_and_Sort.h"
+#include "SearchAndSort.h"
 
 double Code_Thinking::power(double base, int exponent) {
     double ret = 1;

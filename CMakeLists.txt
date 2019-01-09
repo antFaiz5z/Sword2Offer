@@ -6,14 +6,18 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(JianzhiOffer
         JianzhiOffer/main.cpp
         JianzhiOffer/Utility.cpp JianzhiOffer/Utility.h
-        JianzhiOffer/Data_Structure.cpp JianzhiOffer/Data_Structure.h
-        JianzhiOffer/Search_and_Sort.cpp JianzhiOffer/Search_and_Sort.h
-        JianzhiOffer/Loop_and_Recursion.cpp JianzhiOffer/Loop_and_Recursion.h
-        JianzhiOffer/Code_Thinking.cpp JianzhiOffer/Code_Thinking.h
-        JianzhiOffer/Bit_Operation.cpp JianzhiOffer/Bit_Operation.h)
+        JianzhiOffer/DataStructure.cpp JianzhiOffer/DataStructure.h
+        JianzhiOffer/SearchAndSort.cpp JianzhiOffer/SearchAndSort.h
+        JianzhiOffer/LoopAndRecursion.cpp JianzhiOffer/LoopAndRecursion.h
+        JianzhiOffer/CodeThinking.cpp JianzhiOffer/CodeThinking.h
+        JianzhiOffer/BitOperation.cpp JianzhiOffer/BitOperation.h)
 
 add_executable(LeetCode
-        LeetCode/main.cpp)
+        LeetCode/main.cpp
+        LeetCode/Algorithm/DoublePointer.cpp LeetCode/Algorithm/DoublePointer.h
+        LeetCode/Algorithm/Greedy.cpp LeetCode/Algorithm/Greedy.h
+        LeetCode/DataStructure/LinkedList.cpp LeetCode/DataStructure/LinkedList.h
+        LeetCode/DataStructure/HashTable.cpp LeetCode/DataStructure/HashTable.h)
 
 add_executable(DesignPattern
         DesignPattern/main.cpp
