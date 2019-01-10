@@ -15,9 +15,9 @@ class DoublePointer {
 public:
 
     //167
-    static vector<int> two_sum(vector<int> &numbers, int target);
-
-    static void test_two_sum();
+    static vector<int> twoSum(vector<int> &numbers, int target);
+    //633
+    static bool judgeSquareSum(int c);
 
 private:
 

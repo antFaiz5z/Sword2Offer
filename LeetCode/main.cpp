@@ -7,6 +7,6 @@
 
 int main() {
 
-    DoublePointer::test_two_sum();
+    cout << (int)sqrt(8) <<endl;
     return 0;
 }
