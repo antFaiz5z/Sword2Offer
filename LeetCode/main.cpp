@@ -7,6 +7,8 @@
 
 int main() {
 
-    cout << (int)sqrt(8) <<endl;
+    vector<string> d({"ale","apple","monkey","plea"});
+    cout << DoublePointer::findLongestWord("abpcplea", d) << endl;
+
     return 0;
 }

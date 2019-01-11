@@ -17,7 +17,8 @@ add_executable(LeetCode
         LeetCode/Algorithm/DoublePointer.cpp LeetCode/Algorithm/DoublePointer.h
         LeetCode/Algorithm/Greedy.cpp LeetCode/Algorithm/Greedy.h
         LeetCode/DataStructure/LinkedList.cpp LeetCode/DataStructure/LinkedList.h
-        LeetCode/DataStructure/HashTable.cpp LeetCode/DataStructure/HashTable.h)
+        LeetCode/DataStructure/HashTable.cpp LeetCode/DataStructure/HashTable.h
+        LeetCode/Algorithm/Sort.cpp LeetCode/Algorithm/Sort.h)
 
 add_executable(DesignPattern
         DesignPattern/main.cpp

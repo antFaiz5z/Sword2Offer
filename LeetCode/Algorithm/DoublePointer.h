@@ -18,6 +18,8 @@ public:
     static vector<int> twoSum(vector<int> &numbers, int target);
     //633
     static bool judgeSquareSum(int c);
+    //524
+    static string findLongestWord(string s, vector<string>& d);
 
 private:
 

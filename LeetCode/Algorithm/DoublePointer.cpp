@@ -34,3 +34,27 @@ bool DoublePointer::judgeSquareSum(int c) {
     }
     return false;
 }
+
+string DoublePointer::findLongestWord(string s, vector<string>& d) {
+
+    string ret;
+    unsigned long n = s.size();
+
+    for (const auto &ms : d){
+        unsigned long m = ms.size();
+        unsigned long i = 0, j = 0;
+        while (j < n){
+            if (ms.at(i) == s.at(j)){
+                ++i;
+            }
+            ++j;
+            if (i == m){
+                if (m > ret.size() || (m == ret.size() && ms > ret)){
+                    ret = ms;
+                }
+                break;
+            }
+        }
+    }
+    return ret;
+}
