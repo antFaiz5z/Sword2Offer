@@ -109,3 +109,11 @@ vector<int> topKFrequent(vector<int> &nums, int k) {
     }
     return ret;
 }
+
+string Sort::frequencySort(string s) {
+
+
+    string ret = &s[0];
+    return ret.append("353");
+
+}

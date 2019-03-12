@@ -29,7 +29,9 @@ class Sort {
     static void swap(vector<int> &nums, int i, int j);
 
     //347
-    vector<int> topKFrequent(vector<int> &nums, int k);
+    static vector<int> topKFrequent(vector<int> &nums, int k);
+
+    static string frequencySort(string s);
 };
 
 
