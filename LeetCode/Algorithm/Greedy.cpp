@@ -34,7 +34,7 @@ int Greedy::eraseOverlapIntervals(vector<Interval> &intervals) {
 int Greedy::findMinArrowShots(vector<pair<int, int>> &points) {
 
     if (points.empty()) return 0;
-    sort(points.begin(), points.end(), [](pair<int, int> a, pair<int, int> b){return a.second < b.second;});
+    sort(points.begin(), points.end(), [](pair<int, int> a, pair<int, int> b) { return a.second < b.second; });
     int count = 1, end = 0;
     for (int i = 1; i < points.size(); ++i) {
         if (points[i].first <= points[end].second) continue;
@@ -42,4 +42,16 @@ int Greedy::findMinArrowShots(vector<pair<int, int>> &points) {
         end = i;
     }
     return count;
+}
+
+vector<pair<int, int>> Greedy::reconstructQueue(vector<pair<int, int>> &people) {
+
+    sort(people.begin(), people.end(), [](pair<int, int> p1, pair<int, int> p2) {
+        return p1.first > p2.first || (p1.first == p2.first && p1.second < p2.second);
+    });
+    vector<pair<int, int>> ret;
+    for (auto &p : people){
+        ret.insert(ret.begin() + p.second, p);
+    }
+    return ret;
 }

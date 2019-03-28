@@ -14,6 +14,7 @@ struct Interval {
     int end;
 
     Interval() : start(0), end(0) {}
+
     Interval(int s, int e) : start(s), end(e) {}
 };
 
@@ -21,10 +22,15 @@ class Greedy {
 
     //455
     int getContentChildren(vector<int> &g, vector<int> &s);
+
     //435
-    int eraseOverlapIntervals(vector<Interval>& intervals);
+    int eraseOverlapIntervals(vector<Interval> &intervals);
+
     //452
-    int findMinArrowShots(vector<pair<int, int>>& points);
+    int findMinArrowShots(vector<pair<int, int>> &points);
+
+    //406
+    vector<pair<int, int>> reconstructQueue(vector<pair<int, int>> &people);
 
 };
 
