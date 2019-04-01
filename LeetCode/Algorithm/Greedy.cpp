@@ -50,8 +50,76 @@ vector<pair<int, int>> Greedy::reconstructQueue(vector<pair<int, int>> &people) 
         return p1.first > p2.first || (p1.first == p2.first && p1.second < p2.second);
     });
     vector<pair<int, int>> ret;
-    for (auto &p : people){
+    for (auto &p : people) {
         ret.insert(ret.begin() + p.second, p);
     }
     return ret;
+}
+
+vector<int> Greedy::partitionLabels(string S) {
+
+    int last[26];
+    for (int i = 0; i < S.length(); ++i) {
+        last[S[i] - 'a'] = i;
+    }
+    vector<int> ret;
+    int right = 0, left = 0;
+    for (int i = 0; i < S.length(); ++i) {
+        right = max(right, last[S[i] - 'a']);
+        if (i == right) {
+            ret.push_back(right - left + 1);
+            left = i + 1;
+        }
+    }
+    return ret;
+}
+
+bool Greedy::canPlaceFlowers(vector<int> &flowerbed, int n) {
+
+    int count = 0;
+    for (int i = 0; i < flowerbed.size(); ++i) {
+        if (flowerbed[i] == 0
+            && (i == 0 || flowerbed[i - 1] == 0)
+            && (i == flowerbed.size() - 1 || flowerbed[i + 1] == 0)) {
+            flowerbed[i] = 1;
+            ++count;
+        }
+    }
+    return count >= n;
+}
+
+bool Greedy::isSubsequence(string s, string t) {
+
+    if (s.empty()) return true;
+    int index = 0;
+    for (char i : t) {
+        if (s[index] == i) {
+            if (index == s.size() - 1) return true;
+            ++index;
+        }
+    }
+    return false;
+}
+
+bool Greedy::checkPossibility(vector<int> &nums) {
+
+    if (nums.size() <= 2) return true;
+    int count = 0, index = 0;
+    for (int i = 1; i < nums.size(); ++i) {
+        if (nums[i] < nums[i - 1]) {
+            index = i;
+            if (++count > 1) return false;
+        }
+    }
+    if (count == 0) {
+        return true;
+    } else {
+        if ((index == 2 || nums[index - 2] <= nums[index])
+            && (index == nums.size() - 1 || nums[index] <= nums[index + 1]))
+            return true;
+        if ((index == 2 || nums[index - 2] <= nums[index - 1])
+            && (index == nums.size() - 1 || nums[index - 1] <= nums[index + 1]))
+            return true;
+    }
+    return false;
 }

@@ -6,6 +6,7 @@
 #define JIANZHIOFFER_GREEDY_H
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -32,6 +33,17 @@ class Greedy {
     //406
     vector<pair<int, int>> reconstructQueue(vector<pair<int, int>> &people);
 
+    //763
+    vector<int> partitionLabels(string S);
+
+    //605
+    bool canPlaceFlowers(vector<int> &flowerbed, int n);
+
+    //392
+    bool isSubsequence(string s, string t);
+
+    //665
+    bool checkPossibility(vector<int>& nums);
 };
 
 
