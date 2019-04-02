@@ -44,6 +44,13 @@ class Greedy {
 
     //665
     bool checkPossibility(vector<int>& nums);
+    bool checkPossibilityII(vector<int>& nums);
+
+    //122
+    int maxProfit(vector<int>& prices);
+    int maxProfitII(vector<int>& prices);
+
+
 };
 
 

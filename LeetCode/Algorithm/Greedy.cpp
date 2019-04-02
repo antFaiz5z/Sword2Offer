@@ -114,12 +114,69 @@ bool Greedy::checkPossibility(vector<int> &nums) {
     if (count == 0) {
         return true;
     } else {
-        if ((index == 2 || nums[index - 2] <= nums[index])
+        if ((index == 1 || nums[index - 2] <= nums[index])
             && (index == nums.size() - 1 || nums[index] <= nums[index + 1]))
             return true;
-        if ((index == 2 || nums[index - 2] <= nums[index - 1])
+        if ((index == 1 || nums[index - 2] <= nums[index - 1])
             && (index == nums.size() - 1 || nums[index - 1] <= nums[index + 1]))
             return true;
     }
     return false;
+}
+
+
+bool Greedy::checkPossibilityII(vector<int> &nums) {
+
+    int count = 0;
+    for (int i = 1; i < nums.size(); ++i) {
+        if (nums[i] >= nums[i -1]) continue;
+        if (++count > 1) return false;
+        if (i >=2 && nums[i] < nums[i -2]){
+            nums[i] = nums[i -1];
+        }else{
+            nums[i -1] = nums[i];
+        }
+    }
+    return true;
+}
+
+int Greedy::maxProfit(vector<int> &prices) {
+
+    if (prices.empty()) return 0;
+    int buy = prices[0], sell = -1, profit = 0;
+    for (int i = 1; i < prices.size(); ++i) {
+        if (sell < 0){
+            if (prices[i] <= buy){
+                buy = prices[i];
+                continue;
+            }else{
+                sell = prices[i];
+                if (i == prices.size() -1){
+                    profit += (sell - buy);
+                }
+            }
+        }else {
+            if (prices[i] >= sell){
+                sell = prices[i];
+                if (i == prices.size() -1){
+                    profit += (sell - buy);
+                }
+            }else{
+                profit += (sell - buy);
+                buy = prices[i];
+                sell = -1;
+            }
+        }
+    }
+    return profit;
+}
+
+int Greedy::maxProfitII(vector<int> &prices) {
+
+    int profit = 0;
+    for (int i = 1; i < prices.size(); ++i) {
+        if (prices[i] > prices[i -1])
+            profit += prices[i] - prices[i -1];
+    }
+    return profit;
 }
