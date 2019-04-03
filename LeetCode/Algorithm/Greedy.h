@@ -50,6 +50,9 @@ class Greedy {
     int maxProfit(vector<int>& prices);
     int maxProfitII(vector<int>& prices);
 
+    //53
+    int maxSubArray(vector<int>& nums);
+    int maxSubArrayII(vector<int>& nums);
 
 };
 

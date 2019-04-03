@@ -129,12 +129,12 @@ bool Greedy::checkPossibilityII(vector<int> &nums) {
 
     int count = 0;
     for (int i = 1; i < nums.size(); ++i) {
-        if (nums[i] >= nums[i -1]) continue;
+        if (nums[i] >= nums[i - 1]) continue;
         if (++count > 1) return false;
-        if (i >=2 && nums[i] < nums[i -2]){
-            nums[i] = nums[i -1];
-        }else{
-            nums[i -1] = nums[i];
+        if (i >= 2 && nums[i] < nums[i - 2]) {
+            nums[i] = nums[i - 1];
+        } else {
+            nums[i - 1] = nums[i];
         }
     }
     return true;
@@ -145,23 +145,23 @@ int Greedy::maxProfit(vector<int> &prices) {
     if (prices.empty()) return 0;
     int buy = prices[0], sell = -1, profit = 0;
     for (int i = 1; i < prices.size(); ++i) {
-        if (sell < 0){
-            if (prices[i] <= buy){
+        if (sell < 0) {
+            if (prices[i] <= buy) {
                 buy = prices[i];
                 continue;
-            }else{
+            } else {
                 sell = prices[i];
-                if (i == prices.size() -1){
+                if (i == prices.size() - 1) {
                     profit += (sell - buy);
                 }
             }
-        }else {
-            if (prices[i] >= sell){
+        } else {
+            if (prices[i] >= sell) {
                 sell = prices[i];
-                if (i == prices.size() -1){
+                if (i == prices.size() - 1) {
                     profit += (sell - buy);
                 }
-            }else{
+            } else {
                 profit += (sell - buy);
                 buy = prices[i];
                 sell = -1;
@@ -175,8 +175,42 @@ int Greedy::maxProfitII(vector<int> &prices) {
 
     int profit = 0;
     for (int i = 1; i < prices.size(); ++i) {
-        if (prices[i] > prices[i -1])
-            profit += prices[i] - prices[i -1];
+        if (prices[i] > prices[i - 1])
+            profit += prices[i] - prices[i - 1];
     }
     return profit;
+}
+
+int Greedy::maxSubArray(vector<int> &nums) {
+
+    int ret = numeric_limits<int>::min(), now = 0;
+    bool positive = false;
+    for (int num : nums) {
+        if (positive) {
+            now += num;
+            ret = max(ret, now);
+            if (now < 0) {
+                now = 0;
+                positive = false;
+            }
+        }else {
+            ret = max(ret, num);
+            if (num > 0){
+                positive = true;
+                now = num;
+            }
+        }
+    }
+    return ret;
+}
+
+int Greedy::maxSubArrayII(vector<int>& nums) {
+    //sum记录前i个数的和，maxSum记录全局最大值，minSum记录前i个数中0-k的最小值
+    int sum = 0, minSum = 0, maxSum = numeric_limits<int>::min();
+    for (int num : nums) {
+        sum += num;
+        maxSum = max(maxSum, sum - minSum);
+        minSum = min(minSum, sum);
+    }
+    return maxSum;
 }
