@@ -43,18 +43,27 @@ class Greedy {
     bool isSubsequence(string s, string t);
 
     //665
-    bool checkPossibility(vector<int>& nums);
-    bool checkPossibilityII(vector<int>& nums);
+    bool checkPossibility(vector<int> &nums);
+
+    bool checkPossibilityII(vector<int> &nums);
 
     //122
-    int maxProfit(vector<int>& prices);
-    int maxProfitII(vector<int>& prices);
+    int maxProfit(vector<int> &prices);
+
+    int maxProfitII(vector<int> &prices);
 
     //53
-    int maxSubArray(vector<int>& nums);
-    int maxSubArrayII(vector<int>& nums);
+    int maxSubArray(vector<int> &nums);
+
+    int maxSubArrayII(vector<int> &nums);
+
+    //55
+    bool canJump(vector<int> &nums);
+
+    //45
+    int jump(vector<int> &nums);
+
 
 };
-
 
 #endif //JIANZHIOFFER_GREEDY_H

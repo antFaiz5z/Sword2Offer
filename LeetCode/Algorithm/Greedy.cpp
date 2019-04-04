@@ -193,9 +193,9 @@ int Greedy::maxSubArray(vector<int> &nums) {
                 now = 0;
                 positive = false;
             }
-        }else {
+        } else {
             ret = max(ret, num);
-            if (num > 0){
+            if (num > 0) {
                 positive = true;
                 now = num;
             }
@@ -204,7 +204,7 @@ int Greedy::maxSubArray(vector<int> &nums) {
     return ret;
 }
 
-int Greedy::maxSubArrayII(vector<int>& nums) {
+int Greedy::maxSubArrayII(vector<int> &nums) {
     //sum记录前i个数的和，maxSum记录全局最大值，minSum记录前i个数中0-k的最小值
     int sum = 0, minSum = 0, maxSum = numeric_limits<int>::min();
     for (int num : nums) {
@@ -213,4 +213,38 @@ int Greedy::maxSubArrayII(vector<int>& nums) {
         minSum = min(minSum, sum);
     }
     return maxSum;
+}
+
+bool Greedy::canJump(vector<int> &nums) {
+
+    int now = 1;
+    for (int i = 1; i <= now; ++i) {
+        if (now >= nums.size()) return true;
+        //if (i == nums.size()) return true;
+        now = max(now, i + nums[i - 1]);
+    }
+    return false;
+}
+
+int Greedy::jump(vector<int> &nums) {
+
+    int count = 0, begin = 0, end = 0, new_end = 0, possible_end = 0;
+
+    if (nums.size() == 1) return 0;
+    while (begin <= end) {
+
+        ++count;
+        for (int i = begin; i <= end; ++i) {
+            possible_end = i + nums[i];
+            if (possible_end >= nums.size() - 1) {
+                return count;
+            }
+            if (possible_end > end) {
+                new_end = max(new_end, possible_end);
+            }
+        }
+        begin = end + 1;
+        end = new_end;
+    }
+    return 0;//"假设你总是可以到达数组的最后一个位置。"
 }
