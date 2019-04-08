@@ -63,7 +63,10 @@ class Greedy {
     //45
     int jump(vector<int> &nums);
 
+    //134
+    int canCompleteCircuit(vector<int> &gas, vector<int> &cost);
 
+    int canCompleteCircuitII(vector<int> &gas, vector<int> &cost);
 };
 
 #endif //JIANZHIOFFER_GREEDY_H

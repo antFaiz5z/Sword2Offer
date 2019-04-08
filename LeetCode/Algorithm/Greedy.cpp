@@ -248,3 +248,42 @@ int Greedy::jump(vector<int> &nums) {
     }
     return 0;//"假设你总是可以到达数组的最后一个位置。"
 }
+
+
+int Greedy::canCompleteCircuit(vector<int> &gas, vector<int> &cost) {
+    int gasall = 0, costall = 0;
+    size_t j;
+    int count;
+    for (size_t i = 0; i < gas.size(); i++) {
+        if (gas[i] >= cost[i]) {
+            count = 1;
+            for (j = i; count <= gas.size(); ++count, j = (j + 1) % gas.size()) {
+                gasall += gas[j];
+                costall += cost[j];
+                if (gasall < costall) {
+                    gasall = 0;
+                    costall = 0;
+                    break;
+                }
+            }
+            if (j == i) return j;
+        }
+    }
+    return -1;
+}
+
+int Greedy::canCompleteCircuitII(vector<int> &gas, vector<int> &cost) {
+    int sum = 0;
+    int total = 0;
+    int index = -1;
+
+    for (int i = 0; i < gas.size(); i++) {
+        sum += gas[i] - cost[i];
+        total += gas[i] - cost[i];
+        if (sum < 0) {
+            index = i;
+            sum = 0;
+        }
+    }
+    return total < 0 ? -1 : index + 1;
+}
