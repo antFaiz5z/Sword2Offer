@@ -10,6 +10,7 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <queue>
 
 
@@ -38,6 +39,11 @@ public:
     Node* cloneGraph_DFS(Node* node);
     Node* clone_recur(Node* node, map<int, Node*>& map);
 
+    //207
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites);
+
+    //210
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites);
 };
 
 

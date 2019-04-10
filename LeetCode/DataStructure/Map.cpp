@@ -56,4 +56,67 @@ Node *Map::clone_recur(Node *node, map<int, Node *> &map) {
     return tmp;
 }
 
+bool Map::canFinish(int numCourses, vector<pair<int, int>> &prerequisites) {
+
+    vector<unordered_multiset<int>>  edges(numCourses);
+    vector<int> preCount(numCourses, 0);
+    for (auto &i : prerequisites){
+        edges[i.second].insert(i.first);
+        preCount[i.first]++;
+    }
+
+    queue<int> q;
+    for (int i = 0; i < numCourses; ++i) {
+        if (preCount[i] == 0){
+            q.push(i);
+        }
+    }
+
+    int count = 0;
+    while (!q.empty()){
+        int now = q.front();
+        q.pop();
+        count++;
+        for (auto &i : edges[now]) {
+            if (--preCount[i] == 0){
+                q.push(i);
+            }
+        }
+    }
+    return count == numCourses;
+}
+
+vector<int> Map::findOrder(int numCourses, vector<pair<int, int>> &prerequisites) {
+
+    vector<int> ret;
+    vector<unordered_multiset<int>>  edges(numCourses);
+    vector<int> preCount(numCourses, 0);
+    for (auto &i : prerequisites){
+        edges[i.second].insert(i.first);
+        preCount[i.first]++;
+    }
+
+    queue<int> q;
+    for (int i = 0; i < numCourses; ++i) {
+        if (preCount[i] == 0){
+            q.push(i);
+            ret.push_back(i);
+        }
+    }
+
+    int count = 0;
+    while (!q.empty()){
+        int now = q.front();
+        q.pop();
+        count++;
+        for (auto &i : edges[now]) {
+            if (--preCount[i] == 0){
+                q.push(i);
+                ret.push_back(i);
+            }
+        }
+    }
+    return count == numCourses ? ret : vector<int>();
+}
+
 
