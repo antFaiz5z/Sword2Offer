@@ -58,27 +58,27 @@ Node *Map::clone_recur(Node *node, map<int, Node *> &map) {
 
 bool Map::canFinish(int numCourses, vector<pair<int, int>> &prerequisites) {
 
-    vector<unordered_multiset<int>>  edges(numCourses);
+    vector<unordered_multiset<int>> edges(numCourses);
     vector<int> preCount(numCourses, 0);
-    for (auto &i : prerequisites){
+    for (auto &i : prerequisites) {
         edges[i.second].insert(i.first);
         preCount[i.first]++;
     }
 
     queue<int> q;
     for (int i = 0; i < numCourses; ++i) {
-        if (preCount[i] == 0){
+        if (preCount[i] == 0) {
             q.push(i);
         }
     }
 
     int count = 0;
-    while (!q.empty()){
+    while (!q.empty()) {
         int now = q.front();
         q.pop();
         count++;
         for (auto &i : edges[now]) {
-            if (--preCount[i] == 0){
+            if (--preCount[i] == 0) {
                 q.push(i);
             }
         }
@@ -89,28 +89,28 @@ bool Map::canFinish(int numCourses, vector<pair<int, int>> &prerequisites) {
 vector<int> Map::findOrder(int numCourses, vector<pair<int, int>> &prerequisites) {
 
     vector<int> ret;
-    vector<unordered_multiset<int>>  edges(numCourses);
+    vector<unordered_multiset<int>> edges(numCourses);
     vector<int> preCount(numCourses, 0);
-    for (auto &i : prerequisites){
+    for (auto &i : prerequisites) {
         edges[i.second].insert(i.first);
         preCount[i.first]++;
     }
 
     queue<int> q;
     for (int i = 0; i < numCourses; ++i) {
-        if (preCount[i] == 0){
+        if (preCount[i] == 0) {
             q.push(i);
             ret.push_back(i);
         }
     }
 
     int count = 0;
-    while (!q.empty()){
+    while (!q.empty()) {
         int now = q.front();
         q.pop();
         count++;
         for (auto &i : edges[now]) {
-            if (--preCount[i] == 0){
+            if (--preCount[i] == 0) {
                 q.push(i);
                 ret.push_back(i);
             }
@@ -118,5 +118,75 @@ vector<int> Map::findOrder(int numCourses, vector<pair<int, int>> &prerequisites
     }
     return count == numCourses ? ret : vector<int>();
 }
+
+bool Map::isBipartite(vector<vector<int>> &graph) {
+
+    size_t n = graph.size();
+    vector<int> colors(n, 0);
+    for (size_t i = 0; i < n; ++i) {
+        if (!colors[i] && !colored(i, graph, colors, 1)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Map::colored(int now, vector<vector<int>> &graph, vector<int> &colors, int color) {
+
+    colors[now] = color;
+    for (int next: graph[now]) {
+        if (!colors[next] && !colored(next, graph, colors, -color)) {
+            return false;
+        }
+        if (colors[next] == color) {
+            return false;
+        }
+    }
+    return true;
+}
+
+vector<int> Map::findRedundantConnection(vector<vector<int>> &edges) {
+
+    size_t n = edges.size();
+    vector<int> ret;
+    vector<int> fathers;
+    fathers.resize(n + 1);
+    for (int i = 1; i <= n; ++i) {
+        fathers[i] = i;
+    }
+    for (auto i : edges) {
+        if (isRedundant(i[0], i[1], fathers)) {
+            ret = i;
+            break;
+        }
+    }
+    return ret;
+}
+
+int Map::getFather(int x, vector<int> &fathers) {
+
+    if (x == fathers[x]) {
+        return x;
+    }
+    return fathers[x] = getFather(fathers[x], fathers);
+}
+
+bool Map::isRedundant(int x, int y, vector<int> &fathers) {
+
+    int x_father = getFather(x, fathers);
+    int y_father = getFather(y, fathers);
+
+    if (x_father == y_father) {
+        return true;
+    }
+    for (int &father : fathers) {
+        if (father == x_father) {
+            father = y_father;
+        }
+    }
+    return false;
+}
+
+
 
 
