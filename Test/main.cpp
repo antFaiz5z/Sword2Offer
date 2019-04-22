@@ -11,7 +11,7 @@
 
 using namespace std;
 
-struct TimeSegment {
+/*struct TimeSegment {
     uint64_t btime;
     uint64_t etime;
 
@@ -71,12 +71,9 @@ inline void MergeTimeSegment(uint64_t nBeginTime, uint64_t nEndTime, std::list<T
     }
 
 
-}
+}*/
 
-
-int main() {
-
-    std::list<TimeSegment> lst;
+/*    std::list<TimeSegment> lst;
     lst.emplace_back(10,20);
     lst.emplace_back(40,50);
     lst.emplace_back(60,70);
@@ -87,48 +84,83 @@ int main() {
 
     MergeTimeSegment(20, 40, lst);
 
-    show(lst);
+    show(lst);*/
 
-    /*int n, begin, end;
-    int max = 0, min = numeric_limits<int32_t>::max();
-    vector<vector<int>> num;
-    cin >> n;
-    for (int i = 0; i < n; ++i) {
-        scanf("%d %d", &begin, &end);
-        num.push_back(vector<int>{begin,end});
+
+int main() {
+
+
+/*    string tmp;
+    cin >> tmp;
+    int ret = 0;
+    int ch, now = 0;
+    bool first = true;
+    bool negative = false;
+
+    for (int i = 0; i < tmp.size(); ++i) {
+
+        if (tmp[i] < '0' || tmp[i] > '9'){
+            if (tmp[i] == '-' && first){
+                negative = true;
+            }
+            if (!first){
+                ret = negative ? ret - now : ret + now;
+                now = 0;
+                first = true;
+                negative = tmp[i] == '-';
+            }
+            continue;
+        }
+        ch = tmp[i] - '0';
+        if (ch == 0 && first){
+            continue;
+        }
+        now = now* 10 +ch;
+        first = false;
+
     }
-    for (auto &i : num) {
-        cout << i[0] << ":" <<i[1] <<endl;
-        if (i[0] < min) min = i[0];
-        if (i[1] > max) max = i[1];
-    }
-    int *sum = new int[max - min]();
-    for (auto &i : num) {
-        for (int j = i[0]; j < i[1]; ++j) {
-            sum[j - min] += 1;
+    ret = negative ? ret - now : ret + now;
+    cout << ret << endl;
+    return ret;*/
+
+    char *s = (char*)malloc(50);
+    bool multi = false;
+
+
+    while (scanf("%s\n", s)){
+        string tmp = s;
+        for (int i = 0; i < tmp.size(); ++i) {
+            if (tmp[i] == '/' && tmp[i +1] == '/'){
+                if (i > 0 && tmp[i -1] == '\\'){
+                    continue;
+                }
+                break;
+            }
+            if (tmp[i] == '/' && tmp[i+ 1] == '*'){
+                if (i > 0 && tmp[i -1] == '\\'){
+                    continue;
+                }
+                multi = true;
+            }
+            if (multi){
+                if (tmp[i] == '*' && tmp[i +1] == '/'){
+                    multi = false;
+                }
+            }else{
+                cout << tmp[i];
+            }
         }
     }
-    int ret = 0;
-    for (int k = 0; k < max - min; ++k) {
-        if (sum[k] > ret) ret = sum[k];
-    }
-    cout << ret;*/
-
-    /*string str;
-    vector<string> vs;
-    while (cin >> str){
-        vs.push_back(str);
-    }
-    sort(vs.begin(), vs.end(), [](string str1, string str2){return strcmp(str1.c_str(), str2.c_str());});
-    string ret = "";
-    for (auto &i : vs){
-        ret += i;
-    }
-    cout << ret << endl;*/
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
 
