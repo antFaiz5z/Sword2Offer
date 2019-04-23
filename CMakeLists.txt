@@ -33,4 +33,4 @@ add_executable(DesignPattern
         DesignPattern/ResponsibilityChain.cpp DesignPattern/ResponsibilityChain.h
         DesignPattern/Memento.cpp DesignPattern/Memento.h)
 
-add_executable(Test Test/main.cpp)
+add_executable(Test Test/main.cpp Test/RoundRobin.cpp Test/RoundRobin.h Test/Others.cpp Test/Others.h)
