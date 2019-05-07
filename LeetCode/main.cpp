@@ -5,6 +5,8 @@
 #include "Algorithm/DoublePointer.h"
 #include "Algorithm/Sort.h"
 #include "Algorithm/Greedy.h"
+#include "DataStructure/Map.h"
+#include "DataStructure/TrieTree.h"
 
 int main() {
 
