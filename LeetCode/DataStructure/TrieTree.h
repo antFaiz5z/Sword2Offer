@@ -25,10 +25,10 @@ public:
     bool isString;
 };
 
-class Trie {
+class TrieTree {
 public:
     /** Initialize your data structure here. */
-    Trie() {
+    TrieTree() {
         root = new TrieNode();
     }
 
@@ -125,7 +125,7 @@ private:
     WordNode *root;
 };
 
-class TrieTree {
+class TrieTreeII {
 public:
     //212
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words);
