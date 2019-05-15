@@ -5,7 +5,7 @@
 #include "HashTable.h"
 
 #include <unordered_map>
-#include <map>
+#include <unordered_set>
 
 vector<int> HashTable::twoSum(vector<int> &nums, int target) {
 
@@ -49,6 +49,20 @@ vector<int> HashTable::twoSum_hashII(vector<int> &nums, int target) {
 
 int HashTable::lengthOfLongestSubstring(string s) {
 
+    unordered_map<char, int> map;
+    int ans = 0;
+    int lastRepeat = -1;
+    for (int i = 0; i < s.size(); ++i) {
+        if (map.find(s[i]) != map.end() && lastRepeat < map[s[i]]){
+            lastRepeat = map[s[i]];
+        }
+        ans = max(ans, i - lastRepeat);
+        map[s[i]] = i;
+    }
+    return ans;
+}
+
+int HashTable::lengthOfLongestSubstringII(string s) {
 
     
     return 0;

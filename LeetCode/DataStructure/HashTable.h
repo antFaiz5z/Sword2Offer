@@ -21,6 +21,8 @@ public:
 
     //3
     int lengthOfLongestSubstring(string s);
+    int lengthOfLongestSubstringII(string s);
+
 };
 
 
