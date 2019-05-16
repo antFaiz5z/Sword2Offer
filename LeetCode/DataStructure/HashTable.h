@@ -23,6 +23,11 @@ public:
     int lengthOfLongestSubstring(string s);
     int lengthOfLongestSubstringII(string s);
 
+    //18
+    vector<vector<int>> fourSum(vector<int>& nums, int target);
+    vector<vector<int>> threeSum(vector<int>& nums, int target);
+    vector<vector<int>> kSum(vector<int>& nums, int target);
+
 };
 
 
