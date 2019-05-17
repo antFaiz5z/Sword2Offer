@@ -6,6 +6,7 @@
 
 #include <unordered_map>
 #include <unordered_set>
+#include <map>
 #include <algorithm>
 
 vector<int> HashTable::twoSum(vector<int> &nums, int target) {
@@ -88,10 +89,17 @@ vector<vector<int>> HashTable::fourSum(vector<int> &nums, int target) {
 
     vector<vector<int>> ret;
     if (nums.size() < 4) return ret;
-
-
-
-    return vector<vector<int>>();
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < nums.size() - 3; ++i) {
+        if (i > 0 && nums[i] == nums[i - 1]) continue;
+        vector<int> tmp(nums.begin() + i + 1, nums.end());
+        vector<vector<int>> re = threeSum(tmp, target - nums[i]);
+        for (auto &j : re) {
+            j.push_back(nums[i]);
+            ret.push_back(j);
+        }
+    }
+    return ret;
 }
 
 vector<vector<int>> HashTable::threeSum(vector<int> &nums, int target) {
@@ -126,6 +134,161 @@ vector<vector<int>> HashTable::threeSum(vector<int> &nums, int target) {
     return ret;
 }
 
-vector<vector<int>> HashTable::kSum(vector<int> &nums, int target) {
-    return vector<vector<int>>();
+//FIXME: return empty
+vector<vector<int>> HashTable::kSum(vector<int> &nums, int target, int k, int start) {
+
+    vector<vector<int>> ret;
+    int n = nums.size();
+    if (start >= n - k) return ret;
+    sort(nums.begin(), nums.end());
+    if (k == 2) {
+        int low = start + 1;
+        int high = n - 1;
+        while (low < high) {
+            if (nums[low] + nums[high] == target) {
+                ret.push_back(vector<int>{nums[low], nums[high]});
+                while (low < high && nums[low] == nums[low + 1]) ++low;
+                while (low < high && nums[high] == nums[high - 1]) --high;
+                ++low;
+                --high;
+            } else if (nums[low] + nums[high] < target) {
+                while (low < high && nums[low] == nums[low + 1]) ++low;
+                ++low;
+            } else {
+                while (low < high && nums[high] == nums[high - 1]) --high;
+                --high;
+            }
+        }
+        return ret;
+    }
+    if (k > 2) {
+        for (int i = start; i < n - k; ++i) {
+            vector<vector<int>> tmp = kSum(nums, target - nums[i], k - 1, start + 1);
+            if (!tmp.empty()) {
+                for (auto &j : tmp) {
+                    j.insert(j.begin(), nums[i]);
+                    ret.push_back(j);
+                }
+            }
+            while (i < n -k && nums[i] == nums[i +1]) ++i;
+        }
+    }
+    return ret;
+}
+
+int HashTable::fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
+
+    //NOTICE: map 使用 operator[] 时，value 初始为 0
+    int ret = 0;
+    map<int, int> map;
+    for (auto &i : A) {
+        for (auto &j : B) {
+            ++map[i +j];
+
+        }
+    }
+    for (auto &i : C) {
+        for (auto &j : D) {
+            if (map.find(-i-j) != map.end()) {
+                ret += map[-i-j];
+            }
+        }
+    }
+    return ret;
+}
+
+//run out of time
+vector<int> HashTable::findSubstring(string s, vector<string> &words) {
+
+    vector<int> ret;
+    if (words.empty()) return ret;
+
+    int step = words[0].size();
+    int size = words.size();
+    map<string, int> m;
+    for (auto &k : words) ++m[k];
+    int j, count;
+
+    for (int i = 0; i < s.size(); ++i) {
+        map<string, int> tmp = m;
+        j = i;
+        count = size;
+
+        while (j + step <= s.size()){
+            string sub = s.substr(j, step);
+            if (tmp.find(sub) != tmp.end() && tmp[sub]){
+                --tmp[sub];
+                j += step;
+                if (--count == 0) ret.push_back(i);
+            }else{
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+vector<int> findSubstringII(string s, vector<string> &words) {
+
+    vector<int> result;
+    if ( s.empty() || words.empty() ){
+        return result;
+    }
+
+    int n = s.size(), m = words.size(), l = words[0].size();
+
+    //put all of words into a map
+    map<string, int> expected;
+    for(int i=0; i<m; i++){
+        if (expected.find(words[i])!=expected.end()){
+            expected[words[i]]++;
+        }else{
+            expected[words[i]]=1;
+        }
+    }
+
+    for (int i=0; i<l; i++){
+        map<string, int> actual;
+        int count = 0; //total count
+        int winLeft = i;
+        for (int j=i; j<=n-l; j+=l){
+            string word = s.substr(j, l);
+            //if not found, then restart from j+1;
+            if (expected.find(word) == expected.end() ) {
+                actual.clear();
+                count=0;
+                winLeft = j + l;
+                continue;
+            }
+            count++;
+            //count the number of "word"
+            if (actual.find(word) == actual.end() ) {
+                actual[word] = 1;
+            }else{
+                actual[word]++;
+            }
+            // If there is more appearance of "word" than expected
+            if (actual[word] > expected[word]){
+                string tmp;
+                do {
+                    tmp = s.substr( winLeft, l );
+                    count--;
+                    actual[tmp]--;
+                    winLeft += l;
+                } while(tmp!=word);
+            }
+
+            // if total count equals words's size, find one result
+            if ( count == m ){
+                result.push_back(winLeft);
+                string tmp = s.substr( winLeft, l );
+                actual[tmp]--;
+                winLeft += l;
+                count--;
+            }
+
+        }
+    }
+
+    return result;
 }

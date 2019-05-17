@@ -16,11 +16,19 @@ int main() {
     //cout << DoublePointer::findLongestWord("abpcplea", d) << endl;
 
     HashTable ht;
-    vector<int> nums{2,7,11,15};
+    vector<int> nums{2, 7, 11, 15};
     vector<int> ret = ht.twoSum_hashI(nums, 9);
     for (auto &i : ret) cout << i << endl;
     ret = ht.twoSum_hashII(nums, 9);
     for (auto &i : ret) cout << i << endl;
+    vector<vector<int>> res = ht.kSum(nums, 9, 2, 0);
+    cout << (res.empty() ? "empty" : "y")  << endl;
+    for (auto &i : res) {
+        for (auto &j : i) {
+            cout << j << ", ";
+        }
+        cout << endl;
+    }
 
     return 0;
 }
