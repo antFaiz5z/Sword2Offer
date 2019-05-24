@@ -219,7 +219,10 @@ vector<int> HashTable::findSubstring(string s, vector<string> &words) {
             if (tmp.find(sub) != tmp.end() && tmp[sub]){
                 --tmp[sub];
                 j += step;
-                if (--count == 0) ret.push_back(i);
+                if (--count == 0) {
+                    ret.push_back(i);
+                    break;
+                }
             }else{
                 break;
             }
@@ -252,6 +255,7 @@ vector<int> findSubstringII(string s, vector<string> &words) {
         int count = 0; //total count
         int winLeft = i;
         for (int j=i; j<=n-l; j+=l){
+            //if ((n -j) / l + count < m) break; //additional
             string word = s.substr(j, l);
             //if not found, then restart from j+1;
             if (expected.find(word) == expected.end() ) {
