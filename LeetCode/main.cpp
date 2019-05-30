@@ -16,7 +16,7 @@ int main() {
     //cout << DoublePointer::findLongestWord("abpcplea", d) << endl;
 
     HashTable ht;
-    vector<int> nums{2, 7, 11, 15};
+/*    vector<int> nums{2, 7, 11, 15};
     vector<int> ret = ht.twoSum_hashI(nums, 9);
     for (auto &i : ret) cout << i << endl;
     ret = ht.twoSum_hashII(nums, 9);
@@ -28,7 +28,14 @@ int main() {
             cout << j << ", ";
         }
         cout << endl;
-    }
+    }*/
+
+    string a = "ADSFGBDFGCFGBFDGADFGBVBFDGAACDFGBA";
+    string b = "ABC";
+    cout << ht.minWindow(a, b) << endl;
+    a = "a";
+    b = "a";
+    cout << ht.minWindow(a, b) << endl;
 
     return 0;
 }

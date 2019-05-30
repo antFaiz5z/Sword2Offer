@@ -37,8 +37,13 @@ public:
     int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D);
 
     //30
-    vector<int> findSubstring(string s, vector<string>& words);
-    vector<int> findSubstringII(string s, vector<string>& words);
+    vector<int> findSubstring(string s, vector<string> &words);
+
+    vector<int> findSubstringII(string s, vector<string> &words);
+
+    //76
+    string minWindow(string s, string t);
+    string minWindowII(string s, string t);
 
 };
 

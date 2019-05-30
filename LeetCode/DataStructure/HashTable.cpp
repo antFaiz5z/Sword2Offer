@@ -9,6 +9,10 @@
 #include <map>
 #include <algorithm>
 
+#include <iostream>
+
+using namespace std;
+
 vector<int> HashTable::twoSum(vector<int> &nums, int target) {
 
     for (int i = 0; i < nums.size(); ++i) {
@@ -170,7 +174,7 @@ vector<vector<int>> HashTable::kSum(vector<int> &nums, int target, int k, int st
                     ret.push_back(j);
                 }
             }
-            while (i < n -k && nums[i] == nums[i +1]) ++i;
+            while (i < n - k && nums[i] == nums[i + 1]) ++i;
         }
     }
     return ret;
@@ -183,14 +187,14 @@ int HashTable::fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vect
     map<int, int> map;
     for (auto &i : A) {
         for (auto &j : B) {
-            ++map[i +j];
+            ++map[i + j];
 
         }
     }
     for (auto &i : C) {
         for (auto &j : D) {
-            if (map.find(-i-j) != map.end()) {
-                ret += map[-i-j];
+            if (map.find(-i - j) != map.end()) {
+                ret += map[-i - j];
             }
         }
     }
@@ -214,16 +218,16 @@ vector<int> HashTable::findSubstring(string s, vector<string> &words) {
         j = i;
         count = size;
 
-        while (j + step <= s.size()){
+        while (j + step <= s.size()) {
             string sub = s.substr(j, step);
-            if (tmp.find(sub) != tmp.end() && tmp[sub]){
+            if (tmp.find(sub) != tmp.end() && tmp[sub]) {
                 --tmp[sub];
                 j += step;
                 if (--count == 0) {
                     ret.push_back(i);
                     break;
                 }
-            }else{
+            } else {
                 break;
             }
         }
@@ -231,10 +235,10 @@ vector<int> HashTable::findSubstring(string s, vector<string> &words) {
     return ret;
 }
 
-vector<int> findSubstringII(string s, vector<string> &words) {
+vector<int> HashTable::findSubstringII(string s, vector<string> &words) {
 
     vector<int> result;
-    if ( s.empty() || words.empty() ){
+    if (s.empty() || words.empty()) {
         return result;
     }
 
@@ -242,50 +246,50 @@ vector<int> findSubstringII(string s, vector<string> &words) {
 
     //put all of words into a map
     map<string, int> expected;
-    for(int i=0; i<m; i++){
-        if (expected.find(words[i])!=expected.end()){
+    for (int i = 0; i < m; i++) {
+        if (expected.find(words[i]) != expected.end()) {
             expected[words[i]]++;
-        }else{
-            expected[words[i]]=1;
+        } else {
+            expected[words[i]] = 1;
         }
     }
 
-    for (int i=0; i<l; i++){
+    for (int i = 0; i < l; i++) {
         map<string, int> actual;
         int count = 0; //total count
         int winLeft = i;
-        for (int j=i; j<=n-l; j+=l){
+        for (int j = i; j <= n - l; j += l) {
             //if ((n -j) / l + count < m) break; //additional
             string word = s.substr(j, l);
             //if not found, then restart from j+1;
-            if (expected.find(word) == expected.end() ) {
+            if (expected.find(word) == expected.end()) {
                 actual.clear();
-                count=0;
+                count = 0;
                 winLeft = j + l;
                 continue;
             }
             count++;
             //count the number of "word"
-            if (actual.find(word) == actual.end() ) {
+            if (actual.find(word) == actual.end()) {
                 actual[word] = 1;
-            }else{
+            } else {
                 actual[word]++;
             }
             // If there is more appearance of "word" than expected
-            if (actual[word] > expected[word]){
+            if (actual[word] > expected[word]) {
                 string tmp;
                 do {
-                    tmp = s.substr( winLeft, l );
+                    tmp = s.substr(winLeft, l);
                     count--;
                     actual[tmp]--;
                     winLeft += l;
-                } while(tmp!=word);
+                } while (tmp != word);
             }
 
             // if total count equals words's size, find one result
-            if ( count == m ){
+            if (count == m) {
                 result.push_back(winLeft);
-                string tmp = s.substr( winLeft, l );
+                string tmp = s.substr(winLeft, l);
                 actual[tmp]--;
                 winLeft += l;
                 count--;
@@ -296,3 +300,61 @@ vector<int> findSubstringII(string s, vector<string> &words) {
 
     return result;
 }
+
+string HashTable::minWindow(string s, string t) { //FIXME: SOME ERROR
+
+    string ret;
+    int start = -1, now = 0;
+    int m = s.size(), n = t.size();
+    int count = n;
+    int len = m +1;
+    unordered_map<char, int> hm;
+
+    for (auto &i : t) ++hm[i];
+    while (hm.find(s[now]) == hm.end()) ++now;
+    if (--hm[s[now]] == 0) --count;
+    if (now + n > m) return ret;
+    start = now++;
+    while (now <= m) {
+        if (count == 0) {
+            if (now - start < len) {
+                ret.clear();
+                ret = s.substr(start, now - start);
+                len = now - start;
+            }
+            if (hm[s[start]]++ == 0) ++count;
+            ++start;
+            while (hm.find(s[start]) == hm.end()) ++start;
+            continue;
+        }
+        if (now == m) break;
+        if (hm.find(s[now]) != hm.end()) {
+            if (--hm[s[now]] == 0) --count;
+        }
+        ++now;
+    }
+    return ret;
+}
+
+string HashTable::minWindowII(string s, string t) {
+    unordered_map<char, int> mp;
+    for (char now : t) mp[now]++;
+    int count = mp.size();
+    int j = 0;
+    int ans = numeric_limits<int>::max();
+    string res;
+    for (int i = 0; i < s.size(); i++) {
+        while (count != 0 && j < s.size()) {
+            if (--mp[s[j]] == 0) count--;
+            j++;
+            if (count == 0) break;
+        }
+        if (count == 0 && j - i < ans) {
+            ans = j - i;
+            res = s.substr(i, j - i);
+        }
+        if (mp[s[i]]++ == 0) count++;
+    }
+    return res;
+}
+
