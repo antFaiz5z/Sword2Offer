@@ -9,6 +9,7 @@
 #include "DataStructure/Map.h"
 #include "DataStructure/TrieTree.h"
 #include "DataStructure/HashTable.h"
+#include "Algorithm/Design.h"
 
 int main() {
 
@@ -30,12 +31,25 @@ int main() {
         cout << endl;
     }*/
 
-    string a = "ADSFGBDFGCFGBFDGADFGBVBFDGAACDFGBA";
+/*    string a = "ADSFGBDFGCFGBFDGADFGBVBFDGAACDFGBA";
     string b = "ABC";
     cout << ht.minWindow(a, b) << endl;
     a = "a";
     b = "a";
-    cout << ht.minWindow(a, b) << endl;
+    cout << ht.minWindow(a, b) << endl;*/
+
+    LRUCache ca(1);
+    ca.put(1,2);
+    ca.cache.print();
+    cout << ca.get(1) << endl;
+    ca.put(3,4);
+    ca.put(5,6);
+    ca.cache.print();
+    cout << ca.get(1) <<endl;
+    ca.put(3,6);
+    ca.cache.print();
+
+
 
     return 0;
 }
