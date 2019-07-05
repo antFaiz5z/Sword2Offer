@@ -10,6 +10,7 @@
 #include "DataStructure/TrieTree.h"
 #include "DataStructure/HashTable.h"
 #include "Algorithm/Design.h"
+#include "Unsorted.h"
 
 int main() {
 
@@ -38,6 +39,7 @@ int main() {
     b = "a";
     cout << ht.minWindow(a, b) << endl;*/
 
+/*
     LRUCache ca(1);
     ca.put(1,2);
     ca.cache.print();
@@ -48,8 +50,12 @@ int main() {
     cout << ca.get(1) <<endl;
     ca.put(3,6);
     ca.cache.print();
+*/
 
-
-
+    Unsorted unsorted;
+    vector<int> ret = unsorted.pathInZigZagTree(14);
+    for (auto &i : ret){
+        cout << i << ", ";
+    }
     return 0;
 }
