@@ -53,9 +53,10 @@ int main() {
 */
 
     Unsorted unsorted;
-    vector<int> ret = unsorted.pathInZigZagTree(14);
+/*    vector<int> ret = unsorted.pathInZigZagTree(14);
     for (auto &i : ret){
         cout << i << ", ";
     }
-    return 0;
+    return 0;*/
+
 }
