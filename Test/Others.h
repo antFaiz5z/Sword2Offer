@@ -8,6 +8,8 @@
 #include <iostream>
 #include <list>
 #include <cstdint>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -30,6 +32,11 @@ class Others {
 
     //计算字符串中数字部分之和
     void string2digitalComputation();
+
+    //bytedance
+    void bytedance_one();//error 30%
+    void bytedance_two();//error
+    void bytedance_bt(vector<int> &score, vector<int> &divide, int n, int *max_score, int now_score, int direction, int index);
 
 };
 
