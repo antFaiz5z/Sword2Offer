@@ -3,6 +3,7 @@ project(Sword2Offer)
 
 set(CMAKE_CXX_STANDARD 11)
 
+add_subdirectory(CommonImpl)
 add_subdirectory(DesignPattern)
 add_subdirectory(JianzhiOffer)
 add_subdirectory(LeetCode)
