@@ -206,3 +206,85 @@ void Others::bytedance_bt(vector<int> &score, vector<int> &divide, int n, int *m
         divide.pop_back();
     }
 }
+
+void Others::ugly() {
+
+    string s;
+    cin >> s;
+
+    int now = 0, ret = 0;
+    char before;
+    while (s[now] == '?' && now < s.size() -1) ++now;
+
+    before = s[now];
+    while (++now <= s.size() -1){
+        if (s[now] == before){
+            ++ret;
+        }else if (s[now] == '?'){
+            before = before == 'A' ? 'B' : 'A';
+        }else{
+            before = s[now];
+        }
+    }
+    cout << ret << endl;
+}
+
+void Others::combination() {
+
+    int n, k;
+    cin >> n >> k;
+
+    int max = 0, ret = 0;
+    for (int i = 0; i < k; ++i) {
+        max += (n -i -1);
+    }
+    int j = 1;
+    while (j * n <= max){
+        cout << j * n << ":" << max << endl;
+        find(ret, n, k, 0, 0, j * n);
+        cout << j << ":" << ret << endl;
+        ++j;
+    }
+    cout << ret << endl;
+}
+
+void Others::find(int &ret, int n, int k, int start, int now, int rest) {
+
+    if (now == k){
+        if (rest == 0){
+            ++ret;
+        }
+        return;
+    }
+    for (int i = start; i < n - k + now; ++i) {
+        if (i > rest){
+            return;
+        }else{
+            find(ret, n, k, start +1, now +1, rest -i);
+        }
+    }
+}
+
+void Others::expectation() {
+
+    int n;
+    cin >> n;
+
+    float sum = 0;
+    float count = 0;
+    insert(sum, count, n, 0, 0, 0, 0);
+
+    printf("%.1f", sum / count);
+    //cout << sum / count << endl;
+}
+
+void Others::insert(float &sum, float &count, int n, int now, int sum_now, int ma, int mi) {
+
+    if (now == n){
+        sum += (ma - mi +1);
+        ++count;
+        return;
+    }
+    insert(sum, count, n, now +1, sum_now +1, max(ma, sum_now +1), mi);
+    insert(sum, count, n, now +1, sum_now -1, ma, min(sum_now -1, mi));
+}
