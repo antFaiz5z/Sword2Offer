@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int local_main_roundrobin(){
+void local_main_roundrobin(){
 
     int index;
     std::vector<entity>  entitites;
