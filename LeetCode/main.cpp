@@ -6,18 +6,19 @@
 #include "Algorithm/DoublePointer.h"
 #include "Algorithm/Sort.h"
 #include "Algorithm/Greedy.h"
+#include "Algorithm/Design.h"
+#include "Algorithm/Dynamic.h"
 #include "DataStructure/Map.h"
 #include "DataStructure/TrieTree.h"
 #include "DataStructure/HashTable.h"
-#include "Algorithm/Design.h"
 #include "Unsorted.h"
-#include "Algorithm/Dynamic.h"
 
 int main() {
 
     //vector<string> d({"ale","apple","monkey","plea"});
     //cout << DoublePointer::findLongestWord("abpcplea", d) << endl;
 
+    Bit bit;
     HashTable ht;
     Unsorted unsorted;
     Dynamic dynamic;
@@ -71,10 +72,23 @@ int main() {
     cout <<dynamic.uniquePathsWithObstacles(ob) << endl;
     cout <<dynamic.uniquePathsWithObstaclesII(ob) <<endl;*/
 
-    cout << unsorted.add_overflow(numeric_limits<int>::max(), numeric_limits<int>::max()) << endl;
-    cout << unsorted.add_overflow(numeric_limits<int>::min(), numeric_limits<int>::min()) << endl;
+/*    cout << unsorted.add_overflow(numeric_limits<int>::max(), numeric_limits<int>::max()) << endl;
+    cout << unsorted.add_overflow(numeric_limits<int>::min(), numeric_limits<int>::min()) << endl;*/
 
+/*    cout << unsorted.myAtoi("-345") << endl;*/
 
+/*    cout << bit.hammingWeight(0b10000000000000000000000000001011) << endl;
+    cout << bit.hammingWeightII(0b10000000000000000000000000001011) << endl;*/
+
+    cout << bit.isPowerOfTwo(64) << endl;
+    cout << bit.isPowerOfTwoII(64) << endl;
+    cout << bit.isPowerOfTwoIII(64) << endl;
+    cout << bit.isPowerOf(-4, -2) <<endl;
+    cout << bit.isPowerOf(-27, -3) << endl;
+    cout << bit.isPowerOfThree(27) << endl;
+    cout << bit.isPowerOfThreeII(27) << endl;
+    cout << bit.isPowerOfFour(64) << endl;
+    cout << bit.isPowerOfFourII(64) << endl;
 
     return 0;
 

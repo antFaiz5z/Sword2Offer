@@ -86,7 +86,36 @@ int Unsorted::reverseII(int x) {
 }
 
 int Unsorted::myAtoi(string str) {
-    return 0;
+
+    int index = 0, ret = 0;
+    bool flag = true;
+    int n = str.size();
+    while (index < n && str[index] == ' ') ++index;
+    if (index < n && str[index] == '+') {
+        ++index;
+    } else if (index < n && str[index] == '-') {
+        flag = false;
+        ++index;
+    }
+    for (int i = index; i < n; ++i) {
+        if (str[i] >= '0' && str[i] <= '9') {
+            int pop = str[i] - '0';
+            if (flag &&
+                (ret > numeric_limits<int>::max() / 10 || (ret == numeric_limits<int>::max() / 10 && pop > 7))) {
+                return numeric_limits<int>::max();
+            }
+            if (!flag &&
+                (-ret < numeric_limits<int>::min() / 10 || (-ret == numeric_limits<int>::min() / 10 && pop >= 8))) {//!!!
+                return numeric_limits<int>::min();
+            }
+            ret = ret * 10 + pop;
+            //cout << ret << " " << pop << endl
+        } else {
+            break;
+        }
+    }
+
+    return flag ? ret : -ret;
 }
 
 
