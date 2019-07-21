@@ -4,6 +4,8 @@
 
 #include "DoublePointer.h"
 
+#include <unordered_set>
+
 #include <cmath>
 
 vector<int> DoublePointer::twoSum(vector<int> &numbers, int target) {
@@ -57,4 +59,62 @@ string DoublePointer::findLongestWord(string s, vector<string>& d) {
         }
     }
     return ret;
+}
+
+bool DoublePointer::isPalindrome(string s) {
+
+    int i = 0, j = s.size() -1;
+    while (i < j){
+
+        while (i < j && !isalnum(s[i])) ++i;
+        while (i < j && !isalnum(s[j])) --j;
+        if (tolower(s[i++]) != tolower(s[j--])) return false;
+    }
+    return true;
+}
+
+vector<vector<string>> DoublePointer::partition(string s) {
+
+    vector<vector<string>> ret;
+    vector<string> sub;
+    bt(s, ret, sub, 0);
+    return ret;
+
+}
+
+void DoublePointer::bt(string &s, vector<vector<string>> &ret, vector<string> &sub, int index){
+
+    if (index == s.size()){
+        ret.push_back(sub);
+        return;
+    }
+    for (int i = index; i < s.size(); ++i){
+
+        string tmp = s.substr(index, i -index +1);
+        if (isPalindrome(tmp)){
+            sub.push_back(tmp);
+            bt(s, ret, sub, i +1);
+            sub.pop_back();
+        }
+    }
+}
+
+bool DoublePointer::wordBreak(string s, vector<string> &wordDict) {
+
+    unordered_set<string> t(wordDict.begin(), wordDict.end());
+    bool dp[s.size() +1];
+    for (int i = 0; i <= s.size(); ++i) {
+        dp[i]  =false;
+    }
+    dp[0] = true;
+    for (int i = 1; i <= s.size(); ++i) {
+
+        for (int j = 0; j < i; ++j) {
+            if (dp[j] && t.find(s.substr(j, i- j +1)) != t.end()){
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+    return dp[s.size()];
 }
