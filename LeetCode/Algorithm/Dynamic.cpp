@@ -4,6 +4,7 @@
 
 #include "Dynamic.h"
 
+
 int Dynamic::uniquePaths(int m, int n) {
 
     if (m > n) {
@@ -64,10 +65,10 @@ int Dynamic::uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
     vector<int> a(n);
     a[0] = 1;
     for (int j = 1; j < n; ++j) {
-        a[j] = a[j -1]? 1 - obstacleGrid[0][j] : 0;
+        a[j] = a[j - 1] ? 1 - obstacleGrid[0][j] : 0;
     }
     for (int i = 1; i < m; ++i) {
-        if (obstacleGrid[i][0] || !a[0]){
+        if (obstacleGrid[i][0] || !a[0]) {
             a[0] = 0;
         }
         for (int j = 1; j < n; ++j) {
@@ -116,5 +117,74 @@ int Dynamic::uniquePathsWithObstaclesII(vector<vector<int>> &obstacleGrid) {
 
     // Return value stored in rightmost bottommost cell. That is the destination.
     return obstacleGrid[R - 1][C - 1];
-    return 0;
+}
+
+bool Dynamic::wordBreak(string s, vector<string> &wordDict) {
+
+    unordered_set<string> t(wordDict.begin(), wordDict.end());
+    bool dp[s.size() + 1];
+    for (int i = 0; i <= s.size(); ++i) {
+        dp[i] = false;
+    }
+    dp[0] = true;
+    //或者 bool dp[s.size() + 1]{true}; //IDE不通过
+    for (int i = 1; i <= s.size(); ++i) {
+
+        for (int j = 0; j < i; ++j) {
+            if (dp[j] && t.find(s.substr(j, i - j)) != t.end()) {
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+    return dp[s.size()];
+}
+
+vector<string> Dynamic::wordBreak2(string s, vector<string> &wordDict) {
+
+    unordered_set<string> t(wordDict.begin(), wordDict.end());
+    vector<vector<string>> dp(s.size() +1);
+    dp[0].push_back("");
+
+    for (int i = 1; i <= s.size(); ++i) {
+        for (int j = 0; j < i; ++j) {
+            if (!dp[j].empty() && t.find(s.substr(j, i- j)) != t.end()){
+                for (auto &k : dp[j]){
+                    dp[i].push_back(k + (k.empty()? "" : " ") + s.substr(j, i -j));
+                }
+            }
+        }
+    }
+    return dp[s.size()];
+}
+
+vector<string> Dynamic::wordBreak2II(string s, vector<string> &wordDict) {
+
+    unordered_set<string> t(wordDict.begin(), wordDict.end());
+    unordered_map<int, vector<string>> m;
+
+    return wordBreak2II_bt(s, t, m, 0);
+}
+
+vector<string>
+Dynamic::wordBreak2II_bt(string s, unordered_set<string> &t, unordered_map<int, vector<string>> &m, int index) {
+
+    if (m.count(index)){
+        return m[index];
+    }
+    vector<string> ret;
+    if (index == s.size()){
+        ret.emplace_back("");
+    }
+    for (int i = index +1; i <= s.size(); ++i) {
+
+        if (t.count(s.substr(index, i - index))){
+            vector<string> tmp = wordBreak2II_bt(s, t, m, i);
+            for (auto &j : tmp){
+                ret.push_back(s.substr(index, i -index) + (j.empty()? "" : " ") + j);
+            }
+        }
+    }
+    m[index] = ret;
+    return ret;
 }

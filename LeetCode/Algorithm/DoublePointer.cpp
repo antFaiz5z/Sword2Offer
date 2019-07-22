@@ -4,8 +4,6 @@
 
 #include "DoublePointer.h"
 
-#include <unordered_set>
-
 #include <cmath>
 
 vector<int> DoublePointer::twoSum(vector<int> &numbers, int target) {
@@ -99,22 +97,3 @@ void DoublePointer::bt(string &s, vector<vector<string>> &ret, vector<string> &s
     }
 }
 
-bool DoublePointer::wordBreak(string s, vector<string> &wordDict) {
-
-    unordered_set<string> t(wordDict.begin(), wordDict.end());
-    bool dp[s.size() +1];
-    for (int i = 0; i <= s.size(); ++i) {
-        dp[i]  =false;
-    }
-    dp[0] = true;
-    for (int i = 1; i <= s.size(); ++i) {
-
-        for (int j = 0; j < i; ++j) {
-            if (dp[j] && t.find(s.substr(j, i- j +1)) != t.end()){
-                dp[i] = true;
-                break;
-            }
-        }
-    }
-    return dp[s.size()];
-}

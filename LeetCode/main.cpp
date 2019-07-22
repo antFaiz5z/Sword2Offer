@@ -80,7 +80,7 @@ int main() {
 /*    cout << bit.hammingWeight(0b10000000000000000000000000001011) << endl;
     cout << bit.hammingWeightII(0b10000000000000000000000000001011) << endl;*/
 
-    cout << bit.isPowerOfTwo(64) << endl;
+/*    cout << bit.isPowerOfTwo(64) << endl;
     cout << bit.isPowerOfTwoII(64) << endl;
     cout << bit.isPowerOfTwoIII(64) << endl;
     cout << bit.isPowerOf(-4, -2) <<endl;
@@ -88,7 +88,15 @@ int main() {
     cout << bit.isPowerOfThree(27) << endl;
     cout << bit.isPowerOfThreeII(27) << endl;
     cout << bit.isPowerOfFour(64) << endl;
-    cout << bit.isPowerOfFourII(64) << endl;
+    cout << bit.isPowerOfFourII(64) << endl;*/
+
+    vector<string> tmp{"apple", "pen", "applepen", "pine", "pineapple"};
+    cout << dynamic.wordBreak("pineapplepenapple", tmp) <<endl;
+    vector<string> ret = dynamic.wordBreak2("pineapplepenapple", tmp);
+    for (auto &i : ret) cout << '[' << i << "],";
+    cout << endl;
+    ret = dynamic.wordBreak2II("pineapplepenapple", tmp);
+    for (auto &i : ret) cout << '[' << i << "],";
 
     return 0;
 

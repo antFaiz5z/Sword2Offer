@@ -29,8 +29,6 @@ public:
     vector<vector<string>> partition(string s);
     void bt(string &s, vector<vector<string>> &ret, vector<string> &sub, int index);
 
-    //139
-    bool wordBreak(string s, vector<string>& wordDict);
 
 private:
 
