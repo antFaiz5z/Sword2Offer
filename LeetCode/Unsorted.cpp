@@ -8,6 +8,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include <set>
 
 using namespace std;
 
@@ -116,6 +117,25 @@ int Unsorted::myAtoi(string str) {
     }
 
     return flag ? ret : -ret;
+}
+
+bool Unsorted::isAnagram(string s, string t) {
+
+    if (s.size() != t.size()){
+        return false;
+    }
+    multiset<char> set;
+    for (auto &i : s){
+        set.insert(i);
+    }
+    for (auto &i : t){
+        if (set.find(i) != set.end()){
+            set.erase(set.find(i));
+        }else{
+            return false;
+        }
+    }
+    return true;
 }
 
 

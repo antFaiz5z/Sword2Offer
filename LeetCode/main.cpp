@@ -90,6 +90,7 @@ int main() {
     cout << bit.isPowerOfFour(64) << endl;
     cout << bit.isPowerOfFourII(64) << endl;*/
 
+/*
     vector<string> tmp{"apple", "pen", "applepen", "pine", "pineapple"};
     cout << dynamic.wordBreak("pineapplepenapple", tmp) <<endl;
     vector<string> ret = dynamic.wordBreak2("pineapplepenapple", tmp);
@@ -97,6 +98,9 @@ int main() {
     cout << endl;
     ret = dynamic.wordBreak2II("pineapplepenapple", tmp);
     for (auto &i : ret) cout << '[' << i << "],";
+*/
+
+    cout << unsorted.isAnagram("anagram","nagaram") << endl;
 
     return 0;
 

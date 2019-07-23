@@ -25,6 +25,9 @@ public:
 
     //8
     int myAtoi(string str);
+
+    //242
+    bool isAnagram(string s, string t);
 };
 
 
