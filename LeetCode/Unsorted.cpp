@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <cmath>
 #include <set>
+#include <unordered_map>
+#include <climits>
 
 using namespace std;
 
@@ -138,4 +140,42 @@ bool Unsorted::isAnagram(string s, string t) {
     return true;
 }
 
+int Unsorted::longestSubstring(string s, int k) {
 
+    if (k <= 1) return s.size();
+    if (s.size() < k) return 0;
+
+    unordered_map<char, int> map;
+    for (auto &i : s){
+        map[i]++;
+    }
+    int i = 0;
+    while (i < s.size() && map[s[i]] >= k) ++i;
+    if (i == s.size()) return i;
+
+    int l = longestSubstring(s.substr(0, i), k);
+    while (i < s.size() && map[s[i]] < k) ++i;
+    int r = longestSubstring(s.substr(i), k);
+
+    return max(l, r);
+}
+
+int Unsorted::maxPathSum(TreeNode* root) {
+
+    int max_sum = INT_MIN;
+    max_gain(root, max_sum);
+    return max_sum;
+}
+
+int Unsorted::max_gain(TreeNode* root, int &max_sum){
+
+    if (root == nullptr) return 0;
+
+    int left = max(max_gain(root->left, max_sum), 0);
+    int right = max(max_gain(root->right, max_sum), 0);
+
+    int new_sum = root->val + left + right;
+    max_sum = max(max_sum, new_sum);
+
+    return root->val + max(left, right);
+}
