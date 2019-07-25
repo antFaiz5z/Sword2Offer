@@ -143,14 +143,14 @@ bool Dynamic::wordBreak(string s, vector<string> &wordDict) {
 vector<string> Dynamic::wordBreak2(string s, vector<string> &wordDict) {
 
     unordered_set<string> t(wordDict.begin(), wordDict.end());
-    vector<vector<string>> dp(s.size() +1);
+    vector<vector<string>> dp(s.size() + 1);
     dp[0].push_back("");
 
     for (int i = 1; i <= s.size(); ++i) {
         for (int j = 0; j < i; ++j) {
-            if (!dp[j].empty() && t.find(s.substr(j, i- j)) != t.end()){
-                for (auto &k : dp[j]){
-                    dp[i].push_back(k + (k.empty()? "" : " ") + s.substr(j, i -j));
+            if (!dp[j].empty() && t.find(s.substr(j, i - j)) != t.end()) {
+                for (auto &k : dp[j]) {
+                    dp[i].push_back(k + (k.empty() ? "" : " ") + s.substr(j, i - j));
                 }
             }
         }
@@ -169,22 +169,154 @@ vector<string> Dynamic::wordBreak2II(string s, vector<string> &wordDict) {
 vector<string>
 Dynamic::wordBreak2II_bt(string s, unordered_set<string> &t, unordered_map<int, vector<string>> &m, int index) {
 
-    if (m.count(index)){
+    if (m.count(index)) {
         return m[index];
     }
     vector<string> ret;
-    if (index == s.size()){
+    if (index == s.size()) {
         ret.emplace_back("");
     }
-    for (int i = index +1; i <= s.size(); ++i) {
+    for (int i = index + 1; i <= s.size(); ++i) {
 
-        if (t.count(s.substr(index, i - index))){
+        if (t.count(s.substr(index, i - index))) {
             vector<string> tmp = wordBreak2II_bt(s, t, m, i);
-            for (auto &j : tmp){
-                ret.push_back(s.substr(index, i -index) + (j.empty()? "" : " ") + j);
+            for (auto &j : tmp) {
+                ret.push_back(s.substr(index, i - index) + (j.empty() ? "" : " ") + j);
             }
         }
     }
     m[index] = ret;
     return ret;
+}
+
+int Dynamic::rob(vector<int> &nums) {
+
+    int n = nums.size();
+    if (n == 0) return 0;
+    int dp[n];
+    dp[0] = nums[0];
+    if (n >= 2)
+        dp[1] = max(nums[0], nums[1]);
+    for (int i = 2; i < n; ++i) {
+        dp[i] = max(nums[i] + dp[i - 2], nums[i - 1]);
+    }
+    return dp[n - 1];
+}
+
+int Dynamic::numSquares(int n) {
+
+    vector<int> dp(n + 1, INT_MAX);
+    dp[0] = 0;
+    for (int i = 0; i <= n; ++i) {
+        for (int j = 1; i + j * j <= n; ++j) {
+            dp[i + j * j] = min(dp[i + j * j], dp[i] + 1);
+        }
+    }
+    return dp.back();
+}
+
+int Dynamic::numSquaresIIbfs(int n) {
+
+    if (n == 0) return 0;
+    queue<pair<int, int>> q;
+    q.push(make_pair(n, 0));
+    vector<bool> visited(n + 1, false);
+    while (!q.empty()) {
+        auto now = q.front();
+        q.pop();
+        visited[now.first] = true;
+        for (int i = 1; now.first - i * i >= 0; ++i) {
+            if (now.first - i * i == 0) {
+                return now.second + 1;
+            }
+            if (!visited[now.first - i * i]) {
+                q.push(make_pair(now.first - i * i, now.second + 1));
+            }
+        }
+    }
+    return 0;
+}
+
+int Dynamic::lengthOfLIS(vector<int> &nums) {
+
+    int n = nums.size();
+    if (n <= 1) return n;
+    int dp[n];
+    dp[0] = 1;
+    int ret = 1;
+    for (int i = 1; i < n; ++i) {
+        int m = 0;
+        for (int j = 0; j < i; ++j) {
+            if (nums[j] < nums[i]) {
+                m = max(m, dp[j]);
+            }
+        }
+        dp[i] = m + 1;
+        ret = max(ret, dp[i]);
+    }
+    return ret;
+}
+
+int Dynamic::coinChange(vector<int> &coins, int amount) {
+
+    vector<int> dp(amount + 1, amount + 1);
+    dp[0] = 0;
+    for (int i = 1; i <= amount; ++i) {
+        for (auto &j : coins) {
+            if (i - j >= 0) {
+                dp[i] = min(dp[i], dp[i - j] + 1);
+            }
+        }
+    }
+    return dp[amount] > amount ? -1 : dp[amount];
+}
+
+int Dynamic::longestIncreasingPath(vector<vector<int>> &matrix) {
+
+    int row = matrix.size();
+    if (row == 0) return 0;
+    int col = matrix[0].size();
+    vector<vector<int>> count(row, vector<int>(col, 1));
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            helper(matrix, count, i, j);
+        }
+    }
+    int ret = 0;
+    for (auto &i : count) {
+        for (auto &j : i) {
+            ret = max(ret, j);
+        }
+    }
+    return ret;
+}
+
+void Dynamic::helper(vector<vector<int>> &matrix, vector<vector<int>> &count, int x, int y) {
+
+    int row = matrix.size();
+    int col = matrix[0].size();
+    if (x - 1 >= 0 && matrix[x - 1][y] > matrix[x][y]) {
+        if (count[x - 1][y] < count[x][y] + 1) {
+            count[x - 1][y] = count[x][y] + 1;
+            helper(matrix, count, x - 1, y);
+        }
+    }
+    if (y - 1 >= 0 && matrix[x][y - 1] > matrix[x][y]) {
+        if (count[x][y - 1] < count[x][y] + 1) {
+            count[x][y - 1] = count[x][y] + 1;
+            helper(matrix, count, x, y - 1);
+        }
+    }
+    if (x + 1 < row && matrix[x + 1][y] > matrix[x][y]) {
+        if (count[x + 1][y] < count[x][y] + 1) {
+            count[x + 1][y] = count[x][y] + 1;
+            helper(matrix, count, x + 1, y);
+        }
+    }
+    if (y + 1 < col && matrix[x][y + 1] > matrix[x][y]) {
+        if (count[x][y + 1] < count[x][y] + 1) {
+            count[x][y + 1] = count[x][y] + 1;
+            helper(matrix, count, x, y + 1);
+        }
+    }
 }

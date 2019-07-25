@@ -4,13 +4,14 @@
 
 #include "Unsorted.h"
 
-#include <map>
 #include <iostream>
 #include <algorithm>
+#include <climits>
 #include <cmath>
+#include <map>
 #include <set>
 #include <unordered_map>
-#include <climits>
+#include <unordered_set>
 
 using namespace std;
 
@@ -178,4 +179,21 @@ int Unsorted::max_gain(TreeNode* root, int &max_sum){
     max_sum = max(max_sum, new_sum);
 
     return root->val + max(left, right);
+}
+
+int Unsorted::longestConsecutive(vector<int> &nums) {
+
+    unordered_set<int> set(nums.begin(), nums.end());
+    int ret = 0;
+    for (auto &i : nums){
+        if (set.find(i -1) == set.end()){
+            int now_num = i;
+            int now_count = 1;
+            while (set.find(++now_num) != set.end()){
+                ++now_count;
+            }
+            ret = max(ret, now_count);
+        }
+    }
+    return ret;
 }

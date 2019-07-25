@@ -39,7 +39,10 @@ public:
 
     //124
     int maxPathSum(TreeNode* root);
-    int max_gain(TreeNode* root, int &max_sum)
+    int max_gain(TreeNode* root, int &max_sum);
+
+    //128
+    int longestConsecutive(vector<int>& nums);
 };
 
 

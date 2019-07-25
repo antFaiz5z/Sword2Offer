@@ -5,10 +5,13 @@
 #ifndef SWORD2OFFER_DYNAMIC_H
 #define SWORD2OFFER_DYNAMIC_H
 
+#include <algorithm>
 #include <vector>
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
+#include <queue>
+#include <climits>
 
 using namespace std;
 
@@ -34,6 +37,22 @@ public:
     vector<string> wordBreak2II(string s, vector<string>& wordDict);//记忆化回溯
     vector<string> wordBreak2II_bt(string s, unordered_set<string> &t, unordered_map<int, vector<string>> &m, int index);
 
+    //198
+    int rob(vector<int>& nums);
+
+    //279
+    int numSquares(int n);
+    int numSquaresIIbfs(int n);
+
+    //300
+    int lengthOfLIS(vector<int>& nums);
+
+    //322
+    int coinChange(vector<int>& coins, int amount);
+
+    //329
+    int longestIncreasingPath(vector<vector<int>>& matrix);
+    void helper(vector<vector<int>>& matrix, vector<vector<int>>& count, int x, int y);
 };
 
 
