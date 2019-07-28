@@ -62,7 +62,7 @@ public:
     void pdd_one();
 
     //判断各字符串是否可以头尾相接形成环（相接即字符相同）
-    bool pdd_two();
+    bool pdd_two();//TODO
 
     bool search(vector<pair<char, char >> &v2, unordered_multimap<char, char> &s, int index);
 
