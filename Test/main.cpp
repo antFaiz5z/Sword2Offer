@@ -9,8 +9,13 @@
 #include <cstring>
 #include <list>
 
+#include "Others.h"
+
 using namespace std;
 
 int main() {
 
+    Others others;
+    others.pdd_one();
+    //others.four();
 }
