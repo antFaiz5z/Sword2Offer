@@ -16,6 +16,9 @@ using namespace std;
 int main() {
 
     Others others;
-    others.pdd_one();
+    //others.pdd_one();
     //others.four();
+
+    others.netease_two();
+    //others.netease_three();
 }

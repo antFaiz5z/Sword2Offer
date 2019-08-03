@@ -6,6 +6,7 @@
 #define JIANZHIOFFER_OTHERS_H
 
 #include <cstdint>
+#include <climits>
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -49,7 +50,7 @@ public:
     //'?'可为'A'或'B'，使丑陋数（叠词）最小
     void ugly();
 
-    //0~n-1中选k个数之和为n的倍数
+    //0~n-1中选k个数之和为n的倍数1
     void combination();//error 10%
     void find(int &ret, int n, int k, int start, int now, int rest);
 
@@ -63,10 +64,20 @@ public:
 
     //判断各字符串是否可以头尾相接形成环（相接即字符相同）
     bool pdd_two();//TODO
-
     bool search(vector<pair<char, char >> &v2, unordered_multimap<char, char> &s, int index);
 
+    //网易互联网
+    //大数求公约数
+    void netease_one();
 
+    //求给出数是否是已输入数字集的某个子集的或运算结果（1为添加数字，2为判断给出数）
+    void netease_two();//error, 30%,内存超出限制
+    //给出n个数，分别求当i等于1~n时所有长度为i的的连续子序列的最大值中的最小值
+    void netease_three();//error, 60%,循环超时
+    //给出优秀01序列S,判断01序列T是否优秀
+    //（任意两优秀序列拼接而成的序列也为优秀序列，若某序列优秀则其翻转后再去除前导0的序列也优秀）
+    //(例如： 1100 -> 110011)
+    void netease_four();
 };
 
 

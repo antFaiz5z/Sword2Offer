@@ -110,7 +110,6 @@ void Others::string2digitalComputation() {
     cout << ret;
 }
 
-
 void Others::bytedance_one() {
 
 
@@ -289,7 +288,6 @@ void Others::insert(float &sum, float &count, int n, int now, int sum_now, int m
     insert(sum, count, n, now + 1, sum_now - 1, ma, min(sum_now - 1, mi));
 }
 
-
 void Others::pdd_one() {
 
     string line;
@@ -337,7 +335,7 @@ void Others::pdd_one() {
 
 bool Others::pdd_two() {
 
-    string tmp;
+/*    string tmp;
     vector<string> v;
     while (cin >> tmp) {
         v.push_back(tmp);
@@ -347,7 +345,84 @@ bool Others::pdd_two() {
         map.insert(make_pair(i[0], i[i.size() - 1]), false);
     }
     map.begin()->second = true;
-    return search(map, 1, map.begin()->first.first, map.begin()->first.second);
+    return search(map, 1, map.begin()->first.first, map.begin()->first.second);*/
+    return false;
 }
+
+void Others::netease_one() {}
+
+void Others::netease_two() {
+
+    int n, a, b;
+    cin >> n;
+    bool find = false;
+    vector<int> nums;
+    vector<vector<int>> res(n, vector<int>());
+
+    for (int i = 0; i < n; ++i) {
+        scanf("%d %d", &a, &b);
+        if (a == 1) {
+            nums.push_back(b);
+            int count = nums.size();
+            res[count - 1].push_back(b);
+            for (int j = 0; j < count - 1; ++j) {
+                for (auto &k : res[j]) {
+                    res[count - 1].push_back(b | k);
+                }
+            }
+        } else {
+            for (int j = 0; j < nums.size(); ++j) {
+                for (auto &k : res[j]) {
+                    if (k == b) {
+                        find = true;
+                        break;
+                    }
+                }
+                if (find) break;
+            }
+            if (find) {
+                cout << "YES" << endl;
+            } else {
+                cout << "NO" << endl;
+            }
+            find = false;
+        }
+    }
+
+}
+
+void Others::netease_three() {
+
+    int n, tmp, min_num = INT_MAX;
+    cin >> n;
+
+    vector<int> nums, ret;
+
+    for (int i = 0; i < n; ++i) {
+        cin >> tmp;
+        nums.push_back(tmp);
+    }
+
+    for (auto &i: nums) {
+        min_num = min(min_num, i);
+    }
+    ret.push_back(min_num);
+    for (int i = 1; i < n; ++i) {
+        min_num = INT_MAX;
+        for (int j = 0; j < n - i; ++j) {
+            nums[j] = max(nums[j], nums[j + 1]);
+            min_num = min(min_num, nums[j]);
+        }
+        ret.push_back(min_num);
+    }
+
+    for (auto &i: ret) {
+        cout << i << " ";
+    }
+    cout << endl;
+
+}
+
+void Others::netease_four() {}
 
 
