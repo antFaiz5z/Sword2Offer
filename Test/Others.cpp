@@ -425,4 +425,158 @@ void Others::netease_three() {
 
 void Others::netease_four() {}
 
+void Others::leiho_one() {
+
+    int win_count, click_count;
+    int x, y, w, h;
+    cin >> win_count >> click_count;
+
+    list<pair<int, vector<int>>> win;
+    vector<pair<int, int>> click;
+    for (int i = 0; i < win_count; ++i) {
+        cin >> x >> y >> w >> h;
+        win.emplace_front(make_pair(i + 1, vector<int>{x, y, w, h}));
+    }
+    for (int j = 0; j < click_count; ++j) {
+        cin >> x >> y;
+        click.emplace_back(make_pair(x, y));
+    }
+
+    for (int k = 0; k < click_count; ++k) {
+        int cx = click[k].first;
+        int cy = click[k].second;
+        bool find = false;
+        for (auto it = win.begin(); it != win.end(); ++it) {
+            x = it->second[0];
+            y = it->second[1];
+            w = it->second[2];
+            h = it->second[3];
+            if (cx >= x && cx <= x + w && cy >= y && cy <= y + h) {
+                find = true;
+                cout << it->first << endl;
+                pair<int, vector<int>> tmp(*it);
+                win.erase(it);
+                win.emplace_front(tmp);
+                break;
+            }
+        }
+        if (!find) cout << -1 << endl;
+    }
+}
+
+void Others::leiho_two() {}
+
+void Others::leiho_three() {
+
+    cin >> w >> xe >> ye >> xc >> yc >> px >> py;
+    for (int i = 0; i < 20; ++i) {
+        cin >> x >> y;
+        emoji.emplace_back(make_pair(x, y));
+    }
+    x = 0;
+    y = 0;
+    int now_height = 0;
+    unsigned char chara;
+
+    while (scanf("%2X", &chara) != EOF) {
+        read(chara, x, now_height);
+    }
+    cout << x << " " << y << endl;
+}
+
+void Others::read(const unsigned char &chara, int &now_x, int &now_height) {
+
+    if (chara >= 0xE0) {
+        addx(now_x, now_height, xc);
+        chs = true;
+        scanf("%4X", &chara);
+    } else if (chara == '#') {
+        eng = true;
+        scanf("%2X", &chara);
+        if (chara == '#') {
+            addx(now_x, now_height, xe);
+        } else if (chara == '0' || (chara >= '2' && chara <= '9')) {
+            now_height = max(now_height, emoji[chara - '0'].second);
+            addx(now_x, now_height, emoji[chara - '0'].first);
+        } else if (chara == '1') {
+            scanf("%2X", &chara);
+            if (chara >= '0' && chara <= '9') {
+                now_height = max(now_height, emoji[chara - '0' + 10].second);
+                addx(now_x, now_height, emoji[chara - '0' + 10].first);
+            } else {
+                read(chara, now_x, now_height);
+            }
+        }
+    } else {
+        addx(now_x, now_height, xe);
+        eng = true;
+    }
+}
+
+void Others::addx(int &now_x, int &now_height, int wx) {
+    if (now_x + px + wx > w) {
+        addy(now_height);
+        now_x = wx;
+    } else {
+        now_x += (px + wx);
+    }
+}
+
+void Others::addy(int &now_height) {
+    if (eng) now_height = max(now_height, ye);
+    if (chs) now_height = max(now_height, yc);
+    y += (now_height + py);
+    eng = false;
+    chs = false;
+    now_height = 0;
+}
+
+
+void Others::leiho_four() {
+
+    int n, tmp;
+    cin >> n;
+    vector<int> nums;
+    vector<int> ret(2, 0);
+    vector<int> last(2, 0);
+    for (int i = 0; i < n; ++i) {
+        cin >> tmp;
+        nums.push_back(tmp);
+    }
+    int x = 0, y = n - 1;
+
+    while (x <= y) {
+        if (abs(nums[x] - last[0]) >= abs(nums[y] - last[0])) {
+            ret[0] += abs(nums[x] - last[0]);
+            last[0] = nums[x++];
+        } else {
+            ret[0] += abs(nums[y] - last[0]);
+            last[0] = nums[y--];
+        }
+        if (abs(nums[x] - last[1]) >= abs(nums[y] - last[1])) {
+            ret[1] += abs(nums[x] - last[1]);
+            last[1] = nums[x++];
+        } else {
+            ret[1] += abs(nums[y] - last[1]);
+            last[1] = nums[y--];
+        }
+    }
+    cout << ret[0] << " " << ret[1];
+
+}
+
+void Others::leiho_five() {
+
+    double x;
+    cin >> x;
+    if (x <= 0.66666667) {
+        cout << -6.457329 * x * x - 1.6139155 * x + 3.0521;
+    } else {
+        cout << 0;
+    }
+}
+
+
+
+
 

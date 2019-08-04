@@ -64,7 +64,7 @@ public:
 
     //判断各字符串是否可以头尾相接形成环（相接即字符相同）
     bool pdd_two();//TODO
-    bool search(vector<pair<char, char >> &v2, unordered_multimap<char, char> &s, int index);
+    //bool search(vector<pair<char, char >> &v2, unordered_multimap<char, char> &s, int index);
 
     //网易互联网
     //大数求公约数
@@ -78,6 +78,28 @@ public:
     //（任意两优秀序列拼接而成的序列也为优秀序列，若某序列优秀则其翻转后再去除前导0的序列也优秀）
     //(例如： 1100 -> 110011)
     void netease_four();
+
+    //网易雷火
+    //判断每一步点击点中的窗口ID
+    void leiho_one();//acc
+    //bercon-locott??bst 查找
+    void leiho_two();
+    //输入包含中英文及符号表情的十六进制utf-8字符串，计算结尾坐标
+    void leiho_three();//error, 0%
+    void read(const unsigned char &chara, int &now_x, int &now_height);
+    void addx(int &now_x, int &now_height, int wx);
+    void addy(int &now_height);
+    //一串数字序列，两人轮流采用最优策略拿取最左或最右元素，得分为每次取数与上次取数（第一次为0）之差绝对值之和，输出两人得分
+    void leiho_four();//error, 8%
+    //根据给出程序（输入x则输出相应y）,猜测f(x)
+    void leiho_five();//error ,0%
+
+private:
+    //void leiho_three();
+    int w, xe, ye, xc, yc, px, py, x, y;
+    bool eng = false, chs = false, emo = false;
+    vector<pair<int, int>> emoji;
+
 };
 
 
