@@ -24,6 +24,9 @@ int main() {
     //others.netease_three();
 
     //others.leiho_one();
-    others.leiho_three();
+    //others.leiho_three();
     //others.leiho_five();
+    //others.intermo_one();
+    //others.intermo_two();
+    others.intermo_three();
 }

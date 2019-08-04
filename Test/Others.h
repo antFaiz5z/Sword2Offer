@@ -94,6 +94,15 @@ public:
     //根据给出程序（输入x则输出相应y）,猜测f(x)
     void leiho_five();//error ,0%
 
+    //网易互娱模拟
+    //计税，四舍五入
+    void intermo_one();//acc
+    //字符串压缩，四个及以上字母为字典序连续压缩为‘头-尾’
+    void intermo_two();//acc
+    //由一个数的两种进制表示拼接而成的字符串求其十进制
+    void intermo_three();//error，0%
+    int calculate(char c) ;
+
 private:
     //void leiho_three();
     int w, xe, ye, xc, yc, px, py, x, y;

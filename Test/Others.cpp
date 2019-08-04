@@ -576,6 +576,137 @@ void Others::leiho_five() {
     }
 }
 
+void Others::intermo_one() {
+
+    int n;
+    double tmp;
+    cin >> n;
+    vector<int> nums;
+    for (int i = 0; i < n; ++i) {
+        cin >> tmp;
+        nums.push_back(tmp - 5000);
+    }
+    for (auto &i : nums) {
+
+        if (i <= 0) {
+            cout << 0 << endl;
+        } else if (i <= 3000) {
+            //printf("---%d\n", i * 0.03 + 0.5);
+            cout << int(i * 0.03 + 0.5) << endl;
+        } else if (i <= 12000) {
+            //printf("---%d\n", 3000 * 0.03 + (i - 3000) * 0.1);
+            cout << int(3000 * 0.03 + (i - 3000) * 0.1 + 0.5) << endl;
+        } else if (i <= 25000) {
+            cout << int(3000 * 0.03 + (12000 - 3000) * 0.1 + (i - 12000) * 0.2 + 0.5) << endl;
+        } else if (i <= 35000) {
+            cout << int(3000 * 0.03 + (12000 - 3000) * 0.1 + (25000 - 12000) * 0.2 + (i - 25000) * 0.25 + 0.5) << endl;
+        } else if (i <= 55000) {
+
+            cout << int(3000 * 0.03 + (12000 - 3000) * 0.1 + (25000 - 12000) * 0.2 + (35000 - 25000) * 0.25 +
+                        (i - 35000) * 0.3 + 0.5) << endl;
+        } else if (i <= 80000) {
+            cout << int(3000 * 0.03 + (12000 - 3000) * 0.1 + (25000 - 12000) * 0.2 + (35000 - 25000) * 0.25 +
+                        (55000 - 35000) * 0.3 + (i - 55000) * 0.35 + 0.5) << endl;
+        } else {
+            cout << int(3000 * 0.03 + (12000 - 3000) * 0.1 + (25000 - 12000) * 0.2 + (35000 - 25000) * 0.25 +
+                        (55000 - 35000) * 0.3 + (80000 - 55000) * 0.35 + (i - 80000) * 0.45 + 0.5) << endl;
+        }
+    }
+
+}
+
+void Others::intermo_two() {
+
+
+    int n;
+    cin >> n;
+    string tmp;
+    vector<string> ss;
+    vector<string> ret(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> tmp;
+        ss.push_back(tmp);
+    }
+
+    for (int i = 0; i < n; ++i) {
+        string t;
+        int count = 1;
+        ret[i].push_back(ss[i][0]);
+        for (int j = 1; j < ss[i].size(); ++j) {
+            t.push_back(ss[i][j]);
+            if (ss[i][j] != ss[i][j - 1] + 1 || j == ss[i].size() - 1) {
+                if (ss[i][j] == ss[i][j - 1] + 1 ) ++count;
+                if (count >= 4) {
+                    ret[i].push_back('-');
+                    if (ss[i][j] != ss[i][j - 1] + 1 )
+                        ret[i].push_back(t[t.size() - 2]);
+                    ret[i].push_back(t[t.size() - 1]);
+                } else {
+                    for (auto &c : t) {
+                        ret[i].push_back(c);
+                    }
+                }
+                count = 1;
+                t.clear();
+            } else {
+                ++count;
+            }
+        }
+    }
+    for (auto &s: ret) {
+        cout << s << endl;
+    }
+
+
+}
+
+void Others::intermo_three() {
+
+
+    int n, x, y;
+    string tmp;
+    vector<pair<pair<int, int>, string>> res;
+    vector<int> ret;
+    cin >> n;
+    for (int i = 0; i < n; ++i) {
+        cin >> x >> y >> tmp;
+        res.emplace_back(make_pair(make_pair(x, y), tmp));
+    }
+    for (int i = 0; i < n; ++i) {
+        x = res[i].first.first;
+        y = res[i].first.second;
+        tmp = res[i].second;
+        int m = 0, n = tmp.size() - 1;
+        int right_i = 0;
+        int left = 0, right = 0;
+        while (m < n) {
+
+            if (left <= right) {
+                left = left * x + calculate(tmp[m++]);
+                //cout << "left:" << left << endl;
+            } else {
+                int plus = 1;
+                for (int j = 0; j < right_i; ++j) {
+                    plus *= y;
+                }
+                right += (calculate(tmp[n--]) * plus);
+                ++right_i;
+                //cout << "right:" << right << endl;
+            }
+        }
+
+        cout << max(left, right) << endl;
+    }
+}
+
+int Others::calculate(char c) {
+    if (c >= '0' && c < '9') {
+        return c - '0';
+    } else {
+        return c - 'A' + 10;
+    }
+}
+
 
 
 
