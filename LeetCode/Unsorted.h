@@ -54,6 +54,10 @@ public:
 
     //468
     string validIPAddress(string IP);
+    string validIPAddressII(string IP);
+    void split(const string& s, vector<string> &vs, char delim = ' ');
+    bool isValidIPv4(const string& IP);
+    bool isValidIPv6(const string& IP);
 };
 
 

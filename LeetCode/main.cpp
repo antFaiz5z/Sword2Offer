@@ -103,10 +103,12 @@ int main() {
     //cout << unsorted.isAnagram("anagram","nagaram") << endl;
 
     //unsorted.restoreIpAddresses("0000");
-    string s = "172.16.254.1";
-    int in = s.find_first_of(':');
-    cout << in <<endl;
-    //cout << unsorted.validIPAddress("172.16.254.1") << endl;
+
+    //size_t pos;
+    //cout << stoi("cvafs", &pos, 10) << endl;
+    //cout << pos << endl;
+    cout << unsorted.validIPAddress("A.a.aA.2") << endl;
+    cout << unsorted.validIPAddress("") << endl;
     return 0;
 
 

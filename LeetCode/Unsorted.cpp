@@ -12,6 +12,7 @@
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+#include <sstream>
 
 using namespace std;
 
@@ -305,52 +306,118 @@ void Unsorted::restoreIpAddresses_bt(vector<string> &ret, string &s, vector<int>
 
 string Unsorted::validIPAddress(string IP) {
 
-    vector<string> sp;
-    bool ipv4 = false;
-    bool ipv6 = false;
+    if (IP.empty()) return "Neither";
     int count = 0;
-    string tmp(IP);
-    while (!tmp.empty()) {
-        unsigned long it = tmp.find_first_of('.');
-        size_t pos;
-        if (stoi(tmp.substr(0, it), &pos) >= 256) break;
-        if (pos < it) break;
-        ++count;
-        tmp = tmp.substr(it);
-        if (count == 4 && tmp.empty()) return "IPv4";
-    }
-    count = 0;
-    tmp = IP;
+    bool last = false;
     bool error = false;
-    bool zero = false;
-    bool last_zero = false;
-    while (!tmp.empty()) {
-        unsigned long it = tmp.find_first_of(':');
-        string tmp2 = tmp.substr(0, it);
-        if (tmp2 != "0" && tmp2.size() != 4) break;
-        if (tmp2 == "0"){
-            if (last_zero){
+    string tmp(IP);
+    while (!last) {
+        string sub;
+        size_t pos;
+        unsigned long it = tmp.find_first_of('.');
+        if (it == 0) break;
+        if (it == string::npos) {
+            sub = tmp;
+            last = true;
+        } else {
+            sub = tmp.substr(0, it);
+            if (it + 1 <= tmp.size() - 1)
+                tmp = tmp.substr(it + 1);
+            else break;
+        }
+        if (sub.size() > 3) break;
+        if (sub != "0" && sub[0] == '0') break;
+        for (auto &c : sub) {
+            if (c < '0' || c > '9') {
+                error = true;
                 break;
             }
-            last_zero = true;
-            zero = true;
-        } else{
-            if (stoi(tmp2) == 0) break;
-            for (auto &c: tmp2) {
-                if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'))) {
-                    error = true;
-                    break;
-                }
+        }
+        if (error) break;
+        if (stoi(sub, &pos) >= 256) break;
+        if (pos < sub.size()) break;
+        ++count;
+        if (count > 4) break;
+        if (count == 4 && last) return "IPv4";
+    }
+    count = 0;
+    last = false;
+    tmp = IP;
+    error = false;
+    while (!tmp.empty()) {
+        string sub;
+        size_t pos;
+        unsigned long it = tmp.find_first_of(':');
+        if (it == 0) break;
+        if (it == string::npos) {
+            sub = tmp;
+            last = true;
+        } else {
+            sub = tmp.substr(0, it);
+            if (it + 1 <= tmp.size() - 1)
+                tmp = tmp.substr(it + 1);
+            else break;
+        }
+        if (sub.size() > 4) break;
+        for (auto &c: sub) {
+            if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'))) {
+                error = true;
+                break;
             }
         }
         if (error) break;
         ++count;
-        tmp = tmp.substr(it);
-        if (tmp.empty() && ((zero && count <= 8) || (!zero && count == 8))){
-            return "IPv6";
+        if (count > 8) break;
+        if (last && count == 8) return "IPv6";
+    }
+    return "Neither";
+}
+
+
+string Unsorted::validIPAddressII(string IP) {
+    if (isValidIPv4(IP)) return "IPv4";
+    if (isValidIPv6(IP)) return "IPv6";
+    return "Neither";
+}
+
+// 优雅的split
+void Unsorted::split(const string& s, vector<string> &vs, const char delim) {
+    istringstream iss(s);
+    string temp;
+    while (getline(iss, temp, delim)) {
+        vs.emplace_back(move(temp));
+    }
+    if (!s.empty() && s.back() == delim)
+        vs.emplace_back();
+    //加这句的原因是getline不会识别最后一个delim,避免误判"172.16.254.1.","2001:0db8:85a3:0:0:8A2E:0370:7334:"之类的情况
+}
+
+// 判定是否IPv4
+bool Unsorted::isValidIPv4(const string& IP) {
+    vector<string> vs;
+    split(IP, vs, '.');
+    if (vs.size() != 4) return false;
+    for (auto &v:vs) {
+        if (v.empty() || (v.size() > 1 && v[0] == '0') || v.size() > 3) return false;
+        for (auto c:v) {
+            if (!isdigit(c)) return false;
+        }
+        int n = stoi(v);
+        if (n < 0 || n > 255) return false;
+    }
+    return true;
+}
+
+// 判定是否IPv6
+bool Unsorted::isValidIPv6(const string& IP) {
+    vector<string> vs;
+    split(IP, vs, ':');
+    if (vs.size() != 8) return false;
+    for (auto &v:vs) {
+        if (v.empty() || v.size() > 4) return false;
+        for (auto c:v) {
+            if (!(isdigit(c) || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'))) return false;
         }
     }
-
-
-    return std::__cxx11::string();
+    return true;
 }
