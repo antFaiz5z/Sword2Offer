@@ -43,6 +43,17 @@ public:
 
     //128
     int longestConsecutive(vector<int>& nums);
+
+    //393
+    bool validUtf8(vector<int>& data);
+    bool validUtf8II(vector<int>& data);
+
+    //93
+    vector<string> restoreIpAddresses(string s);
+    void restoreIpAddresses_bt(vector<string> &ret, string &s, vector<int> &nums, int index, int count);
+
+    //468
+    string validIPAddress(string IP);
 };
 
 

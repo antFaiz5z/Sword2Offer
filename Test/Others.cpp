@@ -553,6 +553,7 @@ void Others::leiho_four() {
             ret[0] += abs(nums[y] - last[0]);
             last[0] = nums[y--];
         }
+        if (x <= y)
         if (abs(nums[x] - last[1]) >= abs(nums[y] - last[1])) {
             ret[1] += abs(nums[x] - last[1]);
             last[1] = nums[x++];

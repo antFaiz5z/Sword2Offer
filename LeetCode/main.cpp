@@ -18,10 +18,10 @@ int main() {
     //vector<string> d({"ale","apple","monkey","plea"});
     //cout << DoublePointer::findLongestWord("abpcplea", d) << endl;
 
-    Bit bit;
-    HashTable ht;
+    //Bit bit;
+    //HashTable ht;
     Unsorted unsorted;
-    Dynamic dynamic;
+    //Dynamic dynamic;
 
 /*    vector<int> nums{2, 7, 11, 15};
     vector<int> ret = ht.twoSum_hashI(nums, 9);
@@ -100,8 +100,13 @@ int main() {
     for (auto &i : ret) cout << '[' << i << "],";
 */
 
-    cout << unsorted.isAnagram("anagram","nagaram") << endl;
+    //cout << unsorted.isAnagram("anagram","nagaram") << endl;
 
+    //unsorted.restoreIpAddresses("0000");
+    string s = "172.16.254.1";
+    int in = s.find_first_of(':');
+    cout << in <<endl;
+    //cout << unsorted.validIPAddress("172.16.254.1") << endl;
     return 0;
 
 
