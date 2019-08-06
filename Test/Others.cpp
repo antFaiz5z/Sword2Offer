@@ -554,13 +554,13 @@ void Others::leiho_four() {
             last[0] = nums[y--];
         }
         if (x <= y)
-        if (abs(nums[x] - last[1]) >= abs(nums[y] - last[1])) {
-            ret[1] += abs(nums[x] - last[1]);
-            last[1] = nums[x++];
-        } else {
-            ret[1] += abs(nums[y] - last[1]);
-            last[1] = nums[y--];
-        }
+            if (abs(nums[x] - last[1]) >= abs(nums[y] - last[1])) {
+                ret[1] += abs(nums[x] - last[1]);
+                last[1] = nums[x++];
+            } else {
+                ret[1] += abs(nums[y] - last[1]);
+                last[1] = nums[y--];
+            }
     }
     cout << ret[0] << " " << ret[1];
 
@@ -636,10 +636,10 @@ void Others::intermo_two() {
         for (int j = 1; j < ss[i].size(); ++j) {
             t.push_back(ss[i][j]);
             if (ss[i][j] != ss[i][j - 1] + 1 || j == ss[i].size() - 1) {
-                if (ss[i][j] == ss[i][j - 1] + 1 ) ++count;
+                if (ss[i][j] == ss[i][j - 1] + 1) ++count;
                 if (count >= 4) {
                     ret[i].push_back('-');
-                    if (ss[i][j] != ss[i][j - 1] + 1 )
+                    if (ss[i][j] != ss[i][j - 1] + 1)
                         ret[i].push_back(t[t.size() - 2]);
                     ret[i].push_back(t[t.size() - 1]);
                 } else {
@@ -708,6 +708,102 @@ int Others::calculate(char c) {
     }
 }
 
+void Others::dji_one_bt(vector<pair<int, int>> &mp, int &max_sum, int index, int now_sum, int rest_time) {
+
+    for (int i = index; i < mp.size(); ++i) {
+        if (rest_time >= mp[i].first) {
+            max_sum = max(max_sum, now_sum + mp[i].second);
+            dji_one_bt(mp, max_sum, index + 1, now_sum + mp[i].second, rest_time - mp[i].first);
+        }
+    }
+}
+
+void Others::dji_one() {
+
+    int n, m, score, time, max_sum = 0;
+    vector<pair<int, int>> mp;
+    cin >> n >> m;
+    for (int i = 0; i < n; ++i) {
+        cin >> score >> time;
+        mp.emplace_back(time, score);
+    }
+    dji_one_bt(mp, max_sum, 0, 0, m);
+    cout << max_sum << endl;
+}
+
+
+void Others::dji_two() {
+
+    int n, m;
+    while (cin >> n >> m) {
+        unordered_map<string, string> mp;
+        string t1, t2;
+        for (int i = 0; i < n; ++i) {
+            cin >> t1 >> t2;
+            mp.insert(make_pair(t1, t2));
+        }
+        for (int j = 0; j < m; ++j) {
+            cin >> t1;
+            cout << mp[t1] << endl;
+        }
+    }
+}
+
+void Others::dji_three_bt1(vector<int> &price, vector<int> &like_price, int rest_v, int &ret) {
+
+    if (rest_v < 0) return;
+    if (rest_v == 0) {
+        ret = (ret + 1) % 10000007;
+        return;
+    }
+    for (int i = 0; i < price.size(); ++i) {
+        dji_three_bt1(price, like_price, rest_v - price[i], ret);
+    }
+}
+
+void Others::dji_three_bt2(vector<int> &price, vector<int> &like_price, int index, int count, int rest_v, int &ret) {
+
+    if (rest_v < 0) return;
+    if (rest_v == 0) {
+        ret = (ret + 1) % 10000007;
+        return;
+    }
+    if (index == like_price.size()) {
+        dji_three_bt1(price, like_price, rest_v, ret);
+    }
+    int i = 0;
+    while (i <= count && (rest_v - like_price[index] * i) >= 0) {
+        dji_three_bt2(price, like_price, index + 1, i, rest_v - like_price[index] * i, ret);
+        ++i;
+    }
+}
+
+void Others::dji_three() {
+
+    int v, n, like_n, tmp;
+    int ret = 0;
+    vector<int> price;
+    vector<int> like_price;
+
+    cin >> v >> n;
+    for (int i = 0; i < n; ++i) {
+        cin >> tmp;
+        price.push_back(tmp);
+    }
+    cin >> like_n;
+    for (int j = 0; j < like_n; ++j) {
+        cin >> tmp;
+        like_price.push_back(price[tmp - 1]);
+        price[tmp - 1] = 0;
+    }
+    for (int j = 0; j < like_n; ++j) {
+        cout << "v:" << endl;
+        v -= like_price[j] * (like_n - j - 1);
+    }
+
+    dji_three_bt2(price, like_price, 0, INT_MAX, v, ret);
+    cout << ret << endl;
+}
 
 
 

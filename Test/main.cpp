@@ -33,7 +33,7 @@ int main() {
     //others.intermo_two();
     //others.intermo_three();
 
-    cout << round(-0.0) << endl;
+/*    cout << round(-0.0) << endl;
     cout << round(-INFINITY) << endl;
     cout << lround(INFINITY) << endl;
     cout << sizeof(round((long double) 123.456)) << endl;
@@ -52,6 +52,10 @@ int main() {
     cout << -4 / 5 << ":" << -4 % 5 << endl;
     int a;
     scanf("%d", &a);
-    printf("%ld", a);
+    printf("%ld", a);*/
+
+    others.dji_one();
+
+    others.dji_three();
 
 }

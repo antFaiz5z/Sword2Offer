@@ -15,6 +15,7 @@
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
+#include <map>
 
 using namespace std;
 
@@ -101,7 +102,15 @@ public:
     void intermo_two();//acc
     //由一个数的两种进制表示拼接而成的字符串求其十进制
     void intermo_three();//error，0%
-    int calculate(char c) ;
+    int calculate(char c);
+
+    //DJI
+    void dji_one();//error, 50%
+    void dji_one_bt(vector<pair<int, int>> &mp, int &max_sum, int index, int now_sum, int rest_time);
+    void dji_two();//acc
+    void dji_three();//error, 0%
+    void dji_three_bt1(vector<int> &price, vector<int> &like_price, int rest_v, int &ret);
+    void dji_three_bt2(vector<int> &price, vector<int> &like_price, int index, int count, int rest_v, int &ret);
 
 private:
     //void leiho_three();
