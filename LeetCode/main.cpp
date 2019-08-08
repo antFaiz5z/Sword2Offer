@@ -107,8 +107,9 @@ int main() {
     //size_t pos;
     //cout << stoi("cvafs", &pos, 10) << endl;
     //cout << pos << endl;
-    cout << unsorted.validIPAddress("A.a.aA.2") << endl;
-    cout << unsorted.validIPAddress("") << endl;
+    //cout << unsorted.validIPAddress("A.a.aA.2") << endl;
+    //cout << unsorted.validIPAddress("") << endl;
+    
     return 0;
 
 

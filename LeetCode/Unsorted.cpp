@@ -313,7 +313,6 @@ string Unsorted::validIPAddress(string IP) {
     string tmp(IP);
     while (!last) {
         string sub;
-        size_t pos;
         unsigned long it = tmp.find_first_of('.');
         if (it == 0) break;
         if (it == string::npos) {
@@ -334,8 +333,7 @@ string Unsorted::validIPAddress(string IP) {
             }
         }
         if (error) break;
-        if (stoi(sub, &pos) >= 256) break;
-        if (pos < sub.size()) break;
+        if (stoi(sub) >= 256) break;
         ++count;
         if (count > 4) break;
         if (count == 4 && last) return "IPv4";
@@ -346,7 +344,6 @@ string Unsorted::validIPAddress(string IP) {
     error = false;
     while (!tmp.empty()) {
         string sub;
-        size_t pos;
         unsigned long it = tmp.find_first_of(':');
         if (it == 0) break;
         if (it == string::npos) {

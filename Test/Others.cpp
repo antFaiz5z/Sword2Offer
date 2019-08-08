@@ -3,6 +3,9 @@
 //
 
 #include "Others.h"
+//#include <sstream>
+#include <istream>
+#include <ostream>
 
 void Others::MergeTimeSegment(uint64_t nBeginTime, uint64_t nEndTime, std::list<TimeSegment> &lstTimeSegment) {
 
@@ -466,6 +469,7 @@ void Others::leiho_one() {
 
 void Others::leiho_two() {}
 
+/*
 void Others::leiho_three() {
 
     cin >> w >> xe >> ye >> xc >> yc >> px >> py;
@@ -530,6 +534,7 @@ void Others::addy(int &now_height) {
     chs = false;
     now_height = 0;
 }
+*/
 
 
 void Others::leiho_four() {
@@ -602,7 +607,6 @@ void Others::intermo_one() {
         } else if (i <= 35000) {
             cout << int(3000 * 0.03 + (12000 - 3000) * 0.1 + (25000 - 12000) * 0.2 + (i - 25000) * 0.25 + 0.5) << endl;
         } else if (i <= 55000) {
-
             cout << int(3000 * 0.03 + (12000 - 3000) * 0.1 + (25000 - 12000) * 0.2 + (35000 - 25000) * 0.25 +
                         (i - 35000) * 0.3 + 0.5) << endl;
         } else if (i <= 80000) {

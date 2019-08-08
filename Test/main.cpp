@@ -27,6 +27,7 @@ int main() {
     //others.netease_three();
 
     //others.leiho_one();
+    //others.leiho_two();
     //others.leiho_three();
     //others.leiho_five();
     //others.intermo_one();
@@ -54,8 +55,7 @@ int main() {
     scanf("%d", &a);
     printf("%ld", a);*/
 
-    others.dji_one();
-
-    others.dji_three();
+    //others.dji_one();
+    //others.dji_three();
 
 }
