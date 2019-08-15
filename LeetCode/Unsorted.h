@@ -44,6 +44,12 @@ public:
     //128
     int longestConsecutive(vector<int>& nums);
 
+    //5
+    string longestPalindrome(string s);
+    int longestPalindrome_search(string &s, int left, int right);
+
+
+
     //393
     bool validUtf8(vector<int>& data);
     bool validUtf8II(vector<int>& data);

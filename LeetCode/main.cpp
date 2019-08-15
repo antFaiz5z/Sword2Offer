@@ -21,7 +21,7 @@ int main() {
     //Bit bit;
     //HashTable ht;
     Unsorted unsorted;
-    //Dynamic dynamic;
+    Dynamic dynamic;
 
 /*    vector<int> nums{2, 7, 11, 15};
     vector<int> ret = ht.twoSum_hashI(nums, 9);
@@ -109,7 +109,12 @@ int main() {
     //cout << pos << endl;
     //cout << unsorted.validIPAddress("A.a.aA.2") << endl;
     //cout << unsorted.validIPAddress("") << endl;
-    
+
+    //string a;
+    //cout << a.substr(0,0).empty() <<endl;
+
+    vector<vector<int>> a{{15,8},{2,20},{2,14},{4,17},{8,19},{8,9},{5,7},{11,19},{8,11},{13,11},{2,13},{11,19},{8,11},{13,11},{2,13},{11,19},{16,1},{18,13},{14,17},{18,19}};
+    cout << dynamic.maxEnvelopes(a) <<endl;
     return 0;
 
 

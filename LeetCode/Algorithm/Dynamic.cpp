@@ -257,6 +257,38 @@ int Dynamic::lengthOfLIS(vector<int> &nums) {
     return ret;
 }
 
+int Dynamic::maxEnvelopes(vector<vector<int>> &envelopes) {
+
+    int size = envelopes.size();
+    if (size < 2) return size;
+    int ret = 0;
+    int dp[size];
+    dp[0] = 1;
+    sort(envelopes.begin(), envelopes.end(), [this](vector<int> &a, vector<int> &b) {
+        if (a[0] == b[0]) {
+            return a[1] <= b[1];
+        } else return a[0] <= b[0];
+        //return a[0] <= b[0] && a[1] <= b[1];
+    });
+/*    for (auto &i : envelopes){
+        for (auto &j : i){
+            cout << j << ",";
+        }
+        cout << endl;
+    }*/
+    for (int i = 1; i < size; ++i) {
+        int ma = 0;
+        for (int j = 0; j < i; ++j) {
+            if (envelopes[j][0] < envelopes[i][0] && envelopes[j][1] < envelopes[i][1]){
+                ma = max(ma, dp[j]);
+            }
+        }
+        dp[i] = ma +1;
+        ret = max(ret, dp[i]);
+    }
+    return ret;
+}
+
 int Dynamic::coinChange(vector<int> &coins, int amount) {
 
     vector<int> dp(amount + 1, amount + 1);

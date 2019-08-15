@@ -378,7 +378,7 @@ string Unsorted::validIPAddressII(string IP) {
 }
 
 // 优雅的split
-void Unsorted::split(const string& s, vector<string> &vs, const char delim) {
+void Unsorted::split(const string &s, vector<string> &vs, const char delim) {
     istringstream iss(s);
     string temp;
     while (getline(iss, temp, delim)) {
@@ -390,7 +390,7 @@ void Unsorted::split(const string& s, vector<string> &vs, const char delim) {
 }
 
 // 判定是否IPv4
-bool Unsorted::isValidIPv4(const string& IP) {
+bool Unsorted::isValidIPv4(const string &IP) {
     vector<string> vs;
     split(IP, vs, '.');
     if (vs.size() != 4) return false;
@@ -406,7 +406,7 @@ bool Unsorted::isValidIPv4(const string& IP) {
 }
 
 // 判定是否IPv6
-bool Unsorted::isValidIPv6(const string& IP) {
+bool Unsorted::isValidIPv6(const string &IP) {
     vector<string> vs;
     split(IP, vs, ':');
     if (vs.size() != 8) return false;
@@ -418,3 +418,30 @@ bool Unsorted::isValidIPv6(const string& IP) {
     }
     return true;
 }
+
+string Unsorted::longestPalindrome(string s) {
+
+    //if (s.empty()) return "";
+    int len = 0, start = 0;
+    string ret;
+    for (int i = 0; i < s.size(); ++i) {
+        int len1 = longestPalindrome_search(s, i, i);
+        int len2 = longestPalindrome_search(s, i, i + 1);
+        if (max(len1, len2) > len) {
+            len = max(len1, len2);
+            start = i - (len - 1) / 2;
+        }
+    }
+    return s.substr(start, len);
+}
+
+int Unsorted::longestPalindrome_search(string &s, int left, int right) {
+
+    while (left >= 0 && right < s.size() && s[left] == s[right]) {
+        --left;
+        ++right;
+    }
+    return right - left - 1;
+}
+
+

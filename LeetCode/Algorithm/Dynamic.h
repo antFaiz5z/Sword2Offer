@@ -46,6 +46,8 @@ public:
 
     //300
     int lengthOfLIS(vector<int>& nums);
+    //354
+    int maxEnvelopes(vector<vector<int>>& envelopes);
 
     //322
     int coinChange(vector<int>& coins, int amount);
