@@ -107,6 +107,10 @@ public:
     void dji_three_bt1(vector<int> &price, vector<int> &like_price, int rest_v, int &ret);
     void dji_three_bt2(vector<int> &price, vector<int> &like_price, int index, int count, int rest_v, int &ret);
 
+    //zoom
+    void zoom_one();//acc
+
+
 private:
     //void leiho_three();
     int w, xe, ye, xc, yc, px, py, x, y;

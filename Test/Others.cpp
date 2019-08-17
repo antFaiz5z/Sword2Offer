@@ -809,6 +809,19 @@ void Others::dji_three() {
     cout << ret << endl;
 }
 
+void Others::zoom_one() {
+
+    int w, m, n;
+    cin >> w >> m >> n;
+    int x1, y1, x2, y2;
+
+    y1 = (m - 1) / w;
+    x1 = (y1 % 2 == 1) ? w - m % w : m % w - 1;
+    y2 = (n - 1) / w;
+    x2 = (y2 % 2 == 1) ? w - n % w : n % w - 1;
+    cout << abs(x1 - x2) + abs(y1 - y2) << endl;
+}
+
 
 
 
