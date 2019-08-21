@@ -58,4 +58,7 @@ int main() {
     //others.dji_one();
     //others.dji_three();
 
+    //others.huawei_one();
+    //others.huawei_two();
+    others.huawei_three();
 }

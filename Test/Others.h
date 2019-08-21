@@ -110,6 +110,12 @@ public:
     //zoom
     void zoom_one();//acc
 
+    //huawei
+    void huawei_one();//acc
+    void huawei_two();//acc
+    void huawei_three();//error, 80%
+    void huawei_three_find(string &name, unordered_map<string, int> &people_get, vector<unordered_set<string>> &groups);
+
 
 private:
     //void leiho_three();

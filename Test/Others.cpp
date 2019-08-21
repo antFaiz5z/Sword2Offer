@@ -822,6 +822,119 @@ void Others::zoom_one() {
     cout << abs(x1 - x2) + abs(y1 - y2) << endl;
 }
 
+void Others::huawei_one() {
+
+    string line, tmp;
+    vector<string> ret;
+    int count;
+    getline(cin, line);
+    stringstream ss(line);
+    ss >> tmp;
+    ret.emplace_back("");
+    while (ss >> tmp) {
+        if (tmp == "A") {
+            ret.emplace_back("12");
+            ret.emplace_back("34");
+
+        } else if (tmp == "B") {
+            ret.emplace_back("AB");
+            ret.emplace_back("CD");
+        } else {
+            ret.push_back(tmp);
+        }
+    }
+    count = ret.size();
+    int m;
+    while (count > 0) {
+        m = count % 16;
+        count /= 16;
+        if (m >= 10) {
+            ret[0].push_back(char('A' + m - 10));
+        } else {
+            ret[0].push_back(char('0' + m));
+        }
+    }
+    reverse(ret[0].begin(), ret[0].end());
+    cout << ret[0];
+    for (int i = 1; i < ret.size(); ++i) {
+        cout << " " << ret[i];
+    }
+    cout << endl;
+}
+
+void Others::huawei_two() {
+
+    int m, n;
+    int ten = 0, one = 0;
+    cin >> m >> n;
+    for (int i = m; i < n; ++i) {
+        bool zhi = true;
+        for (int j = 2; j < i; ++j) {
+            if (i % j == 0) {
+                zhi = false;
+                break;
+            }
+        }
+        int tmp = i;
+        if (zhi) {
+            one += (tmp % 10);
+            tmp /= 10;
+            ten += (tmp % 10);
+        }
+    }
+    cout << min(ten, one) << endl;
+}
+
+void Others::huawei_three() {
+
+    string first, tmp;
+    int group_count;
+    int ret = 0;
+    cin >> first >> group_count;
+    unordered_map<string, int> people_get;
+    vector<unordered_set<string>> groups(group_count);
+    for (int i = 0; i < group_count; ++i) {
+        cin >> tmp;
+        string name;
+        for (char j : tmp) {
+            if (j != ',') {
+                name += j;
+            } else {
+                groups[i].insert(name);
+                people_get[name] = 0;
+                name.clear();
+            }
+        }
+        if (!name.empty()) {
+            groups[i].insert(name);
+            people_get[name] = 0;
+        }
+    }
+    people_get[first] = 1;
+    huawei_three_find(first, people_get, groups);
+
+    for (auto &i : people_get) {
+        if (i.second != 0) ++ret;
+    }
+    cout << ret << endl;
+
+}
+
+void
+Others::huawei_three_find(string &name, unordered_map<string, int> &people_get, vector<unordered_set<string>> &groups) {
+
+    for (auto &g : groups) {
+        if (g.find(name) != g.end()) {
+            for (auto n : g) {
+                if (people_get.find(n) != people_get.end() && people_get[n] == 0) {
+                    ++people_get[n];
+                    huawei_three_find(n, people_get, groups);
+                }
+            }
+        }
+    }
+}
+
 
 
 
