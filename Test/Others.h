@@ -117,6 +117,9 @@ public:
     void huawei_three_find(string &name, unordered_map<string, int> &people_get, vector<unordered_set<string>> &groups);
 
 
+    void didi_one();//TLB, 9%
+    void didi_two();//TLB, 0%
+
 private:
     //void leiho_three();
     int w, xe, ye, xc, yc, px, py, x, y;

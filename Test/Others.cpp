@@ -933,6 +933,100 @@ Others::huawei_three_find(string &name, unordered_map<string, int> &people_get, 
     }
 }
 
+void didi_one_bfs(vector<string> &nums, vector<char> &chas, int index) {
+
+    if (index == nums.size() -1){
+        return;
+    }
+    if (stoi(nums[index +1]) < stoi(nums[index]))
+    if (chas[index] == '+' || chas[index] == '-'){
+        if (((index == 0) || (chas[index -1] == '+' || chas[index -1] == '-')) && ((index == nums.size() -1) || (chas[index +1] == '+' || chas[index +1] == '-'))){
+            string tmp = nums[index];
+            nums[index] = nums[index +1];
+            nums[index +1] = tmp;
+        }
+    }else if (chas[index] == '*' || chas[index] == '/'){
+        string tmp = nums[index];
+        nums[index] = nums[index +1];
+        nums[index +1] = tmp;
+    }
+    for (int i = index +1; i < nums.size(); ++i) {
+        didi_one_bfs(nums, chas, i);
+    }
+}
+
+void Others::didi_one() {
+
+    int n;
+    cin >> n;
+    vector<string> nums(n);
+    vector<char> chas(n - 1);
+    cin >> nums[0];
+    for (int i = 0; i < n - 1; ++i) {
+        cin >> chas[i];
+        cin >> nums[i + 1];
+    }
+
+    for (auto &i : nums){
+        cout << i << " ";
+    }
+    for (auto &i : chas){
+        cout << i << " ";
+    }
+    cout << endl;
+    didi_one_bfs(nums, chas, 0);
+
+    cout << nums[0] << ' ';
+    for (int i = 0; i < n - 1; ++i) {
+        cout << chas[i] << ' ';
+        cout << nums[i +1] << ' ';
+    }
+    cout << endl;
+}
+
+void didi_two_dfs(vector<int> &a, vector<int> &b, int indexa, int indexb, int &ret, int now, int n, int rest, int cost){
+
+    if (rest < 0 || indexa >= n || indexb >= n){
+        return;
+    }
+    if ((2*n - indexa- indexb) <= rest){
+        ret = max(ret, now);
+    }
+    for (int i = indexa; i < n; ++i) {
+        for (int j = indexb; j < n; ++j) {
+            if (a[i] == b[j]){
+                didi_two_dfs(a, b, i +i, j +1, ret, now +1, n, rest - cost, cost);
+            }
+        }
+    }
+    for (int i = indexb; i < n; ++i) {
+        for (int j = indexa; j < n; ++j) {
+            if (a[j] == b[i]){
+                didi_two_dfs(a, b, i +i, j +1, ret, now +1, n, rest - cost, cost);
+            }
+        }
+    }
+
+}
+
+void Others::didi_two() {
+
+    int n, total, cost;
+    cin >> n >> total >> cost;
+    int x, ret = 0;
+    vector<int> a, b;
+    for (int i = 0; i < n; ++i) {
+        cin >> x;
+        a.push_back(x);
+    }
+    for (int i = 0; i < n; ++i) {
+        cin >> x;
+        b.push_back(x);
+    }
+    didi_two_dfs(a, b, 0, 0, ret, 0, n, total, cost);
+    cout << ret << endl;
+}
+
 
 
 
