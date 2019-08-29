@@ -2,8 +2,8 @@
 // Created by Faiz on 2019/8/28 0028.
 //
 
-#ifndef SWORD2OFFER_RVALUE_H
-#define SWORD2OFFER_RVALUE_H
+#ifndef SWORD2OFFER_RVALUETEST_H
+#define SWORD2OFFER_RVALUETEST_H
 
 #include <iostream>
 #include <type_traits>
@@ -48,4 +48,4 @@ std::unique_ptr<T> make_unique(U &&... u) {
 }
 
 
-#endif //SWORD2OFFER_RVALUE_H
+#endif //SWORD2OFFER_RVALUETEST_H
