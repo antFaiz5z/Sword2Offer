@@ -935,22 +935,23 @@ Others::huawei_three_find(string &name, unordered_map<string, int> &people_get, 
 
 void didi_one_bfs(vector<string> &nums, vector<char> &chas, int index) {
 
-    if (index == nums.size() -1){
+    if (index == nums.size() - 1) {
         return;
     }
-    if (stoi(nums[index +1]) < stoi(nums[index]))
-    if (chas[index] == '+' || chas[index] == '-'){
-        if (((index == 0) || (chas[index -1] == '+' || chas[index -1] == '-')) && ((index == nums.size() -1) || (chas[index +1] == '+' || chas[index +1] == '-'))){
+    if (stoi(nums[index + 1]) < stoi(nums[index]))
+        if (chas[index] == '+' || chas[index] == '-') {
+            if (((index == 0) || (chas[index - 1] == '+' || chas[index - 1] == '-')) &&
+                ((index == nums.size() - 1) || (chas[index + 1] == '+' || chas[index + 1] == '-'))) {
+                string tmp = nums[index];
+                nums[index] = nums[index + 1];
+                nums[index + 1] = tmp;
+            }
+        } else if (chas[index] == '*' || chas[index] == '/') {
             string tmp = nums[index];
-            nums[index] = nums[index +1];
-            nums[index +1] = tmp;
+            nums[index] = nums[index + 1];
+            nums[index + 1] = tmp;
         }
-    }else if (chas[index] == '*' || chas[index] == '/'){
-        string tmp = nums[index];
-        nums[index] = nums[index +1];
-        nums[index +1] = tmp;
-    }
-    for (int i = index +1; i < nums.size(); ++i) {
+    for (int i = index + 1; i < nums.size(); ++i) {
         didi_one_bfs(nums, chas, i);
     }
 }
@@ -967,10 +968,10 @@ void Others::didi_one() {
         cin >> nums[i + 1];
     }
 
-    for (auto &i : nums){
+    for (auto &i : nums) {
         cout << i << " ";
     }
-    for (auto &i : chas){
+    for (auto &i : chas) {
         cout << i << " ";
     }
     cout << endl;
@@ -979,30 +980,31 @@ void Others::didi_one() {
     cout << nums[0] << ' ';
     for (int i = 0; i < n - 1; ++i) {
         cout << chas[i] << ' ';
-        cout << nums[i +1] << ' ';
+        cout << nums[i + 1] << ' ';
     }
     cout << endl;
 }
 
-void didi_two_dfs(vector<int> &a, vector<int> &b, int indexa, int indexb, int &ret, int now, int n, int rest, int cost){
+void
+didi_two_dfs(vector<int> &a, vector<int> &b, int indexa, int indexb, int &ret, int now, int n, int rest, int cost) {
 
-    if (rest < 0 || indexa >= n || indexb >= n){
+    if (rest < 0 || indexa >= n || indexb >= n) {
         return;
     }
-    if ((2*n - indexa- indexb) <= rest){
+    if ((2 * n - indexa - indexb) <= rest) {
         ret = max(ret, now);
     }
     for (int i = indexa; i < n; ++i) {
         for (int j = indexb; j < n; ++j) {
-            if (a[i] == b[j]){
-                didi_two_dfs(a, b, i +i, j +1, ret, now +1, n, rest - cost, cost);
+            if (a[i] == b[j]) {
+                didi_two_dfs(a, b, i + i, j + 1, ret, now + 1, n, rest - cost, cost);
             }
         }
     }
     for (int i = indexb; i < n; ++i) {
         for (int j = indexa; j < n; ++j) {
-            if (a[j] == b[i]){
-                didi_two_dfs(a, b, i +i, j +1, ret, now +1, n, rest - cost, cost);
+            if (a[j] == b[i]) {
+                didi_two_dfs(a, b, i + i, j + 1, ret, now + 1, n, rest - cost, cost);
             }
         }
     }
@@ -1025,6 +1027,111 @@ void Others::didi_two() {
     }
     didi_two_dfs(a, b, 0, 0, ret, 0, n, total, cost);
     cout << ret << endl;
+}
+
+void pdd2_one_dfs(vector<int> &nums, int n, vector<int> &ret, int index) {
+
+    if (ret.size() == n) {
+        cout << ret[0];
+        for (int i = 1; i < n; ++i) {
+            cout << "," << ret[i];
+        }
+        cout << endl;
+        exit(0);
+    }
+    for (int i = index; i <= nums.size() - n + ret.size(); ++i) {
+        bool ok = false;
+        cout << nums[i] << endl;
+        if (ret.empty()) {
+            ok = true;
+        } else if (ret.back() % 2 == 0) {
+            if ((nums[i] % 2 == 0 && nums[i] < ret.back()) || nums[i] % 2 == 1) {
+                ok = true;
+            }
+        } else {
+            if (nums[i] % 2 == 1 && nums[i] < ret.back()) {
+                ok = true;
+            }
+        }
+        if (ok) {
+            ret.push_back(nums[i]);
+            pdd2_one_dfs(nums, n, ret, i + 1);
+            ret.pop_back();
+        }
+    }
+}
+
+void Others::pdd2_one() {
+
+    int n, tmp = 0;
+    vector<int> nums, ret;
+    string line;
+    getline(cin, line);
+
+    for (char i : line) {
+        if (i == ',' || i == ';') {
+            nums.push_back(tmp);
+            tmp = 0;
+        } else {
+            tmp = tmp * 10 + i - '0';
+        }
+    }
+    n = tmp;
+
+    pdd2_one_dfs(nums, n, ret, 0);
+
+}
+
+void Others::pdd2_two() {
+
+}
+
+void Others::pdd2_three() {
+
+    int n, tmp, ma = 0;
+    float zo = 1;
+    cin >> n;
+    vector<int> all;
+    for (int i = 0; i < n; ++i) {
+        cin >> tmp;
+        ma = max(ma, tmp);
+        zo *= (float) tmp;
+        all.push_back(tmp);
+    }
+    //cout << "zo:" << zo << endl;
+    float ret = 0;
+    for (int j = 1; j <= ma; ++j) {
+        float chan = 0, tmp1 = 1, tmp2 = 1;
+        for (int k = 0; k < n; ++k) {
+            tmp1 *= min(all[k], j);
+            tmp2 *= min(all[k], j - 1);
+        }
+        //cout << "1:" << tmp1 << ", 2:" << tmp2 << endl;
+        chan = (tmp1 - tmp2) / zo;
+        //cout << chan << endl;
+        ret += ((float) j * chan);
+    }
+    printf("%.2f\n", ret);
+    //cout << ret << endl;
+}
+
+void Others::pdd2_four() {
+
+    int m, n, k;
+    cin >> m >> n >> k;
+
+    vector<int> nums;
+    for (int i = 1; i <= m; ++i) {
+        for (int j = 1; j <= n; ++j) {
+            nums.push_back(i * j);
+        }
+    }
+    sort(nums.begin(), nums.end());
+    for (auto &i : nums){
+        cout << i << endl;
+    }
+    cout << nums[nums.size() - k] << endl;
+
 }
 
 

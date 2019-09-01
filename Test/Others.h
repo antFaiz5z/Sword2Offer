@@ -116,9 +116,15 @@ public:
     void huawei_three();//error, 80%
     void huawei_three_find(string &name, unordered_map<string, int> &people_get, vector<unordered_set<string>> &groups);
 
-
+    //didi
     void didi_one();//TLB, 9%
     void didi_two();//TLB, 0%
+
+    //pdd2
+    void pdd2_one();
+    void pdd2_two();
+    void pdd2_three();
+    void pdd2_four();
 
 private:
     //void leiho_three();
