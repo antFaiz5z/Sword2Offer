@@ -5,6 +5,8 @@
 #ifndef SWORD2OFFER_RVALUETEST_H
 #define SWORD2OFFER_RVALUETEST_H
 
+/* 右值使用 */
+
 #include <iostream>
 #include <type_traits>
 #include <typeinfo>

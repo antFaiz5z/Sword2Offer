@@ -5,6 +5,8 @@
 #ifndef SWORD2OFFER_IMPPOLYBYTMPLATE_H
 #define SWORD2OFFER_IMPPOLYBYTMPLATE_H
 
+/* 使用模板实现动态多态 */
+
 #include <iostream>
 
 using namespace std;

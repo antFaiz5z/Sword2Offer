@@ -5,7 +5,7 @@
 #ifndef SWORD2OFFER_SHAREDPTR_H
 #define SWORD2OFFER_SHAREDPTR_H
 
-
+/* shared_ptr实现 */
 template<typename T>
 class SharedPtr {
 private:

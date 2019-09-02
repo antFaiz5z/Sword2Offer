@@ -5,10 +5,10 @@
 #ifndef JIANZHIOFFER_ROUNDROBIN_H
 #define JIANZHIOFFER_ROUNDROBIN_H
 
+/* 加权轮询算法实现 */
 
 #include <string>
 #include <vector>
-
 
 typedef struct {
     int weight;
