@@ -67,4 +67,7 @@ int main() {
     //others.pdd2_one();
     //others.pdd2_three();
     //others.pdd2_four();
+
+    //others.gbits_one();
+    //others.gbits_two();
 }

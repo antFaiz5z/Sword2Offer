@@ -126,6 +126,9 @@ public:
     void pdd2_three();
     void pdd2_four();
 
+    void gbits_one();
+    void gbits_two();
+
 private:
     //void leiho_three();
     int w, xe, ye, xc, yc, px, py, x, y;

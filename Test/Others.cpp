@@ -1127,11 +1127,67 @@ void Others::pdd2_four() {
         }
     }
     sort(nums.begin(), nums.end());
-    for (auto &i : nums){
+    for (auto &i : nums) {
         cout << i << endl;
     }
     cout << nums[nums.size() - k] << endl;
 
+}
+
+void Others::gbits_one() {
+
+    string a, b;
+    cin >> a >> b;
+    int i = a.size() - 1;
+    int j = b.size() - 1;
+
+    while (i >= 0 && j >= 0) {
+
+        if (a[i] == b[j]) {
+            if (j-- == 0) {
+                cout << i + 1 << endl;
+                return;
+            }
+        }
+        i--;
+    }
+    cout << "0" << endl;
+
+}
+
+void Others::gbits_two() {
+
+    multimap<int, vector<int>> cost;
+    set<int> points;
+    int ret = 0;
+    int n, m, a, b, c;
+    cin >> n >> m;
+    int *count = new int[n +1]();
+
+    for (int i = 0; i < m; ++i) {
+        cin >> a >> b >> c;
+        cost.insert(make_pair(c, vector<int>{a, b}));
+    }
+    for (auto &it : cost) {
+        if ((points.find(it.second[0]) != points.end() && points.find(it.second[1]) != points.end())
+        || count[it.second[0]] >= 3 || count[it.second[1]] >= 3) {
+            continue;
+        }
+        ++count[it.second[0]];
+        ++count[it.second[1]];
+        if (points.find(it.second[0]) == points.end())
+            points.insert(it.second[0]);
+        if (points.find(it.second[1]) == points.end())
+            points.insert(it.second[1]);
+        ret += it.first;
+    }
+    for (int i = 1; i <= n; ++i) {
+        if (points.find(i) == points.end()){
+            cout << -1 <<endl;
+            return;
+        }
+    }
+    cout << ret << endl;
 }
 
 
