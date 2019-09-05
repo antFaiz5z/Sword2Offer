@@ -126,8 +126,8 @@ public:
     void pdd2_three();
     void pdd2_four();
 
-    void gbits_one();
-    void gbits_two();
+    void gbits_one();//40%
+    void gbits_two();//20%
 
 private:
     //void leiho_three();
