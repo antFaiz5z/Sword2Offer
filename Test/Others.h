@@ -134,10 +134,6 @@ public:
     void iqiyi_one();//TLE, 36%
     void iqiyi_two();
 
-    //oppo
-    void oppo_one();
-    void oppo_two();
-
 private:
     //void leiho_three();
     int w, xe, ye, xc, yc, px, py, x, y;
