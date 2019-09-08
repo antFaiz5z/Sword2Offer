@@ -126,8 +126,17 @@ public:
     void pdd2_three();
     void pdd2_four();
 
+    //g-bits
     void gbits_one();//40%
     void gbits_two();//20%
+
+    //iqiyi
+    void iqiyi_one();//TLE, 36%
+    void iqiyi_two();
+
+    //oppo
+    void oppo_one();
+    void oppo_two();
 
 private:
     //void leiho_three();

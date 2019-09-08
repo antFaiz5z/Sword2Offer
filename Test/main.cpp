@@ -70,4 +70,6 @@ int main() {
 
     //others.gbits_one();
     //others.gbits_two();
+
+    others.iqiyi_one();
 }

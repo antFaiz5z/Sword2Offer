@@ -1162,7 +1162,7 @@ void Others::gbits_two() {
     int ret = 0;
     int n, m, a, b, c;
     cin >> n >> m;
-    int *count = new int[n +1]();
+    int *count = new int[n + 1]();
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b >> c;
@@ -1170,7 +1170,7 @@ void Others::gbits_two() {
     }
     for (auto &it : cost) {
         if ((points.find(it.second[0]) != points.end() && points.find(it.second[1]) != points.end())
-        || count[it.second[0]] >= 3 || count[it.second[1]] >= 3) {
+            || count[it.second[0]] >= 3 || count[it.second[1]] >= 3) {
             continue;
         }
         ++count[it.second[0]];
@@ -1182,13 +1182,67 @@ void Others::gbits_two() {
         ret += it.first;
     }
     for (int i = 1; i <= n; ++i) {
-        if (points.find(i) == points.end()){
-            cout << -1 <<endl;
+        if (points.find(i) == points.end()) {
+            cout << -1 << endl;
             return;
         }
     }
     cout << ret << endl;
 }
+
+void iqiyi_one_dfs(vector<int> &than, vector<int> &nums, vector<bool> &used, int n, int index, int &ret) {
+
+    if (nums.size() == n) {
+        ++ret;
+        return;
+    }
+    if (index == 0) {
+        for (int i = 1; i <= n; ++i) {
+            nums.push_back(i);
+            used[i] = true;
+            iqiyi_one_dfs(than, nums, used, n, index + 1, ret);
+            used[i] = false;
+            nums.pop_back();
+        }
+    } else if (than[index - 1] == 0 && nums.back() < n) {
+        for (int i = nums.back() + 1; i <= n; ++i) {
+            if (used[i] == false) {
+                nums.push_back(i);
+                used[i] = true;
+                iqiyi_one_dfs(than, nums, used, n, index + 1, ret);
+                used[i] = false;
+                nums.pop_back();
+            }
+        }
+    } else if (than[index - 1] == 1 && nums.back() > 1) {
+        for (int i = 1; i < nums.back(); ++i) {
+            if (used[i] == false) {
+                nums.push_back(i);
+                used[i] = true;
+                iqiyi_one_dfs(than, nums, used, n, index + 1, ret);
+                used[i] = false;
+                nums.pop_back();
+            }
+        }
+    }
+}
+
+void Others::iqiyi_one() {
+
+    vector<int> than;
+    int n, tmp, ret = 0;
+    cin >> n;
+    vector<int> nums;
+    vector<bool> used(n, false);
+    for (int i = 1; i <= n - 1; ++i) {
+        cin >> tmp;
+        than.push_back(tmp);
+    }
+    iqiyi_one_dfs(than, nums, used, n, 0, ret);
+    cout << ret << endl;
+}
+
+void Others::iqiyi_two() {}
 
 
 
