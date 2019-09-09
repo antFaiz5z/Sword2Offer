@@ -71,5 +71,7 @@ int main() {
     //others.gbits_one();
     //others.gbits_two();
 
-    others.iqiyi_one();
+    //others.iqiyi_one();
+
+    others.qianxin_two();
 }

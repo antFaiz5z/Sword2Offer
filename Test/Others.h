@@ -29,6 +29,15 @@ struct TimeSegment {
     TimeSegment(uint64_t btime_, uint64_t etime_) : btime(btime_), etime(etime_) {}
 };
 
+struct bst {
+
+    int value;
+    bst *parent;
+    bst *left;
+    bst *right;
+    bst(int v): value(v), parent(nullptr), left(nullptr), right(nullptr){}
+};
+
 class Others {
 public:
 
@@ -133,6 +142,9 @@ public:
     //iqiyi
     void iqiyi_one();//TLE, 36%
     void iqiyi_two();
+
+    void qianxin_one();//91%
+    void qianxin_two();//RE, 0%
 
 private:
     //void leiho_three();

@@ -2,6 +2,7 @@
 // Created by Faiz on 2019/4/23 0023.
 //
 
+#include <queue>
 #include "Others.h"
 
 
@@ -1243,6 +1244,89 @@ void Others::iqiyi_one() {
 }
 
 void Others::iqiyi_two() {}
+
+void Others::qianxin_one() {
+
+    int tmp, ret = 0;
+    unordered_multimap<int, int> fs;
+    vector<int> s;
+    queue<int> q;
+    string line;
+    getline(cin, line);
+    stringstream ss(line);
+    while (ss >> tmp) {
+        s.push_back(tmp);
+    }
+    getline(cin, line);
+    stringstream ss2(line);
+    int i = 0;
+    while (ss2 >> tmp) {
+        fs.insert(make_pair(tmp, s[i++]));
+    }
+    cin >> tmp;
+    q.push(tmp);
+    while (!q.empty()) {
+        tmp = q.front();
+        q.pop();
+        ++ret;
+        while (fs.find(tmp) != fs.end()) {
+            auto it = fs.find(tmp);
+            q.push(it->second);
+            fs.erase(it);
+        }
+    }
+    cout << ret << endl;
+}
+
+void Others::qianxin_two() {
+
+
+    int n, value1, value2, tmp1, tmp2;
+    queue<bst *> nodes;
+    struct bst *node1 = nullptr, *node2 = nullptr;
+
+    cin >> n;
+    string line;
+    getline(cin, line);
+    stringstream ss(line);
+    cin >> value1 >> value2;
+    ss >> tmp1;
+
+    struct bst *now = new bst(tmp1), *tmpn1 = nullptr, *tmpn2 = nullptr;
+    nodes.push(now);
+    while (ss >> tmp1 >> tmp2) {
+        now = nodes.front();
+        nodes.pop();
+        cout << now->value <<endl;
+        if (now->value == -1){
+            nodes.push(new bst(-1));
+            nodes.push(new bst(-1));
+            continue;
+        }
+        tmpn1 = new bst(tmp1);
+        tmpn2 = new bst(tmp2);
+        nodes.push(tmpn1);
+        nodes.push(tmpn2);
+        now->left = tmpn1;
+        now->right = tmpn2;
+        tmpn1->parent = now;
+        tmpn2->parent = now;
+        if (tmp1 == value1) node1 = tmpn1;
+        if (tmp1 == value2) node2 = tmpn1;
+        if (tmp2 == value1) node1 = tmpn2;
+        if (tmp2 == value2) node2 = tmpn2;
+    }
+    while (node1->parent->value != node2->parent->value) {
+
+        if (node1->parent->value < node2->parent->value) {
+            node2 = node2->parent;
+        } else if (node1->parent->value > node2->parent->value) {
+            node1 = node1->parent;
+        }
+    }
+    cout << node1->parent->value << endl;
+
+}
 
 
 
