@@ -73,5 +73,5 @@ int main() {
 
     //others.iqiyi_one();
 
-    others.qianxin_two();
+    //others.qianxin_two();
 }

@@ -352,3 +352,49 @@ void Dynamic::helper(vector<vector<int>> &matrix, vector<vector<int>> &count, in
         }
     }
 }
+
+int Dynamic::maxProfit_all(vector<int> &prices, int k) {
+
+    if (prices.empty() || prices.size() < 2) {
+        return 0;
+    }
+    int days = prices.size();
+    int dp[days][k + 1][2];
+
+    for (int i = k; i >= 1; i--) {
+        dp[0][i][0] = 0;
+        dp[0][i][1] = -prices[0];
+    }
+    for (int i = 1; i < days; i++) {
+        for (int j = k; j >= 1; j--) {
+            dp[i][j][0] = max(dp[i - 1][j][0], dp[i - 1][j][1] + prices[i]);
+            dp[i][j][1] = max(dp[i - 1][j][1], dp[i - 1][j - 1][0] - prices[i]);
+        }
+    }
+    return dp[days - 1][k][0];
+}
+
+int Dynamic::maxProfit3(vector<int> &prices) {
+
+    return maxProfit_all(prices, 2);
+}
+
+int Dynamic::maxProfit3_II(vector<int> &prices) {
+
+    if (prices.empty() || prices.size() < 2) {
+        return 0;
+    }
+    int days = prices.size();
+    int dp_1_1 = -prices[0];
+    int dp_1_0 = 0;
+    int dp_2_1 = -prices[0];
+    int dp_2_0 = 0;
+
+    for (int i = 1; i < days; i++) {
+        dp_2_0 = max(dp_2_0, dp_2_1 + prices[i]);
+        dp_2_1 = max(dp_2_1, dp_1_0 - prices[i]);
+        dp_1_0 = max(dp_1_0, dp_1_1 + prices[i]);
+        dp_1_1 = max(dp_1_1, -prices[i]);
+    }
+    return dp_2_0;
+}

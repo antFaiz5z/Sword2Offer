@@ -55,6 +55,17 @@ public:
     //329
     int longestIncreasingPath(vector<vector<int>>& matrix);
     void helper(vector<vector<int>>& matrix, vector<vector<int>>& count, int x, int y);
+
+    //121 买卖股票的最佳时机         k = 1
+    //122 买卖股票的最佳时机 II      k = +infinity
+    //123 买卖股票的最佳时机 III     k = 2
+    int maxProfit3(vector<int> &prices);
+    int maxProfit3_II(vector<int> &prices);
+    //188 买卖股票的最佳时机 IV      k
+    //309 最佳买卖股票时机含冷冻期    k = +infinity
+    //714 买卖股票的最佳时机含手续费  k = +infinity
+    int maxProfit_all(vector<int> &prices, int k);//买卖股票通用解法，k为最多交易次数
+
 };
 
 
